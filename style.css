@@ -1,0 +1,17 @@
+GtkTextView
+{
+	/*background-image-source: -gtk-gradient(linear,
+		left top, right bottom,
+		from(#ff0), to(#0ff));*/
+	background-color:transparent;
+}
+GtkWindow
+{
+	background-image: -gtk-gradient(linear,
+		left top, left bottom,
+		from(#ff7), to(#fe0));
+}
+GtkButton
+{
+	background:transparent;
+}
