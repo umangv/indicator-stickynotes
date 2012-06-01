@@ -73,7 +73,7 @@
                 <property name="use_action_appearance">False</property>
                 <property name="image">imgClose</property>
                 <property name="image_position">top</property>
-                <signal name="clicked" handler="quit" swapped="no"/>
+                <signal name="clicked" handler="delete" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -98,6 +98,7 @@
             <property name="hscroll_policy">natural</property>
             <property name="vscroll_policy">natural</property>
             <property name="wrap_mode">word-char</property>
+            <signal name="focus-out-event" handler="focus_out" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>

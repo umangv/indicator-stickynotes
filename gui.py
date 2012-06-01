@@ -38,11 +38,17 @@ class StickyNote(object):
         # Move Window
         self.winMain.move(*self.note.properties.get("position", (10,10)))
 
-    def show(self):
-        pass
+    def show(self, widget=None, event=None):
+        if event:
+            self.winMain.present_with_time(event.get_time())
+            print(event.get_time())
+        else:
+            self.winMain.present()
+        self.winMain.stick()
+        self.winMain.move(*self.note.properties.get("position", (10,10)))
 
-    def hide(self):
-        pass
+    def hide(self, *args):
+        self.winMain.hide()
 
     def update_note(self):
         self.note.update(self.bbody.get_text(self.bbody.get_start_iter(),
@@ -69,5 +75,14 @@ class StickyNote(object):
         self.note.noteset.new()
         return False
 
+    def delete(self, *args):
+        self.note.delete()
+        self.winMain.hide()
+        return False
+
     def quit(self, *args):
         Gtk.main_quit()
+
+    def focus_out(self, *args):
+        self.save(*args)
+

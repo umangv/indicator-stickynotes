@@ -25,9 +25,10 @@ class Note:
         self.gui.update_note()
         if not self.uuid:
             self.uuid = str(uuid.uuid4())
+        self.properties = self.gui.properties()
         return {"uuid":self.uuid, "body":self.body,
                 "last_modified":self.last_modified.strftime(
-                    "%Y-%m-%dT%H:%M:%S"), "properties":self.gui.properties()}
+                    "%Y-%m-%dT%H:%M:%S"), "properties":self.properties}
 
     def update(self,body=None):
         if not body == None:
@@ -39,10 +40,10 @@ class Note:
         self.noteset.save()
         del self
 
-    def show(self):
+    def show(self, *args):
         if not self.gui:
             self.gui = self.gui_class(note=self)
-        self.gui.show()
+        self.gui.show(*args)
 
     def hide(self):
         self.gui.hide()
@@ -83,13 +84,14 @@ class NoteSet:
         note.show()
         return note
 
-    def showall(self):
+    def showall(self, *args):
         for note in self.notes:
-            note.show()
+            note.show(*args)
 
-    def hideall(self):
+    def hideall(self, *args):
+        self.save()
         for note in self.notes:
-            note.hide()
+            note.hide(*args)
 
 class dGUI:
     def __init__(self, *args, **kwargs):
