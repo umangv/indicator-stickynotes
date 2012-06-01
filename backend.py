@@ -68,9 +68,10 @@ class NoteSet:
         return json.dumps({"notes":[x.extract() for x in self.notes]})
 
     def save(self, path=''):
+        output = self.dumps()
         with open(path or expanduser("~/.{0}".format(SETTINGS_FILE)),
                 mode='w', encoding='utf-8') as fsock:
-            fsock.write(self.dumps())
+            fsock.write(output)
 
     def open(self, path=''):
         with open(path or expanduser("~/.{0}".format(SETTINGS_FILE)), 
