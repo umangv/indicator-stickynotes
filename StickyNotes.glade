@@ -2,11 +2,6 @@
 <interface>
   <!-- interface-requires gtk+ 3.0 -->
   <!-- interface-requires gtksourceview 3.0 -->
-  <object class="GtkImage" id="imgAdd">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixbuf">Icons/Add.png</property>
-  </object>
   <object class="GtkImage" id="imgClose">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -14,6 +9,7 @@
   </object>
   <object class="GtkWindow" id="MainWindow">
     <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Sticky Notes</property>
     <property name="default_width">200</property>
     <property name="default_height">200</property>
     <property name="hide_titlebar_when_maximized">True</property>
@@ -156,5 +152,10 @@
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkImage" id="imgAdd">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">Icons/Add.png</property>
   </object>
 </interface>
