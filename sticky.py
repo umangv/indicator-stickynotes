@@ -54,7 +54,6 @@ class IndicatorStickyNotes:
         self.nset.new()
 
     def showall(self, *args):
-        print(args)
         self.nset.showall(*args)
 
     def hideall(self, *args):

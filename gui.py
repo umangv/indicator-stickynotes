@@ -43,11 +43,7 @@ class StickyNote(object):
         self.winMain.move(*self.note.properties.get("position", (10,10)))
 
     def show(self, widget=None, event=None):
-        if event:
-            self.winMain.present_with_time(event.get_time())
-            print(event.get_time())
-        else:
-            self.winMain.present()
+        self.winMain.present()
         self.winMain.stick()
         self.winMain.move(*self.note.properties.get("position", (10,10)))
 
