@@ -41,6 +41,7 @@ class StickyNote(object):
         self.eResizeR.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         # Move Window
         self.winMain.move(*self.note.properties.get("position", (10,10)))
+        self.winMain.resize(*self.note.properties.get("size", (200,150)))
         # Mouse over
         self.eResizeR.get_window().set_cursor(Gdk.Cursor.new_for_display(
                     self.eResizeR.get_window().get_display(),
@@ -69,7 +70,8 @@ class StickyNote(object):
         return True
 
     def properties(self):
-        return {"position":self.winMain.get_position()}
+        return {"position":self.winMain.get_position(),
+                "size":self.winMain.get_size()}
 
     def save(self, *args):
         self.note.noteset.save()
