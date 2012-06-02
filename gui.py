@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 
-from gi.repository import Gtk, Gdk, Gio
+from gi.repository import Gtk, Gdk, Gio, GObject, GtkSource
 
 class StickyNote(object):
 
     def __init__(self, note):
         self.note = note
         self.builder = Gtk.Builder()
+        GObject.type_register(GtkSource.View)
         self.builder.add_from_file("StickyNotes.glade")
         self.builder.connect_signals(self)
         self.txtNote = self.builder.get_object("txtNote")
@@ -27,8 +28,11 @@ class StickyNote(object):
         Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),
                 css, 800)
         # Set text buffer
-        self.bbody = Gtk.TextBuffer()
+        self.bbody = GtkSource.Buffer()
+        self.bbody.begin_not_undoable_action()
         self.bbody.set_text(self.note.body)
+        self.bbody.set_highlight_matching_brackets(False)
+        self.bbody.end_not_undoable_action()
         self.txtNote.set_buffer(self.bbody)
         #Show
         self.winMain.show()
