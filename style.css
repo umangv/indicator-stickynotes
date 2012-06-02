@@ -5,6 +5,11 @@ GtkTextView
 		from(#ff0), to(#0ff));*/
 	background-color:transparent;
 }
+GtkTextView:selected
+{
+	background-color:#FFA500;
+	color:#000;
+}
 GtkWindow
 {
 	background-image: -gtk-gradient(linear,
