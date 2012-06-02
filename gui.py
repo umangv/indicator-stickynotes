@@ -41,6 +41,10 @@ class StickyNote(object):
         self.eResizeR.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         # Move Window
         self.winMain.move(*self.note.properties.get("position", (10,10)))
+        # Mouse over
+        self.eResizeR.get_window().set_cursor(Gdk.Cursor.new_for_display(
+                    self.eResizeR.get_window().get_display(),
+                    Gdk.CursorType.BOTTOM_RIGHT_CORNER))
 
     def show(self, widget=None, event=None):
         self.winMain.present()

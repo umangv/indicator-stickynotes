@@ -2,6 +2,16 @@
 <interface>
   <!-- interface-requires gtk+ 3.0 -->
   <!-- interface-requires gtksourceview 3.0 -->
+  <object class="GtkImage" id="imgAdd">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">Icons/Add.png</property>
+  </object>
+  <object class="GtkImage" id="imgClose">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">Icons/Close.png</property>
+  </object>
   <object class="GtkWindow" id="MainWindow">
     <property name="can_focus">False</property>
     <property name="default_width">200</property>
@@ -125,7 +135,7 @@
                   <object class="GtkImage" id="imgResizeR">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="stock">gtk-goto-bottom</property>
+                    <property name="pixbuf">Icons/fold.png</property>
                     <signal name="button-press-event" handler="resize" swapped="no"/>
                   </object>
                 </child>
@@ -146,15 +156,5 @@
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkImage" id="imgAdd">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixbuf">Icons/Add.png</property>
-  </object>
-  <object class="GtkImage" id="imgClose">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixbuf">Icons/Close.png</property>
   </object>
 </interface>
