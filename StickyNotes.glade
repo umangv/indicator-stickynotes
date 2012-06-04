@@ -2,11 +2,6 @@
 <interface>
   <!-- interface-requires gtk+ 3.0 -->
   <!-- interface-requires gtksourceview 3.0 -->
-  <object class="GtkImage" id="imgClose">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixbuf">Icons/Close.png</property>
-  </object>
   <object class="GtkWindow" id="MainWindow">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Sticky Notes</property>
@@ -94,6 +89,7 @@
             <property name="vexpand">True</property>
             <property name="hscroll_policy">natural</property>
             <property name="vscroll_policy">natural</property>
+            <property name="wrap_mode">word</property>
             <property name="tab_width">4</property>
             <property name="indent_on_tab">False</property>
             <signal name="focus-out-event" handler="focus_out" swapped="no"/>
@@ -108,20 +104,6 @@
           <object class="GtkBox" id="box3">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <child>
-              <object class="GtkEventBox" id="eventbox1">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <child>
-                  <placeholder/>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
             <child>
               <object class="GtkEventBox" id="eResizeR">
                 <property name="visible">True</property>
@@ -157,5 +139,10 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="pixbuf">Icons/Add.png</property>
+  </object>
+  <object class="GtkImage" id="imgClose">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">Icons/Close.png</property>
   </object>
 </interface>
