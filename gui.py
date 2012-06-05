@@ -14,6 +14,7 @@ class StickyNote(object):
         # Get necessary objects
         self.txtNote = self.builder.get_object("txtNote")
         self.winMain = self.builder.get_object("MainWindow")
+        self.winMain.set_name("main-window")
         self.bAdd = self.builder.get_object("bAdd")
         self.imgAdd = self.builder.get_object("imgAdd")
         self.imgResizeR = self.builder.get_object("imgResizeR")
@@ -22,6 +23,7 @@ class StickyNote(object):
         self.imgLock = self.builder.get_object("imgLock")
         self.imgUnlock = self.builder.get_object("imgUnlock")
         self.bClose = self.builder.get_object("bClose")
+        self.confirmDelete = self.builder.get_object("confirmDelete")
         # Run
         self.run()
 
@@ -91,9 +93,14 @@ class StickyNote(object):
         return False
 
     def delete(self, *args):
-        self.note.delete()
-        self.winMain.hide()
-        return False
+        confirm = self.confirmDelete.run()
+        self.confirmDelete.hide()
+        if confirm == 1:
+            self.note.delete()
+            self.winMain.hide()
+            return False
+        else:
+            return True
 
     def set_locked_state(self, locked):
         self.locked = locked

@@ -10,7 +10,7 @@ GtkTextView:selected
 	background-color:#FFA500;
 	color:#000;
 }
-GtkWindow
+GtkWindow#main-window
 {
 	background-image: -gtk-gradient(linear,
 		left top, left bottom,
