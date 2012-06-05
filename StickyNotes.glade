@@ -2,6 +2,11 @@
 <interface>
   <!-- interface-requires gtk+ 3.0 -->
   <!-- interface-requires gtksourceview 3.0 -->
+  <object class="GtkImage" id="imgUnlock">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">Icons/Unlock.png</property>
+  </object>
   <object class="GtkWindow" id="MainWindow">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Sticky Notes</property>
@@ -40,15 +45,15 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="save">
-                <property name="label" translatable="yes">Save</property>
+              <object class="GtkToggleButton" id="bLock">
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="margin_right">100</property>
                 <property name="use_action_appearance">False</property>
-                <signal name="clicked" handler="save" swapped="no"/>
+                <property name="image">imgUnlock</property>
+                <signal name="toggled" handler="lock_toggled" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -57,7 +62,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="close">
+              <object class="GtkButton" id="bClose">
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -144,5 +149,10 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="pixbuf">Icons/Close.png</property>
+  </object>
+  <object class="GtkImage" id="imgLock">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">Icons/Lock.png</property>
   </object>
 </interface>

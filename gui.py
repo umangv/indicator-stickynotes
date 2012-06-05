@@ -6,16 +6,23 @@ class StickyNote(object):
 
     def __init__(self, note):
         self.note = note
+        self.locked = self.note.properties.get("locked", False)
         self.builder = Gtk.Builder()
         GObject.type_register(GtkSource.View)
         self.builder.add_from_file("StickyNotes.glade")
         self.builder.connect_signals(self)
+        # Get necessary objects
         self.txtNote = self.builder.get_object("txtNote")
         self.winMain = self.builder.get_object("MainWindow")
         self.bAdd = self.builder.get_object("bAdd")
         self.imgAdd = self.builder.get_object("imgAdd")
         self.imgResizeR = self.builder.get_object("imgResizeR")
         self.eResizeR = self.builder.get_object("eResizeR")
+        self.bLock = self.builder.get_object("bLock")
+        self.imgLock = self.builder.get_object("imgLock")
+        self.imgUnlock = self.builder.get_object("imgUnlock")
+        self.bClose = self.builder.get_object("bClose")
+        # Run
         self.run()
 
     def run(self, *args):
@@ -46,6 +53,8 @@ class StickyNote(object):
         self.eResizeR.get_window().set_cursor(Gdk.Cursor.new_for_display(
                     self.eResizeR.get_window().get_display(),
                     Gdk.CursorType.BOTTOM_RIGHT_CORNER))
+        # Set locked state
+        self.set_locked_state(self.locked)
 
     def show(self, widget=None, event=None):
         self.winMain.present()
@@ -71,7 +80,7 @@ class StickyNote(object):
 
     def properties(self):
         return {"position":self.winMain.get_position(),
-                "size":self.winMain.get_size()}
+                "size":self.winMain.get_size(), "locked":self.locked}
 
     def save(self, *args):
         self.note.noteset.save()
@@ -85,6 +94,18 @@ class StickyNote(object):
         self.note.delete()
         self.winMain.hide()
         return False
+
+    def set_locked_state(self, locked):
+        self.locked = locked
+        if not self.bLock.get_active() == self.locked:
+            self.bLock.set_active(self.locked)
+        self.txtNote.set_editable(not self.locked)
+        self.txtNote.set_cursor_visible(not self.locked)
+        self.bLock.set_image({True:self.imgLock,
+            False:self.imgUnlock}[self.locked])
+
+    def lock_toggled(self, *args):
+        self.set_locked_state(self.bLock.get_active())
 
     def quit(self, *args):
         Gtk.main_quit()
