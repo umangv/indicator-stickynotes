@@ -81,8 +81,12 @@ class StickyNote(object):
         return True
 
     def properties(self):
-        return {"position":self.winMain.get_position(),
+        prop = {"position":self.winMain.get_position(),
                 "size":self.winMain.get_size(), "locked":self.locked}
+        if not self.winMain.get_visible():
+            prop["position"] = self.note.properties.get("position", (10, 10))
+            prop["size"] = self.note.properties.get("size", (200, 200))
+        return prop
 
     def save(self, *args):
         self.note.noteset.save()
