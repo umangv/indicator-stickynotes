@@ -43,6 +43,20 @@ class IndicatorStickyNotes:
         self.menu.append(s)
         s.show()
 
+        self.mLockAll = Gtk.MenuItem("Lock All")
+        self.menu.append(self.mLockAll)
+        self.mLockAll.connect("activate", self.lockall, None)
+        self.mLockAll.show()
+
+        self.mUnlockAll = Gtk.MenuItem("Unlock All")
+        self.menu.append(self.mUnlockAll)
+        self.mUnlockAll.connect("activate", self.unlockall, None)
+        self.mUnlockAll.show()
+
+        s = Gtk.SeparatorMenuItem.new()
+        self.menu.append(s)
+        s.show()
+
         self.mQuit = Gtk.MenuItem("Quit")
         self.menu.append(self.mQuit)
         self.mQuit.connect("activate", Gtk.main_quit, None)
@@ -58,6 +72,14 @@ class IndicatorStickyNotes:
 
     def hideall(self, *args):
         self.nset.hideall()
+
+    def lockall(self, *args):
+        for note in self.nset.notes:
+            note.gui.set_locked_state(True)
+        
+    def unlockall(self, *args):
+        for note in self.nset.notes:
+            note.gui.set_locked_state(False)
 
     def save(self):
         self.nset.save()
