@@ -30,7 +30,7 @@ class IndicatorStickyNotes:
         self.nset.showall()
         # Create App Indicator
         self.ind = appindicator.Indicator.new(
-                "Sticky Notes", "accessories-text-editor",
+                "Sticky Notes", "indicator-stickynotes",
                 appindicator.IndicatorCategory.APPLICATION_STATUS)
         self.ind.set_status(appindicator.IndicatorStatus.ACTIVE)
         self.ind.set_title("Sticky Notes")

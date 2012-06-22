@@ -34,9 +34,10 @@ GtkWindow#main-window
 {
 	background-image: -gtk-gradient(linear,
 		left top, left bottom,
-		from(#ff7), to(#fe0));
+      color-stop (0, #ff7),
+      color-stop (0.66, #fe0));
 }
 GtkButton
 {
-	background:transparent;
+   background:transparent;
 }

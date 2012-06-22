@@ -31,6 +31,7 @@
                 <property name="receives_default">True</property>
                 <property name="use_action_appearance">False</property>
                 <property name="image">imgAdd</property>
+                <property name="relief">none</property>
                 <signal name="clicked" handler="add" swapped="no"/>
               </object>
               <packing>
@@ -48,6 +49,8 @@
                 <property name="margin_right">100</property>
                 <property name="use_action_appearance">False</property>
                 <property name="image">imgUnlock</property>
+                <property name="relief">none</property>
+                <property name="draw_indicator">True</property>
                 <signal name="toggled" handler="lock_toggled" swapped="no"/>
               </object>
               <packing>
@@ -64,6 +67,7 @@
                 <property name="receives_default">True</property>
                 <property name="use_action_appearance">False</property>
                 <property name="image">imgClose</property>
+                <property name="relief">none</property>
                 <property name="image_position">top</property>
                 <signal name="clicked" handler="delete" swapped="no"/>
               </object>
@@ -85,6 +89,7 @@
           <object class="GtkSourceView" id="txtNote">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="has_focus">True</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
             <property name="hscroll_policy">natural</property>
@@ -134,16 +139,6 @@
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkImage" id="imgAdd">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixbuf">Icons/Add.png</property>
-  </object>
-  <object class="GtkImage" id="imgClose">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixbuf">Icons/Close.png</property>
   </object>
   <object class="GtkMessageDialog" id="confirmDelete">
     <property name="can_focus">False</property>
@@ -208,6 +203,16 @@
       <action-widget response="0">bCancel</action-widget>
       <action-widget response="1">bDelete</action-widget>
     </action-widgets>
+  </object>
+  <object class="GtkImage" id="imgAdd">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">Icons/Add.png</property>
+  </object>
+  <object class="GtkImage" id="imgClose">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">Icons/Close.png</property>
   </object>
   <object class="GtkImage" id="imgLock">
     <property name="visible">True</property>
