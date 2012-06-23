@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 # 
 # Copyright © 2012 Umang Varma <umang.me@gmail.com>
 # 
