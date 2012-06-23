@@ -17,8 +17,8 @@
 # You should have received a copy of the GNU General Public License along with
 # indicator-stickynotes.  If not, see <http://www.gnu.org/licenses/>.
 
-from backend import Note, NoteSet
-from gui import StickyNote
+from stickynotes.backend import Note, NoteSet
+from stickynotes.gui import StickyNote
 from gi.repository import Gtk, Gdk
 from gi.repository import AppIndicator3 as appindicator
 
