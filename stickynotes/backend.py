@@ -20,7 +20,7 @@ import uuid
 import json
 from os.path import expanduser
 
-SETTINGS_FILE = "stickynotesrc"
+SETTINGS_FILE = "~/.stickynotes"
 
 class Note:
     def __init__(self, content=None, gui_class=None, noteset=None):
@@ -86,14 +86,18 @@ class NoteSet:
 
     def save(self, path=''):
         output = self.dumps()
-        with open(path or expanduser("~/.{0}".format(SETTINGS_FILE)),
+        with open(path or expanduser(SETTINGS_FILE),
                 mode='w', encoding='utf-8') as fsock:
             fsock.write(output)
 
     def open(self, path=''):
-        with open(path or expanduser("~/.{0}".format(SETTINGS_FILE)), 
-                encoding='utf-8') as fsock:
-            self.loads(fsock.read())
+        try:
+            with open(path or expanduser(SETTINGS_FILE), 
+                    encoding='utf-8') as fsock:
+                self.loads(fsock.read())
+        except IOError:
+            self.loads('{}')
+            self.new()
 
     def new(self):
         """Creates a new note and adds it to the note set"""
