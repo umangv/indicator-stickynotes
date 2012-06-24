@@ -19,15 +19,19 @@
 from datetime import datetime
 
 from gi.repository import Gtk, Gdk, Gio, GObject, GtkSource
+import os.path
 
 class StickyNote(object):
 
     def __init__(self, note):
+        self.path = os.path.abspath(os.path.join(os.path.dirname(__file__),
+            '..'))
         self.note = note
         self.locked = self.note.properties.get("locked", False)
         self.builder = Gtk.Builder()
         GObject.type_register(GtkSource.View)
-        self.builder.add_from_file("StickyNotes.glade")
+        self.builder.add_from_file(os.path.join(self.path,
+            "StickyNotes.glade"))
         self.builder.connect_signals(self)
         # Get necessary objects
         self.txtNote = self.builder.get_object("txtNote")
@@ -51,7 +55,8 @@ class StickyNote(object):
         settings.props.gtk_button_images = True
         # Load and set CSS
         css = Gtk.CssProvider()
-        css.load_from_file(Gio.File.new_for_path("style.css"))
+        css.load_from_file(Gio.File.new_for_path(os.path.join(self.path,
+            "style.css")))
         Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),
                 css, 800)
         # Set text buffer
