@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Indicator Sticknotes
+GenericName=Sticky Notes
+Comment=Manage your To-Do list and jot down thoughts
+Icon=indicator-stickynotes
+Exec=indicator-stickynotes
+Categories=Utility;TextTools;
+Hidden=False
+X-GNOME-autostart-enabled=true
