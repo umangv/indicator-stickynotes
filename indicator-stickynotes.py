@@ -34,7 +34,6 @@ class IndicatorStickyNotes:
                 appindicator.IndicatorCategory.APPLICATION_STATUS)
         self.ind.set_status(appindicator.IndicatorStatus.ACTIVE)
         self.ind.set_title("Sticky Notes")
-        #self.ind.set_attention_icon("pynagram")
         # Create Menu
         self.menu = Gtk.Menu()
         self.mNewNote = Gtk.MenuItem("New Note")
