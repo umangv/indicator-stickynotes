@@ -20,9 +20,6 @@
 
 GtkTextView
 {
-	/*background-image-source: -gtk-gradient(linear,
-		left top, right bottom,
-		from(#ff0), to(#0ff));*/
 	background-color:transparent;
 }
 GtkTextView:selected
