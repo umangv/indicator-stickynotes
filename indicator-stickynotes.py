@@ -21,6 +21,7 @@ from stickynotes.backend import Note, NoteSet
 from stickynotes.gui import StickyNote
 from gi.repository import Gtk, Gdk
 from gi.repository import AppIndicator3 as appindicator
+import os.path
 
 class IndicatorStickyNotes:
     def __init__(self):
@@ -32,6 +33,10 @@ class IndicatorStickyNotes:
         self.ind = appindicator.Indicator.new(
                 "Sticky Notes", "indicator-stickynotes",
                 appindicator.IndicatorCategory.APPLICATION_STATUS)
+        # Delete/modify the following file when distributing as a package
+        self.ind.set_icon_theme_path(os.path.abspath(os.path.join(
+            os.path.dirname(__file__), 'Icons')))
+        self.ind.set_icon("indicator-stickynotes")
         self.ind.set_status(appindicator.IndicatorStatus.ACTIVE)
         self.ind.set_title("Sticky Notes")
         # Create Menu
