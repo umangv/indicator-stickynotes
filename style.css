@@ -18,11 +18,11 @@
  * 
  */
 
-GtkTextView
+GtkSourceView
 {
 	background-color:transparent;
 }
-GtkTextView:selected
+GtkSourceView:selected
 {
 	background-color:#FFA500;
 	color:#000;
