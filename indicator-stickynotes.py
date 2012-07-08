@@ -19,9 +19,21 @@
 
 from stickynotes.backend import Note, NoteSet
 from stickynotes.gui import StickyNote
+
 from gi.repository import Gtk, Gdk
 from gi.repository import AppIndicator3 as appindicator
+
 import os.path
+from functools import wraps
+
+def save_required(f):
+    """Wrapper for functions that require a save after execution"""
+    @wraps(f)
+    def _wrapper(self, *args, **kwargs):
+        ret = f(self, *args, **kwargs)
+        self.save()
+        return ret
+    return _wrapper
 
 class IndicatorStickyNotes:
     def __init__(self):
@@ -94,10 +106,12 @@ class IndicatorStickyNotes:
     def hideall(self, *args):
         self.nset.hideall()
 
+    @save_required
     def lockall(self, *args):
         for note in self.nset.notes:
             note.gui.set_locked_state(True)
         
+    @save_required
     def unlockall(self, *args):
         for note in self.nset.notes:
             note.gui.set_locked_state(False)

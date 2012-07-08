@@ -87,6 +87,7 @@
     <property name="decorated">False</property>
     <signal name="destroy" handler="quit" swapped="no"/>
     <signal name="button-press-event" handler="move" swapped="no"/>
+    <signal name="focus-out-event" handler="focus_out" swapped="no"/>
     <child>
       <object class="GtkBox" id="mainBox">
         <property name="visible">True</property>
@@ -172,7 +173,6 @@
             <property name="wrap_mode">word</property>
             <property name="tab_width">4</property>
             <property name="indent_on_tab">False</property>
-            <signal name="focus-out-event" handler="focus_out" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
