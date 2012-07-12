@@ -33,7 +33,7 @@ for theme in icon_themes:
         for dir, subdirs, files in os.walk("Icons/" + theme) if files])
 
 setup(name='indicator-stickynotes',
-        version='0.1',
+        version='0.2',
         description='Sticky Notes AppIndicator',
         author='Umang Varma',
         author_email='umang.me@gmail.com',
