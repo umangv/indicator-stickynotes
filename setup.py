@@ -19,7 +19,18 @@
 # indicator-stickynotes.  If not, see <http://www.gnu.org/licenses/>.
 
 from distutils.core import setup
-import glob
+import glob, os
+
+data_files = [('', ('COPYING', 'style.css', 'StickyNotes.glade')),
+    ('/usr/share/applications', ('indicator-stickynotes.desktop',)),
+    ('Icons', glob.glob("Icons/*.png"))]
+
+icon_themes = ["hicolor", "ubuntu-mono-dark", "ubuntu-mono-light"]
+for theme in icon_themes:
+    data_files.extend([(os.path.join("/usr/share/icons/", theme,
+        os.path.relpath(dir, "Icons/" + theme)), [os.path.join(dir, file)
+        for file in files])
+        for dir, subdirs, files in os.walk("Icons/" + theme) if files])
 
 setup(name='indicator-stickynotes',
         version='0.1',
@@ -29,12 +40,4 @@ setup(name='indicator-stickynotes',
         url='https://www.launchpad.net/indicator-stickynotes/',
         packages=['stickynotes',],
         scripts=['indicator-stickynotes.py',],
-        data_files=[('Icons', glob.glob("Icons/*.png")),
-            ('/usr/share/icons/hicolor/48x48/apps/',
-                ('Icons/48x48/indicator-stickynotes.png',)),
-            ('/usr/share/icons/hicolor/256x256/apps/',
-                ('Icons/256x256/indicator-stickynotes.png',)),
-            ('/usr/share/applications/',
-                ('indicator-stickynotes.desktop',)),
-            ('', ('COPYING', 'style.css', 'StickyNotes.glade')),]
-        )
+        data_files=data_files)
