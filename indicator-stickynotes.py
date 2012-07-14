@@ -133,7 +133,7 @@ def main():
         # Fallback to default
         locale_dir = None
     else:
-        locale_dir = MO_DIR
+        locale_dir = os.path.join(os.path.dirname(__file__), MO_DIR)
     locale.bindtextdomain(LOCALE_DOMAIN, locale_dir)
     locale.textdomain(LOCALE_DOMAIN)
     indicator = IndicatorStickyNotes()
