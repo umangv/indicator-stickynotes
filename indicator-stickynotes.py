@@ -19,11 +19,14 @@
 
 from stickynotes.backend import Note, NoteSet
 from stickynotes.gui import StickyNote
+from stickynotes.info import MO_DIR, LOCALE_DOMAIN
 
 from gi.repository import Gtk, Gdk
 from gi.repository import AppIndicator3 as appindicator
 
 import os.path
+import locale
+from locale import gettext as _
 from functools import wraps
 
 def save_required(f):
@@ -50,10 +53,10 @@ class IndicatorStickyNotes:
             os.path.dirname(__file__), 'Icons')))
         self.ind.set_icon("indicator-stickynotes")
         self.ind.set_status(appindicator.IndicatorStatus.ACTIVE)
-        self.ind.set_title("Sticky Notes")
+        self.ind.set_title(_("Sticky Notes"))
         # Create Menu
         self.menu = Gtk.Menu()
-        self.mNewNote = Gtk.MenuItem("New Note")
+        self.mNewNote = Gtk.MenuItem(_("New Note"))
         self.menu.append(self.mNewNote)
         self.mNewNote.connect("activate", self.new_note, None)
         self.mNewNote.show()
@@ -62,12 +65,12 @@ class IndicatorStickyNotes:
         self.menu.append(s)
         s.show()
 
-        self.mShowAll = Gtk.MenuItem("Show All")
+        self.mShowAll = Gtk.MenuItem(_("Show All"))
         self.menu.append(self.mShowAll)
         self.mShowAll.connect("activate", self.showall, None)
         self.mShowAll.show()
 
-        self.mHideAll = Gtk.MenuItem("Hide All")
+        self.mHideAll = Gtk.MenuItem(_("Hide All"))
         self.menu.append(self.mHideAll)
         self.mHideAll.connect("activate", self.hideall, None)
         self.mHideAll.show()
@@ -76,12 +79,12 @@ class IndicatorStickyNotes:
         self.menu.append(s)
         s.show()
 
-        self.mLockAll = Gtk.MenuItem("Lock All")
+        self.mLockAll = Gtk.MenuItem(_("Lock All"))
         self.menu.append(self.mLockAll)
         self.mLockAll.connect("activate", self.lockall, None)
         self.mLockAll.show()
 
-        self.mUnlockAll = Gtk.MenuItem("Unlock All")
+        self.mUnlockAll = Gtk.MenuItem(_("Unlock All"))
         self.menu.append(self.mUnlockAll)
         self.mUnlockAll.connect("activate", self.unlockall, None)
         self.mUnlockAll.show()
@@ -90,7 +93,7 @@ class IndicatorStickyNotes:
         self.menu.append(s)
         s.show()
 
-        self.mQuit = Gtk.MenuItem("Quit")
+        self.mQuit = Gtk.MenuItem(_("Quit"))
         self.menu.append(self.mQuit)
         self.mQuit.connect("activate", Gtk.main_quit, None)
         self.mQuit.show()
@@ -121,6 +124,18 @@ class IndicatorStickyNotes:
 
 
 def main():
+    try:
+        locale.setlocale(locale.LC_ALL, '')
+    except:
+        locale.setlocale(locale.LC_ALL, 'C')
+    # If we're running from /usr, then .mo files are not in MO_DIR.
+    if os.path.abspath(__file__)[:4] == '/usr':
+        # Fallback to default
+        locale_dir = None
+    else:
+        locale_dir = MO_DIR
+    locale.bindtextdomain(LOCALE_DOMAIN, locale_dir)
+    locale.textdomain(LOCALE_DOMAIN)
     indicator = IndicatorStickyNotes()
     Gtk.main()
     indicator.save()

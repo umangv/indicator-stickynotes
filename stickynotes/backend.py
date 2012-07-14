@@ -19,8 +19,7 @@ from datetime import datetime
 import uuid
 import json
 from os.path import expanduser
-
-SETTINGS_FILE = "~/.stickynotes"
+from stickynotes.info import SETTINGS_FILE
 
 class Note:
     def __init__(self, content=None, gui_class=None, noteset=None):
