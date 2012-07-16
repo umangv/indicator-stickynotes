@@ -19,6 +19,7 @@
 from datetime import datetime
 
 from gi.repository import Gtk, Gdk, Gio, GObject, GtkSource
+from locale import gettext as _
 import os.path
 
 class StickyNote(object):
@@ -137,6 +138,8 @@ class StickyNote(object):
         self.txtNote.set_cursor_visible(not self.locked)
         self.bLock.set_image({True:self.imgLock,
             False:self.imgUnlock}[self.locked])
+        self.bLock.set_tooltip_text({True: _("Unlock"),
+            False: _("Lock")}[self.locked])
 
     def lock_toggled(self, *args):
         self.set_locked_state(self.bLock.get_active())

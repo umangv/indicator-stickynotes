@@ -104,10 +104,12 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Delete</property>
                 <property name="use_action_appearance">False</property>
                 <property name="image">imgClose</property>
                 <property name="relief">none</property>
                 <property name="image_position">top</property>
+                <accelerator key="w" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
                 <signal name="clicked" handler="delete" swapped="no"/>
               </object>
               <packing>
@@ -122,9 +124,11 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">New Note</property>
                 <property name="use_action_appearance">False</property>
                 <property name="image">imgAdd</property>
                 <property name="relief">none</property>
+                <accelerator key="n" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
                 <signal name="clicked" handler="add" swapped="no"/>
               </object>
               <packing>
@@ -145,6 +149,7 @@
                 <property name="image">imgUnlock</property>
                 <property name="relief">none</property>
                 <property name="draw_indicator">True</property>
+                <accelerator key="l" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
                 <signal name="toggled" handler="lock_toggled" swapped="no"/>
               </object>
               <packing>
