@@ -12,7 +12,12 @@
     <property name="program_name">Indicator Stickynotes</property>
     <property name="version">0.3</property>
     <property name="copyright">Copyright © 2012 Umang Varma</property>
-    <property name="comments" translatable="yes">Please report bugs, contribute translations, and make suggestions on the Launchpad homepage below.</property>
+    <property name="comments" translatable="yes">Please report bugs, contribute translations, and make suggestions on the Launchpad homepage below.
+
+Keyboard shortcuts:
+Ctrl + W:  Delete note
+Ctrl + L:  Lock note
+Ctrl + N:  New note</property>
     <property name="website">https://launchpad.net/indicator-stickynotes</property>
     <property name="website_label">https://launchpad.net/indicator-stickynotes</property>
     <property name="license">indicator-stickynotes is free software: you can redistribute it and/or
