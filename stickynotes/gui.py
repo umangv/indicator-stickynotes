@@ -150,3 +150,12 @@ class StickyNote(object):
     def focus_out(self, *args):
         self.save(*args)
 
+def show_about_dialog():
+    glade_file = os.path.abspath(os.path.join(os.path.dirname(__file__),
+            '..', "StickyNotes.glade"))
+    builder = Gtk.Builder()
+    builder.add_from_file(glade_file)
+    winAbout = builder.get_object("AboutWindow")
+    ret =  winAbout.run()
+    winAbout.destroy()
+    return ret

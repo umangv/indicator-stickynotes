@@ -18,7 +18,7 @@
 # indicator-stickynotes.  If not, see <http://www.gnu.org/licenses/>.
 
 from stickynotes.backend import Note, NoteSet
-from stickynotes.gui import StickyNote
+from stickynotes.gui import StickyNote, show_about_dialog
 from stickynotes.info import MO_DIR, LOCALE_DOMAIN
 
 from gi.repository import Gtk, Gdk
@@ -93,6 +93,15 @@ class IndicatorStickyNotes:
         self.menu.append(s)
         s.show()
 
+        self.mAbout = Gtk.MenuItem(_("About"))
+        self.menu.append(self.mAbout)
+        self.mAbout.connect("activate", self.show_about, None)
+        self.mAbout.show()
+
+        s = Gtk.SeparatorMenuItem.new()
+        self.menu.append(s)
+        s.show()
+
         self.mQuit = Gtk.MenuItem(_("Quit"))
         self.menu.append(self.mQuit)
         self.mQuit.connect("activate", Gtk.main_quit, None)
@@ -118,6 +127,9 @@ class IndicatorStickyNotes:
     def unlockall(self, *args):
         for note in self.nset.notes:
             note.gui.set_locked_state(False)
+
+    def show_about(self, *args):
+        show_about_dialog()
 
     def save(self):
         self.nset.save()
