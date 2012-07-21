@@ -20,21 +20,21 @@
 
 GtkSourceView
 {
-	background-color:transparent;
+    background-color:transparent;
 }
 GtkSourceView:selected
 {
-	background-color:#FFA500;
-	color:#000;
+    background-color:#FFA500;
+    color:#000;
 }
 GtkWindow#main-window
 {
-	background-image: -gtk-gradient(linear,
-		left top, left bottom,
+    background-image: -gtk-gradient(linear,
+      left top, left bottom,
       color-stop (0, #ff7),
       color-stop (0.66, #fe0));
 }
 GtkButton
 {
-   background:transparent;
+    background:transparent;
 }
