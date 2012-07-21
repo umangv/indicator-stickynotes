@@ -56,8 +56,7 @@ class StickyNote(object):
         settings.props.gtk_button_images = True
         # Load and set CSS
         css = Gtk.CssProvider()
-        css.load_from_file(Gio.File.new_for_path(os.path.join(self.path,
-            "style.css")))
+        css.load_from_path(os.path.join(self.path, "style.css"))
         Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),
                 css, 800)
         # Set text buffer
