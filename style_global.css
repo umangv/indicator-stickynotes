@@ -18,10 +18,16 @@
  * 
  */
 
-GtkWindow#main-window
+GtkWindow GtkSourceView
 {
-    background-image: -gtk-gradient(linear,
-      left top, left bottom,
-      color-stop (0, $bg_start),
-      color-stop (0.66, $bg_end));
+    background-color:transparent;
+}
+GtkSourceView:selected
+{
+    background-color:#FFA500;
+    color:#000;
+}
+GtkButton
+{
+    background:transparent;
 }

@@ -18,7 +18,8 @@
 # indicator-stickynotes.  If not, see <http://www.gnu.org/licenses/>.
 
 from stickynotes.backend import Note, NoteSet
-from stickynotes.gui import StickyNote, show_about_dialog
+from stickynotes.gui import StickyNote, show_about_dialog,
+    load_global_css
 from stickynotes.info import MO_DIR, LOCALE_DOMAIN
 
 from gi.repository import Gtk, Gdk
@@ -149,6 +150,8 @@ def main():
     locale.bindtextdomain(LOCALE_DOMAIN, locale_dir)
     locale.textdomain(LOCALE_DOMAIN)
     indicator = IndicatorStickyNotes()
+    # Load global css for the first time.
+    load_global_css()
     Gtk.main()
     indicator.save()
 

@@ -17,10 +17,17 @@
 
 from datetime import datetime
 from string import Template
-
 from gi.repository import Gtk, Gdk, Gio, GObject, GtkSource
 from locale import gettext as _
 import os.path
+import colorsys
+
+def load_global_css():
+    global_css = Gtk.CssProvider()
+    global_css.load_from_path(os.path.join(os.path.dirname(__file__), "..",
+        "style_global.css"))
+    Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),
+            global_css, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
 class StickyNote:
 
@@ -28,6 +35,7 @@ class StickyNote:
         self.path = os.path.abspath(os.path.join(os.path.dirname(__file__),
             '..'))
         self.note = note
+        self.noteset = note.noteset
         self.locked = self.note.properties.get("locked", False)
         self.builder = Gtk.Builder()
         GObject.type_register(GtkSource.View)
@@ -51,9 +59,7 @@ class StickyNote:
         with open(os.path.join(self.path, "style.css")) as css_file:
             self.css_template = Template(css_file.read())
         self.css = Gtk.CssProvider()
-        # Set CSS provider
-        Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),
-                self.css, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+        # Update window-specific style. Global styles are loaded initially!
         self.update_style()
         # Ensure buttons are displayed with images
         settings = Gtk.Settings.get_default()
@@ -112,14 +118,31 @@ class StickyNote:
 
     def update_style(self):
         """Updates the style using CSS template"""
+        Gtk.StyleContext.remove_provider_for_screen(Gdk.Screen.get_default(),
+                self.css)
         css_string = self.css_template.substitute(**self.css_data())\
                 .encode("ascii", "replace")
         self.css.load_from_data(css_string)
+        Gtk.StyleContext.add_provider(self.winMain.get_style_context(),
+                self.css, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
     def css_data(self):
         """Returns data to substitute into the CSS template"""
-        # Currently uses just the original values
-        return {"bg_start": "#ff7", "bg_end": "#fe0"}
+        data = {}
+        # Converts from HSV to RGB hex. All values are scaled to a max of 1
+        hsv_to_hex = lambda x: "#" + "".join(["{:02x}".format(int(255*a))
+            for a in colorsys.hsv_to_rgb(*x)])
+        bg_end_hsv = self.noteset.properties.get("d_bgcolor", [56./360, 1, 1])
+        # bg_start_hsv is computed by "lightening" bg_end_hsv. 
+        bg_start_hsv = [bg_end_hsv[0], bg_end_hsv[1], bg_end_hsv[2] + .60]
+        if bg_start_hsv[2] > 1:
+            bg_start_hsv[1] -= bg_start_hsv[2] - 1
+            bg_start_hsv[2] = 1
+        if bg_start_hsv[1] < 0:
+            bg_start_hsv[1] = 0
+        data.update({"bg_start": hsv_to_hex(bg_start_hsv), "bg_end":
+                hsv_to_hex(bg_end_hsv)})
+        return data
 
     def save(self, *args):
         self.note.noteset.save()

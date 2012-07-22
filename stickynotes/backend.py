@@ -68,6 +68,7 @@ class Note:
 class NoteSet:
     def __init__(self, gui_class):
         self.notes = []
+        self.properties = {}
         self.gui_class = gui_class
 
     def _loads_updater(self, dnoteset):
@@ -79,9 +80,11 @@ class NoteSet:
         notes = self._loads_updater(json.loads(snoteset))
         self.notes = [Note(note, gui_class=self.gui_class, noteset=self)
                 for note in notes.get("notes",[])]
+        self.properties = notes.get("properties", {})
 
     def dumps(self):
-        return json.dumps({"notes":[x.extract() for x in self.notes]})
+        return json.dumps({"notes":[x.extract() for x in self.notes],
+            "properties": self.properties})
 
     def save(self, path=''):
         output = self.dumps()
