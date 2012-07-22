@@ -1,4 +1,3 @@
-# 
 # Copyright © 2012 Umang Varma <umang.me@gmail.com>
 # 
 # This file is part of indicator-stickynotes.
@@ -17,12 +16,13 @@
 # indicator-stickynotes.  If not, see <http://www.gnu.org/licenses/>.
 
 from datetime import datetime
+from string import Template
 
 from gi.repository import Gtk, Gdk, Gio, GObject, GtkSource
 from locale import gettext as _
 import os.path
 
-class StickyNote(object):
+class StickyNote:
 
     def __init__(self, note):
         self.path = os.path.abspath(os.path.join(os.path.dirname(__file__),
@@ -47,18 +47,17 @@ class StickyNote(object):
         self.imgUnlock = self.builder.get_object("imgUnlock")
         self.bClose = self.builder.get_object("bClose")
         self.confirmDelete = self.builder.get_object("confirmDelete")
-        # Run
-        self.run()
-
-    def run(self, *args):
-        # (Maybe?) Remove this eventually
+        # Load CSS template and initialize Gtk.CssProvider
+        with open(os.path.join(self.path, "style.css")) as css_file:
+            self.css_template = Template(css_file.read())
+        self.css = Gtk.CssProvider()
+        # Set CSS provider
+        Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),
+                self.css, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+        self.update_style()
+        # Ensure buttons are displayed with images
         settings = Gtk.Settings.get_default()
         settings.props.gtk_button_images = True
-        # Load and set CSS
-        css = Gtk.CssProvider()
-        css.load_from_path(os.path.join(self.path, "style.css"))
-        Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),
-                css, 800)
         # Set text buffer
         self.bbody = GtkSource.Buffer()
         self.bbody.begin_not_undoable_action()
@@ -110,6 +109,17 @@ class StickyNote(object):
             prop["position"] = self.note.properties.get("position", (10, 10))
             prop["size"] = self.note.properties.get("size", (200, 200))
         return prop
+
+    def update_style(self):
+        """Updates the style using CSS template"""
+        css_string = self.css_template.substitute(**self.css_data())\
+                .encode("ascii", "replace")
+        self.css.load_from_data(css_string)
+
+    def css_data(self):
+        """Returns data to substitute into the CSS template"""
+        # Currently uses just the original values
+        return {"bg_start": "#ff7", "bg_end": "#fe0"}
 
     def save(self, *args):
         self.note.noteset.save()
