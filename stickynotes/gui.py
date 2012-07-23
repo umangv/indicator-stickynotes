@@ -184,10 +184,37 @@ class StickyNote:
 
 def show_about_dialog():
     glade_file = os.path.abspath(os.path.join(os.path.dirname(__file__),
-            '..', "StickyNotes.glade"))
+            '..', "GlobalDialogs.glade"))
     builder = Gtk.Builder()
     builder.add_from_file(glade_file)
     winAbout = builder.get_object("AboutWindow")
     ret =  winAbout.run()
     winAbout.destroy()
     return ret
+
+class SettingsDialog:
+    def __init__(self, noteset):
+        self.noteset = noteset
+        self.path = os.path.abspath(os.path.join(os.path.dirname(__file__),
+            '..'))
+        glade_file = (os.path.join(self.path, "GlobalDialogs.glade"))
+        self.builder = Gtk.Builder()
+        self.builder.add_from_file(glade_file)
+        self.builder.connect_signals(self)
+        widgets = ["wSettings", "bgcolor"]
+        for w in widgets:
+            setattr(self, w, self.builder.get_object(w))
+        self.bgcolor.set_rgba(Gdk.RGBA(*colorsys.hsv_to_rgb(
+            *self.noteset.properties.get("d_bgcolor", [56./360, 1, 1])), alpha=1))
+        ret =  self.wSettings.run()
+        self.wSettings.destroy()
+
+    def update_color(self, *args):
+        rgba = self.bgcolor.get_rgba()
+        hsv = colorsys.rgb_to_hsv(rgba.red, rgba.green, rgba.blue)
+        self.noteset.properties["d_bgcolor"] = hsv
+        for note in self.noteset.notes:
+            note.gui.update_style()
+        # Remind GtkSourceView's that they are transparent, etc.
+        load_global_css()
+

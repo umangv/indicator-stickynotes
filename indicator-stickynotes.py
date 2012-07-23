@@ -18,8 +18,8 @@
 # indicator-stickynotes.  If not, see <http://www.gnu.org/licenses/>.
 
 from stickynotes.backend import Note, NoteSet
-from stickynotes.gui import StickyNote, show_about_dialog,
-    load_global_css
+from stickynotes.gui import StickyNote, show_about_dialog, \
+    SettingsDialog, load_global_css
 from stickynotes.info import MO_DIR, LOCALE_DOMAIN
 
 from gi.repository import Gtk, Gdk
@@ -99,6 +99,11 @@ class IndicatorStickyNotes:
         self.mAbout.connect("activate", self.show_about, None)
         self.mAbout.show()
 
+        self.mSettings = Gtk.MenuItem(_("Settings"))
+        self.menu.append(self.mSettings)
+        self.mSettings.connect("activate", self.show_settings, None)
+        self.mSettings.show()
+
         s = Gtk.SeparatorMenuItem.new()
         self.menu.append(s)
         s.show()
@@ -131,6 +136,9 @@ class IndicatorStickyNotes:
 
     def show_about(self, *args):
         show_about_dialog()
+
+    def show_settings(self, *args):
+        wSettings = SettingsDialog(self.nset)
 
     def save(self):
         self.nset.save()
