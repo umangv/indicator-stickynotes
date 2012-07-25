@@ -1,0 +1,82 @@
+# Ukrainian translation for indicator-stickynotes
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the indicator-stickynotes package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: indicator-stickynotes\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2012-07-15 22:21-0400\n"
+"PO-Revision-Date: 2012-07-20 09:04+0000\n"
+"Last-Translator: Sergey Koptev <Unknown>\n"
+"Language-Team: Ukrainian <uk@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2012-07-21 05:37+0000\n"
+"X-Generator: Launchpad (build 15654)\n"
+
+#: indicator-stickynotes.py:56 StickyNotes.glade:60
+msgid "Sticky Notes"
+msgstr "Sticky Notes"
+
+#: indicator-stickynotes.py:59 StickyNotes.glade:106
+msgid "New Note"
+msgstr "Нова замітка"
+
+#: indicator-stickynotes.py:68
+msgid "Show All"
+msgstr "Показати всі"
+
+#: indicator-stickynotes.py:73
+msgid "Hide All"
+msgstr "Сховати всі"
+
+#: indicator-stickynotes.py:82
+msgid "Lock All"
+msgstr "Блокувати всі"
+
+#: indicator-stickynotes.py:87
+msgid "Unlock All"
+msgstr "Розблокувати всі"
+
+#: indicator-stickynotes.py:96
+msgid "About"
+msgstr "Про програму"
+
+#: indicator-stickynotes.py:105
+msgid "Quit"
+msgstr "Вийти"
+
+#: StickyNotes.glade:8
+msgid "About Indicator Stickynotes"
+msgstr "Про індикатор Stickynotes"
+
+#: StickyNotes.glade:15
+msgid ""
+"Please report bugs, contribute translations, and make suggestions on the "
+"Launchpad homepage below."
+msgstr ""
+"Будь ласка, сповіщайте про помилки, приймайте участь у перекладі та вносіть "
+"пропозиції на вказаній сторінці Launchpad."
+
+#: StickyNotes.glade:86
+msgid "Delete"
+msgstr "Знищити"
+
+#: StickyNotes.glade:205
+msgid "Confirm delete"
+msgstr "Підтвердити знищення"
+
+#: StickyNotes.glade:209
+msgid "Are you sure you want to delete this note?"
+msgstr "Ви впевнені, що бажаєте знищити цю замітку?"
+
+#: stickynotes/gui.py:141
+msgid "Unlock"
+msgstr "Розблокувати"
+
+#: stickynotes/gui.py:142
+msgid "Lock"
+msgstr "Блокувати"
