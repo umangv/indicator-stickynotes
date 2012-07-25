@@ -132,7 +132,7 @@ class StickyNote:
         # Converts from HSV to RGB hex. All values are scaled to a max of 1
         hsv_to_hex = lambda x: "#" + "".join(["{:02x}".format(int(255*a))
             for a in colorsys.hsv_to_rgb(*x)])
-        bg_end_hsv = self.noteset.properties.get("d_bgcolor", [56./360, 1, 1])
+        bg_end_hsv = self.noteset.properties.get("d_bgcolor_hsv", [56./360, 1, 1])
         # bg_start_hsv is computed by "lightening" bg_end_hsv. 
         bg_start_hsv = [bg_end_hsv[0], bg_end_hsv[1], bg_end_hsv[2] + .60]
         if bg_start_hsv[2] > 1:
@@ -205,14 +205,16 @@ class SettingsDialog:
         for w in widgets:
             setattr(self, w, self.builder.get_object(w))
         self.bgcolor.set_rgba(Gdk.RGBA(*colorsys.hsv_to_rgb(
-            *self.noteset.properties.get("d_bgcolor", [56./360, 1, 1])), alpha=1))
+            *self.noteset.properties.get("d_bgcolor_hsv", [56./360, 1, 1])), alpha=1))
+        self.textcolor.set_rgba(Gdk.RGBA(*colorsys.hsv_to_rgb(
+            *self.noteset.properties.get("d_textcolor", [0, 0, 0])), alpha=1))
         ret =  self.wSettings.run()
         self.wSettings.destroy()
 
     def update_color(self, *args):
         rgba = self.bgcolor.get_rgba()
         hsv = colorsys.rgb_to_hsv(rgba.red, rgba.green, rgba.blue)
-        self.noteset.properties["d_bgcolor"] = hsv
+        self.noteset.properties["d_bgcolor_hsv"] = hsv
         for note in self.noteset.notes:
             note.gui.update_style()
         # Remind GtkSourceView's that they are transparent, etc.
