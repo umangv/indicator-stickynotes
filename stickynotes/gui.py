@@ -59,6 +59,8 @@ class StickyNote:
         with open(os.path.join(self.path, "style.css")) as css_file:
             self.css_template = Template(css_file.read())
         self.css = Gtk.CssProvider()
+        self.style_contexts = [self.winMain.get_style_context(),
+                self.txtNote.get_style_context()]
         # Update window-specific style. Global styles are loaded initially!
         self.update_style()
         # Ensure buttons are displayed with images
@@ -121,15 +123,17 @@ class StickyNote:
         css_string = self.css_template.substitute(**self.css_data())\
                 .encode("ascii", "replace")
         self.css.load_from_data(css_string)
-        Gtk.StyleContext.add_provider(self.winMain.get_style_context(),
-                self.css, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+        for context in self.style_contexts:
+            context.add_provider(self.css,
+                    Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
     def css_data(self):
         """Returns data to substitute into the CSS template"""
         data = {}
-        # Converts from HSV to RGB hex. All values are scaled to a max of 1
-        hsv_to_hex = lambda x: "#" + "".join(["{:02x}".format(int(255*a))
-            for a in colorsys.hsv_to_rgb(*x)])
+        # Converts to RGB hex. All RGB/HSV values are scaled to a max of 1
+        rgb_to_hex = lambda x: "#" + "".join(["{:02x}".format(int(255*a))
+            for a in x])
+        hsv_to_hex = lambda x: rgb_to_hex(colorsys.hsv_to_rgb(*x))
         bg_end_hsv = self.noteset.properties.get("d_bgcolor_hsv", [56./360, 1, 1])
         # bg_start_hsv is computed by "lightening" bg_end_hsv. 
         bg_start_hsv = [bg_end_hsv[0], bg_end_hsv[1], bg_end_hsv[2] + .60]
@@ -140,6 +144,8 @@ class StickyNote:
             bg_start_hsv[1] = 0
         data.update({"bg_start": hsv_to_hex(bg_start_hsv), "bg_end":
                 hsv_to_hex(bg_end_hsv)})
+        data["text_color"] = rgb_to_hex(self.noteset.properties.\
+                get("d_textcolor", [0, 0, 0]))
         return data
 
     def save(self, *args):
@@ -199,13 +205,13 @@ class SettingsDialog:
         self.builder = Gtk.Builder()
         self.builder.add_from_file(glade_file)
         self.builder.connect_signals(self)
-        widgets = ["wSettings", "bgcolor"]
+        widgets = ["wSettings", "bgcolor", "textcolor"]
         for w in widgets:
             setattr(self, w, self.builder.get_object(w))
         self.bgcolor.set_rgba(Gdk.RGBA(*colorsys.hsv_to_rgb(
             *self.noteset.properties.get("d_bgcolor_hsv", [56./360, 1, 1])), alpha=1))
-        self.textcolor.set_rgba(Gdk.RGBA(*colorsys.hsv_to_rgb(
-            *self.noteset.properties.get("d_textcolor", [0, 0, 0])), alpha=1))
+        self.textcolor.set_rgba(Gdk.RGBA(*self.noteset.properties.\
+                get("d_textcolor", [0, 0, 0]), alpha=1))
         ret =  self.wSettings.run()
         self.wSettings.destroy()
 
@@ -218,3 +224,8 @@ class SettingsDialog:
         # Remind GtkSourceView's that they are transparent, etc.
         load_global_css()
 
+    def update_textcolor(self, *args):
+        rgba = self.textcolor.get_rgba()
+        self.noteset.properties["d_textcolor"] = [rgba.red, rgba.green, rgba.blue]
+        for note in self.noteset.notes:
+            note.gui.update_style()

@@ -25,3 +25,8 @@ GtkWindow#main-window
       color-stop (0, $bg_start),
       color-stop (0.66, $bg_end));
 }
+
+GtkWindow#main-window GtkBox GtkSourceView
+{
+    color: $text_color;
+}
