@@ -81,7 +81,8 @@ class InstallData(distutils.command.install_data.install_data):
 
 def main():
     # Default data files
-    data_files = [('', ('COPYING', 'style.css', 'StickyNotes.glade')),
+    data_files = [('', ('COPYING', 'style.css', 'StickyNotes.glade',
+                    'style_global.css', 'GlobalDialogs.glade')),
                 ('/usr/share/applications', ('indicator-stickynotes.desktop',)),
                 ('Icons', glob.glob("Icons/*.png"))]
     # Icon themes
@@ -93,7 +94,7 @@ def main():
             for dir, subdirs, files in os.walk("Icons/" + theme) if files])
 
     setup(name='indicator-stickynotes',
-            version='0.2',
+            version='0.3',
             description='Sticky Notes AppIndicator',
             author='Umang Varma',
             author_email='umang.me@gmail.com',
@@ -102,7 +103,9 @@ def main():
             scripts=['indicator-stickynotes.py',],
             data_files=data_files,
             cmdclass={'build': Build, 'install_data': InstallData,
-                'build_po': BuildPo, 'clean':Clean})
+                'build_po': BuildPo, 'clean':Clean},
+            long_description="Indicator Stickynotes helps you jot down "
+            "thoughts, write lists, and make reminders quickly.")
 
 if __name__ == "__main__":
     main()
