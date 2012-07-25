@@ -118,8 +118,6 @@ class StickyNote:
 
     def update_style(self):
         """Updates the style using CSS template"""
-        Gtk.StyleContext.remove_provider_for_screen(Gdk.Screen.get_default(),
-                self.css)
         css_string = self.css_template.substitute(**self.css_data())\
                 .encode("ascii", "replace")
         self.css.load_from_data(css_string)
