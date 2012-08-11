@@ -44,7 +44,8 @@ class IndicatorStickyNotes:
         # Initialize NoteSet
         self.nset = NoteSet(StickyNote)
         self.nset.open()
-        self.nset.showall()
+        if self.nset.properties.get("all_visible", True):
+            self.nset.showall()
         # Create App Indicator
         self.ind = appindicator.Indicator.new(
                 "Sticky Notes", "indicator-stickynotes",

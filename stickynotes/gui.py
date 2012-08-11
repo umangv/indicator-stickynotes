@@ -73,8 +73,9 @@ class StickyNote:
         self.bbody.set_highlight_matching_brackets(False)
         self.bbody.end_not_undoable_action()
         self.txtNote.set_buffer(self.bbody)
-        #Show
+        # Show and hide so winMain and widgets are realized and mapped.
         self.winMain.show()
+        self.winMain.hide()
         # Make resize work
         self.winMain.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         self.eResizeR.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
@@ -92,6 +93,7 @@ class StickyNote:
         self.winMain.present()
         self.winMain.stick()
         self.winMain.move(*self.note.properties.get("position", (10,10)))
+        self.winMain.resize(*self.note.properties.get("size", (200,150)))
 
     def hide(self, *args):
         self.winMain.hide()
@@ -115,7 +117,7 @@ class StickyNote:
                 "size":self.winMain.get_size(), "locked":self.locked}
         if not self.winMain.get_visible():
             prop["position"] = self.note.properties.get("position", (10, 10))
-            prop["size"] = self.note.properties.get("size", (200, 200))
+            prop["size"] = self.note.properties.get("size", (200, 150))
         return prop
 
     def update_style(self):

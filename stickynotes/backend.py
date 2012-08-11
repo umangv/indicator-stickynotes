@@ -34,8 +34,8 @@ class Note:
         else:
             self.last_modified = datetime.now()
         self.gui_class = gui_class
-        self.gui = None
         self.noteset = noteset
+        self.gui = self.gui_class(note=self)
 
     def extract(self):
         self.gui.update_note()
@@ -57,8 +57,6 @@ class Note:
         del self
 
     def show(self, *args):
-        if not self.gui:
-            self.gui = self.gui_class(note=self)
         self.gui.show(*args)
 
     def hide(self):
@@ -78,9 +76,9 @@ class NoteSet:
     def loads(self, snoteset):
         """Loads notes into their respective objects"""
         notes = self._loads_updater(json.loads(snoteset))
+        self.properties = notes.get("properties", {})
         self.notes = [Note(note, gui_class=self.gui_class, noteset=self)
                 for note in notes.get("notes",[])]
-        self.properties = notes.get("properties", {})
 
     def dumps(self):
         return json.dumps({"notes":[x.extract() for x in self.notes],
@@ -111,11 +109,13 @@ class NoteSet:
     def showall(self, *args):
         for note in self.notes:
             note.show(*args)
+        self.properties["all_visible"] = True
 
     def hideall(self, *args):
         self.save()
         for note in self.notes:
             note.hide(*args)
+        self.properties["all_visible"] = False
 
 class dGUI:
     def __init__(self, *args, **kwargs):
