@@ -168,8 +168,6 @@ class StickyNote:
 
     def set_locked_state(self, locked):
         self.locked = locked
-        if not self.bLock.get_active() == self.locked:
-            self.bLock.set_active(self.locked)
         self.txtNote.set_editable(not self.locked)
         self.txtNote.set_cursor_visible(not self.locked)
         self.bLock.set_image({True:self.imgLock,
@@ -177,8 +175,8 @@ class StickyNote:
         self.bLock.set_tooltip_text({True: _("Unlock"),
             False: _("Lock")}[self.locked])
 
-    def lock_toggled(self, *args):
-        self.set_locked_state(self.bLock.get_active())
+    def lock_clicked(self, *args):
+        self.set_locked_state(not self.locked)
 
     def quit(self, *args):
         Gtk.main_quit()
