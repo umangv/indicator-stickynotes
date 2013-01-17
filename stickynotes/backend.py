@@ -75,7 +75,10 @@ class NoteSet:
 
     def loads(self, snoteset):
         """Loads notes into their respective objects"""
-        notes = self._loads_updater(json.loads(snoteset))
+        try:
+            notes = self._loads_updater(json.loads(snoteset))
+        except ValueError:
+            notes = {}
         self.properties = notes.get("properties", {})
         self.notes = [Note(note, gui_class=self.gui_class, noteset=self)
                 for note in notes.get("notes",[])]

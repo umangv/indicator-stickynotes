@@ -35,7 +35,10 @@ indicator-stickynotes.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</prope
     <property name="translator_credits">Olivier Girard aka Cenwen
 Roberto Rodriguez
 Sergey Koptev
-dmm041191</property>
+Adolfo Jayme Barrientos
+dmm041191
+Wang Dianjin
+joshg</property>
     <property name="logo">Icons/indicator-stickynotes.png</property>
     <property name="wrap_license">True</property>
     <child internal-child="vbox">
