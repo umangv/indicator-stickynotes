@@ -216,7 +216,13 @@ class SettingsDialog:
         self.wSettings.destroy()
 
     def update_color(self, *args):
-        rgba = self.bgcolor.get_rgba()
+        try:
+            rgba = self.bgcolor.get_rgba()
+        except TypeError:
+            rgba = Gdk.RGBA()
+            self.bgcolor.get_rgba(rgba)
+            # Some versions of GObjectIntrospection are affected by
+            # https://bugzilla.gnome.org/show_bug.cgi?id=687633 
         hsv = colorsys.rgb_to_hsv(rgba.red, rgba.green, rgba.blue)
         self.noteset.properties["d_bgcolor_hsv"] = hsv
         for note in self.noteset.notes:
