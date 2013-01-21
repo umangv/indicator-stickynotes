@@ -20,6 +20,7 @@
 from stickynotes.backend import Note, NoteSet
 from stickynotes.gui import StickyNote, show_about_dialog, \
     SettingsDialog, load_global_css
+import stickynotes.info
 from stickynotes.info import MO_DIR, LOCALE_DOMAIN
 
 from gi.repository import Gtk, Gdk
@@ -27,6 +28,7 @@ from gi.repository import AppIndicator3 as appindicator
 
 import os.path
 import locale
+import argparse
 from locale import gettext as _
 from functools import wraps
 
@@ -40,9 +42,14 @@ def save_required(f):
     return _wrapper
 
 class IndicatorStickyNotes:
-    def __init__(self):
+    def __init__(self, args = None):
+        self.args = args
+        # use development data file if requested
+        isdev = args and args.d
+        data_file = stickynotes.info.DEBUG_SETTINGS_FILE if isdev else \
+                stickynotes.info.SETTINGS_FILE
         # Initialize NoteSet
-        self.nset = NoteSet(StickyNote)
+        self.nset = NoteSet(StickyNote, data_file)
         self.nset.open()
         if self.nset.properties.get("all_visible", True):
             self.nset.showall()
@@ -158,7 +165,14 @@ def main():
         locale_dir = os.path.join(os.path.dirname(__file__), MO_DIR)
     locale.bindtextdomain(LOCALE_DOMAIN, locale_dir)
     locale.textdomain(LOCALE_DOMAIN)
-    indicator = IndicatorStickyNotes()
+
+    parser = argparse.ArgumentParser(description="Sticky Notes "
+            "AppIndicator")
+    parser.add_argument("-d", action='store_true', help="use the development"
+            " data file")
+    args = parser.parse_args()
+
+    indicator = IndicatorStickyNotes(args)
     # Load global css for the first time.
     load_global_css()
     Gtk.main()

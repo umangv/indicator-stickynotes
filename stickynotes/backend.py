@@ -19,7 +19,6 @@ from datetime import datetime
 import uuid
 import json
 from os.path import expanduser
-from stickynotes.info import SETTINGS_FILE
 
 class Note:
     def __init__(self, content=None, gui_class=None, noteset=None):
@@ -64,10 +63,11 @@ class Note:
 
 
 class NoteSet:
-    def __init__(self, gui_class):
+    def __init__(self, gui_class, data_file):
         self.notes = []
         self.properties = {}
         self.gui_class = gui_class
+        self.data_file = data_file
 
     def _loads_updater(self, dnoteset):
         """Parses old versions of the Notes structure and updates them"""
@@ -89,13 +89,13 @@ class NoteSet:
 
     def save(self, path=''):
         output = self.dumps()
-        with open(path or expanduser(SETTINGS_FILE),
+        with open(path or expanduser(self.data_file),
                 mode='w', encoding='utf-8') as fsock:
             fsock.write(output)
 
     def open(self, path=''):
         try:
-            with open(path or expanduser(SETTINGS_FILE), 
+            with open(path or expanduser(self.data_file), 
                     encoding='utf-8') as fsock:
                 self.loads(fsock.read())
         except IOError:
