@@ -123,14 +123,28 @@ class IndicatorStickyNotes:
         # Connect Indicator to menu
         self.ind.set_menu(self.menu)
 
+        # Define secondary action (middle click)
+        self.connect_secondary_activate()
+
     def new_note(self, *args):
         self.nset.new()
 
     def showall(self, *args):
         self.nset.showall(*args)
+        self.connect_secondary_activate()
 
     def hideall(self, *args):
         self.nset.hideall()
+        self.connect_secondary_activate()
+
+    def connect_secondary_activate(self):
+        """Define action of secondary action (middle click) depending
+        on visibility state of notes."""
+        if self.nset.properties["all_visible"] == True:
+            self.ind.set_secondary_activate_target(self.mHideAll)
+        else:
+            self.ind.set_secondary_activate_target(self.mShowAll)
+
 
     @save_required
     def lockall(self, *args):
