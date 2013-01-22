@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: indicator-stickynotes\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-27 18:02-0400\n"
-"PO-Revision-Date: 2012-07-26 05:29+0000\n"
+"PO-Revision-Date: 2012-09-06 05:05+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitoschido@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-28 05:25+0000\n"
-"X-Generator: Launchpad (build 15694)\n"
+"X-Launchpad-Export-Date: 2012-09-07 05:15+0000\n"
+"X-Generator: Launchpad (build 15914)\n"
 
 #: indicator-stickynotes.py:57 StickyNotes.glade:7
 msgid "Sticky Notes"
@@ -47,7 +47,7 @@ msgstr "Acerca de"
 
 #: indicator-stickynotes.py:102 GlobalDialogs.glade:67
 msgid "Settings"
-msgstr ""
+msgstr "Configuración"
 
 #: indicator-stickynotes.py:111
 msgid "Quit"
@@ -67,22 +67,29 @@ msgid ""
 "Ctrl + L:  Lock note\n"
 "Ctrl + N:  New note"
 msgstr ""
+"Informe de errores, contribuya con traducciones y haga sugerencias en la "
+"página de Launchpad abajo.\n"
+"\n"
+"Atajos de teclado:\n"
+"Ctrl + W: Eliminar nota\n"
+"Ctrl + L: Bloquear nota\n"
+"Ctrl + N: Nota nueva"
 
 #: GlobalDialogs.glade:119
 msgid "_Background color"
-msgstr ""
+msgstr "C_olor de fondo"
 
 #: GlobalDialogs.glade:136
 msgid "Pick a Background Color"
-msgstr ""
+msgstr "Elija un color de fondo"
 
 #: GlobalDialogs.glade:151
 msgid "Text color"
-msgstr ""
+msgstr "Color del texto"
 
 #: GlobalDialogs.glade:182
 msgid "_Default Settings"
-msgstr ""
+msgstr "Configuración p_redeterminada"
 
 #: StickyNotes.glade:33
 msgid "Delete"

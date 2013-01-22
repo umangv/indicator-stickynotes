@@ -1,4 +1,4 @@
-# Russian translation for indicator-stickynotes
+# Croatian translation for indicator-stickynotes
 # Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
 # This file is distributed under the same license as the indicator-stickynotes package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
@@ -8,54 +8,54 @@ msgstr ""
 "Project-Id-Version: indicator-stickynotes\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-27 18:02-0400\n"
-"PO-Revision-Date: 2012-10-15 12:07+0000\n"
-"Last-Translator: Eugene Marshal <Unknown>\n"
-"Language-Team: Russian <ru@li.org>\n"
+"PO-Revision-Date: 2012-11-06 15:48+0000\n"
+"Last-Translator: gogo <trebelnik2@gmail.com>\n"
+"Language-Team: Croatian <hr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-10-16 05:10+0000\n"
-"X-Generator: Launchpad (build 16137)\n"
+"X-Launchpad-Export-Date: 2012-11-07 05:09+0000\n"
+"X-Generator: Launchpad (build 16232)\n"
 
 #: indicator-stickynotes.py:57 StickyNotes.glade:7
 msgid "Sticky Notes"
-msgstr "Sticky Notes"
+msgstr "Ljepljive bilješke"
 
 #: indicator-stickynotes.py:60 StickyNotes.glade:53
 msgid "New Note"
-msgstr "Новая заметка"
+msgstr "Nova bilješka"
 
 #: indicator-stickynotes.py:69
 msgid "Show All"
-msgstr "Показать все"
+msgstr "Prikaži sve"
 
 #: indicator-stickynotes.py:74
 msgid "Hide All"
-msgstr "Скрыть все"
+msgstr "Sakrij sve"
 
 #: indicator-stickynotes.py:83
 msgid "Lock All"
-msgstr "Заблокировать все"
+msgstr "Zaključaj sve"
 
 #: indicator-stickynotes.py:88
 msgid "Unlock All"
-msgstr "Разблокировать все"
+msgstr "Otključaj sve"
 
 #: indicator-stickynotes.py:97
 msgid "About"
-msgstr "О программе"
+msgstr "O programu"
 
 #: indicator-stickynotes.py:102 GlobalDialogs.glade:67
 msgid "Settings"
-msgstr "Настройки"
+msgstr "Postavke"
 
 #: indicator-stickynotes.py:111
 msgid "Quit"
-msgstr "Выйти"
+msgstr "Zatvori"
 
 #: GlobalDialogs.glade:7
 msgid "About Indicator Stickynotes"
-msgstr "Про индикатор Stickynotes"
+msgstr "O indikatoru Ljepljivih bilješki"
 
 #: GlobalDialogs.glade:14
 msgid ""
@@ -67,39 +67,46 @@ msgid ""
 "Ctrl + L:  Lock note\n"
 "Ctrl + N:  New note"
 msgstr ""
+"Molim prijavite greške, doprinosite prijevodu i predložite želje na "
+"Launchpad web stranici ispod.\n"
+"\n"
+"Prečaci tipkovnice:\n"
+"Ctrl + W:  obriši bilješku\n"
+"Ctrl + L:  zaključaj bilješku\n"
+"Ctrl + N:  nova bilješka"
 
 #: GlobalDialogs.glade:119
 msgid "_Background color"
-msgstr "Цвет _фона"
+msgstr "_Boje pozadine"
 
 #: GlobalDialogs.glade:136
 msgid "Pick a Background Color"
-msgstr "Выбрать цвет фона"
+msgstr "Odaberi boju pozadine"
 
 #: GlobalDialogs.glade:151
 msgid "Text color"
-msgstr "Цвет текста"
+msgstr "Boja teksta"
 
 #: GlobalDialogs.glade:182
 msgid "_Default Settings"
-msgstr "_По умолчанию"
+msgstr "_Zadane postavke"
 
 #: StickyNotes.glade:33
 msgid "Delete"
-msgstr "Удалить"
+msgstr "Obriši"
 
 #: StickyNotes.glade:152
 msgid "Confirm delete"
-msgstr "Подтвердить удаление"
+msgstr "Potvrdi brisanje"
 
 #: StickyNotes.glade:156
 msgid "Are you sure you want to delete this note?"
-msgstr "Вы уверены, что хотите удалить эту заметку?"
+msgstr "Sigurno želite obrisati ovu bilješku?"
 
 #: stickynotes/gui.py:177
 msgid "Unlock"
-msgstr "Разблокировать"
+msgstr "Otključaj"
 
 #: stickynotes/gui.py:178
 msgid "Lock"
-msgstr "Заблокировать"
+msgstr "Zaključaj"

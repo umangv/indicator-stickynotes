@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: indicator-stickynotes\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-27 18:02-0400\n"
-"PO-Revision-Date: 2012-07-20 09:04+0000\n"
-"Last-Translator: Sergey Koptev <Unknown>\n"
+"PO-Revision-Date: 2012-12-24 22:58+0000\n"
+"Last-Translator: Ярослав Смук <Smuk.Slavko@yandex.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-28 05:25+0000\n"
-"X-Generator: Launchpad (build 15694)\n"
+"X-Launchpad-Export-Date: 2012-12-25 05:13+0000\n"
+"X-Generator: Launchpad (build 16378)\n"
 
 #: indicator-stickynotes.py:57 StickyNotes.glade:7
 msgid "Sticky Notes"
@@ -47,7 +47,7 @@ msgstr "Про програму"
 
 #: indicator-stickynotes.py:102 GlobalDialogs.glade:67
 msgid "Settings"
-msgstr ""
+msgstr "Налаштування"
 
 #: indicator-stickynotes.py:111
 msgid "Quit"
@@ -67,22 +67,28 @@ msgid ""
 "Ctrl + L:  Lock note\n"
 "Ctrl + N:  New note"
 msgstr ""
+"Будь ласка, повідомляйте про помилки, допомагайте перекладу, та вносьте "
+"пропозиції на домашній сторінці в Launchpad.\n"
+"Клавіші швидкого доступу:\n"
+"Ctrl + W: Видалити нотатку\n"
+"Ctrl + L: Блокування нотатку\n"
+"Ctrl + N: Створити нотатку"
 
 #: GlobalDialogs.glade:119
 msgid "_Background color"
-msgstr ""
+msgstr "_Колір  тла"
 
 #: GlobalDialogs.glade:136
 msgid "Pick a Background Color"
-msgstr ""
+msgstr "Виберіть колір тла"
 
 #: GlobalDialogs.glade:151
 msgid "Text color"
-msgstr ""
+msgstr "Колір тексту"
 
 #: GlobalDialogs.glade:182
 msgid "_Default Settings"
-msgstr ""
+msgstr "_Налаштування за замовчуванням"
 
 #: StickyNotes.glade:33
 msgid "Delete"
