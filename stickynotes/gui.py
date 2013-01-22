@@ -23,6 +23,7 @@ import os.path
 import colorsys
 
 def load_global_css():
+    """Adds a provider for the global CSS"""
     global_css = Gtk.CssProvider()
     global_css.load_from_path(os.path.join(os.path.dirname(__file__), "..",
         "style_global.css"))
@@ -30,8 +31,9 @@ def load_global_css():
             global_css, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
 class StickyNote:
-
+    """Manages the GUI of an individual stickynote"""
     def __init__(self, note):
+        """Initializes the stickynotes window"""
         self.path = os.path.abspath(os.path.join(os.path.dirname(__file__),
             '..'))
         self.note = note
@@ -90,29 +92,35 @@ class StickyNote:
         self.set_locked_state(self.locked)
 
     def show(self, widget=None, event=None):
+        """Shows the stickynotes window"""
         self.winMain.present()
         self.winMain.stick()
         self.winMain.move(*self.note.properties.get("position", (10,10)))
         self.winMain.resize(*self.note.properties.get("size", (200,150)))
 
     def hide(self, *args):
+        """Hides the stickynotes window"""
         self.winMain.hide()
 
     def update_note(self):
+        """Update the underlying note object"""
         self.note.update(self.bbody.get_text(self.bbody.get_start_iter(),
             self.bbody.get_end_iter(), True))
 
     def move(self, widget, event):
+        """Action to begin moving (by dragging) the window"""
         self.winMain.begin_move_drag(event.button, event.x_root,
                 event.y_root, event.get_time())
         return False
 
     def resize(self, widget, event, *args):
+        """Action to begin resizing (by dragging) the window"""
         self.winMain.begin_resize_drag(Gdk.WindowEdge.SOUTH_EAST,
                 event.button, event.x_root, event.y_root, event.get_time())
         return True
 
     def properties(self):
+        """Get properties of the current note"""
         prop = {"position":self.winMain.get_position(),
                 "size":self.winMain.get_size(), "locked":self.locked}
         if not self.winMain.get_visible():
@@ -169,6 +177,7 @@ class StickyNote:
             return True
 
     def set_locked_state(self, locked):
+        """Change the locked state of the stickynote"""
         self.locked = locked
         self.txtNote.set_editable(not self.locked)
         self.txtNote.set_cursor_visible(not self.locked)
@@ -178,6 +187,7 @@ class StickyNote:
             False: _("Lock")}[self.locked])
 
     def lock_clicked(self, *args):
+        """Toggle the locked state of the note"""
         self.set_locked_state(not self.locked)
 
     def quit(self, *args):
@@ -197,6 +207,7 @@ def show_about_dialog():
     return ret
 
 class SettingsDialog:
+    """Manages the GUI of the settings dialog"""
     def __init__(self, noteset):
         self.noteset = noteset
         self.path = os.path.abspath(os.path.join(os.path.dirname(__file__),
@@ -216,6 +227,7 @@ class SettingsDialog:
         self.wSettings.destroy()
 
     def update_color(self, *args):
+        """Action to update the default background color"""
         try:
             rgba = self.bgcolor.get_rgba()
         except TypeError:
@@ -231,6 +243,7 @@ class SettingsDialog:
         load_global_css()
 
     def update_textcolor(self, *args):
+        """Action to update the default text color"""
         try:
             rgba = self.textcolor.get_rgba()
         except TypeError:
