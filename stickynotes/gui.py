@@ -231,7 +231,11 @@ class SettingsDialog:
         load_global_css()
 
     def update_textcolor(self, *args):
-        rgba = self.textcolor.get_rgba()
+        try:
+            rgba = self.textcolor.get_rgba()
+        except TypeError:
+            rgba = Gdk.RGBA()
+            self.textcolor.get_rgba(rgba)
         self.noteset.properties["d_textcolor"] = [rgba.red, rgba.green, rgba.blue]
         for note in self.noteset.notes:
             note.gui.update_style()
