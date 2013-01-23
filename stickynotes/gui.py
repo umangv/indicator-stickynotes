@@ -144,7 +144,7 @@ class StickyNote:
         rgb_to_hex = lambda x: "#" + "".join(["{:02x}".format(int(255*a))
             for a in x])
         hsv_to_hex = lambda x: rgb_to_hex(colorsys.hsv_to_rgb(*x))
-        bg_end_hsv = self.noteset.properties.get("d_bgcolor_hsv", [56./360, 1, 1])
+        bg_end_hsv = self.note.cat_prop("bgcolor_hsv")
         # bg_start_hsv is computed by "lightening" bg_end_hsv. 
         bg_start_hsv = [bg_end_hsv[0], bg_end_hsv[1], bg_end_hsv[2] + .60]
         if bg_start_hsv[2] > 1:
@@ -154,8 +154,7 @@ class StickyNote:
             bg_start_hsv[1] = 0
         data.update({"bg_start": hsv_to_hex(bg_start_hsv), "bg_end":
                 hsv_to_hex(bg_end_hsv)})
-        data["text_color"] = rgb_to_hex(self.noteset.properties.\
-                get("d_textcolor", [0, 0, 0]))
+        data["text_color"] = rgb_to_hex(self.note.cat_prop("textcolor"))
         return data
 
     def save(self, *args):
@@ -220,9 +219,9 @@ class SettingsDialog:
         for w in widgets:
             setattr(self, w, self.builder.get_object(w))
         self.bgcolor.set_rgba(Gdk.RGBA(*colorsys.hsv_to_rgb(
-            *self.noteset.properties.get("d_bgcolor_hsv", [56./360, 1, 1])), alpha=1))
-        self.textcolor.set_rgba(Gdk.RGBA(*self.noteset.properties.\
-                get("d_textcolor", [0, 0, 0]), alpha=1))
+            *self.note.cat_prop("bgcolor_hsv")), alpha=1))
+        self.textcolor.set_rgba(Gdk.RGBA(*self.note.cat_prop(
+            "textcolor"), alpha=1))
         ret =  self.wSettings.run()
         self.wSettings.destroy()
 

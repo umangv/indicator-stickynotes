@@ -20,12 +20,15 @@ import uuid
 import json
 from os.path import expanduser
 
+from stickynotes.info import FALLBACK_PROPERTIES
+
 class Note:
     def __init__(self, content=None, gui_class=None, noteset=None):
         content = content or {}
         self.uuid = content.get('uuid')
         self.body = content.get('body','')
         self.properties = content.get("properties", {})
+        self.category = content.get("cat", "")
         last_modified = content.get('last_modified')
         if last_modified:
             self.last_modified = datetime.strptime(last_modified,
@@ -43,7 +46,8 @@ class Note:
         self.properties = self.gui.properties()
         return {"uuid":self.uuid, "body":self.body,
                 "last_modified":self.last_modified.strftime(
-                    "%Y-%m-%dT%H:%M:%S"), "properties":self.properties}
+                    "%Y-%m-%dT%H:%M:%S"), "properties":self.properties,
+                "cat": self.category}
 
     def update(self,body=None):
         if not body == None:
@@ -61,11 +65,16 @@ class Note:
     def hide(self):
         self.gui.hide()
 
+    def cat_prop(self, prop):
+        """Gets a property of the note's category"""
+        return self.noteset.get_category_property(self.category, prop)
+
 
 class NoteSet:
     def __init__(self, gui_class, data_file):
         self.notes = []
         self.properties = {}
+        self.categories = {}
         self.gui_class = gui_class
         self.data_file = data_file
 
@@ -80,12 +89,13 @@ class NoteSet:
         except ValueError:
             notes = {}
         self.properties = notes.get("properties", {})
+        self.categories = notes.get("categories", {})
         self.notes = [Note(note, gui_class=self.gui_class, noteset=self)
                 for note in notes.get("notes",[])]
 
     def dumps(self):
         return json.dumps({"notes":[x.extract() for x in self.notes],
-            "properties": self.properties})
+            "properties": self.properties, "categories": self.categories})
 
     def save(self, path=''):
         output = self.dumps()
@@ -120,10 +130,23 @@ class NoteSet:
             note.hide(*args)
         self.properties["all_visible"] = False
 
+    def get_category_property(self, cat, prop):
+        """Get a property of a category or the default"""
+        if (not cat) and self.properties.get("default_cat", None):
+            cat = self.properties["default_cat"]
+        cat_data = self.categories.get(cat, {})
+        if prop in cat_data:
+            return cat_data[prop]
+        # Otherwise, use fallback categories
+        if prop in FALLBACK_PROPERTIES:
+            return FALLBACK_PROPERTIES[prop]
+        else:
+            raise ValueError("Unknown property")
+
 class dGUI:
+    """Dummy GUI"""
     def __init__(self, *args, **kwargs):
         pass
-    """Dummy GUI"""
     def show(self):
         pass
     def hide(self):
