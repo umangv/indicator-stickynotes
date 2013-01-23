@@ -205,49 +205,82 @@ def show_about_dialog():
     winAbout.destroy()
     return ret
 
-class SettingsDialog:
-    """Manages the GUI of the settings dialog"""
-    def __init__(self, noteset):
+class SettingsCategory:
+    """Widgets that handle properties of a category"""
+    def __init__(self, noteset, cat):
         self.noteset = noteset
+        self.cat = cat
+        self.builder = Gtk.Builder()
         self.path = os.path.abspath(os.path.join(os.path.dirname(__file__),
             '..'))
-        glade_file = (os.path.join(self.path, "GlobalDialogs.glade"))
-        self.builder = Gtk.Builder()
-        self.builder.add_from_file(glade_file)
+        self.builder.add_objects_from_file(os.path.join(self.path,
+            "SettingsCategory.glade"), ["catExpander"])
         self.builder.connect_signals(self)
-        widgets = ["wSettings", "bgcolor", "textcolor"]
+        widgets = ["catExpander", "lExp", "cbBG", "cbText", "eName"]
         for w in widgets:
             setattr(self, w, self.builder.get_object(w))
-        self.bgcolor.set_rgba(Gdk.RGBA(*colorsys.hsv_to_rgb(
-            *self.note.cat_prop("bgcolor")), alpha=1))
-        self.textcolor.set_rgba(Gdk.RGBA(*self.note.cat_prop(
-            "textcolor"), alpha=1))
-        ret =  self.wSettings.run()
-        self.wSettings.destroy()
+        name = self.noteset.categories[cat].get("name", "New Category")
+        self.lExp.set_text(name)
+        self.eName.set_text(name)
+        self.cbBG.set_rgba(Gdk.RGBA(*colorsys.hsv_to_rgb(
+            *self.noteset.get_category_property(cat, "bgcolor")),
+            alpha=1))
+        self.cbText.set_rgba(Gdk.RGBA(*colorsys.hsv_to_rgb(
+            *self.noteset.get_category_property(cat, "textcolor")),
+            alpha=1))
 
-    def update_color(self, *args):
-        """Action to update the default background color"""
+    def eName_changed(self, *args):
+        self.noteset.categories[self.cat]["name"] = self.eName.get_text()
+        self.lExp.set_text(self.eName.get_text())
+
+    def update_bg(self, *args):
+        """Action to update the background color"""
         try:
-            rgba = self.bgcolor.get_rgba()
+            rgba = self.cbBG.get_rgba()
         except TypeError:
             rgba = Gdk.RGBA()
-            self.bgcolor.get_rgba(rgba)
+            self.cbBG.get_rgba(rgba)
             # Some versions of GObjectIntrospection are affected by
             # https://bugzilla.gnome.org/show_bug.cgi?id=687633 
         hsv = colorsys.rgb_to_hsv(rgba.red, rgba.green, rgba.blue)
-        self.noteset.properties["d_bgcolor_hsv"] = hsv
+        self.noteset.categories[self.cat]["bgcolor"] = hsv
         for note in self.noteset.notes:
             note.gui.update_style()
         # Remind GtkSourceView's that they are transparent, etc.
         load_global_css()
 
     def update_textcolor(self, *args):
-        """Action to update the default text color"""
+        """Action to update the text color"""
         try:
-            rgba = self.textcolor.get_rgba()
+            rgba = self.cbText.get_rgba()
         except TypeError:
             rgba = Gdk.RGBA()
-            self.textcolor.get_rgba(rgba)
-        self.noteset.properties["d_textcolor"] = [rgba.red, rgba.green, rgba.blue]
+            self.cbText.get_rgba(rgba)
+        self.noteset.categories[self.cat]["textcolor"] = \
+                [rgba.red, rgba.green, rgba.blue]
         for note in self.noteset.notes:
             note.gui.update_style()
+
+class SettingsDialog:
+    """Manages the GUI of the settings dialog"""
+    def __init__(self, noteset):
+        self.noteset = noteset
+        self.categories = {}
+        self.path = os.path.abspath(os.path.join(os.path.dirname(__file__),
+            '..'))
+        glade_file = (os.path.join(self.path, "GlobalDialogs.glade"))
+        self.builder = Gtk.Builder()
+        self.builder.add_from_file(glade_file)
+        self.builder.connect_signals(self)
+        widgets = ["wSettings", "boxCategories"]
+        for w in widgets:
+            setattr(self, w, self.builder.get_object(w))
+        for c in self.noteset.categories:
+            self.add_category_widgets(c)
+        ret =  self.wSettings.run()
+        self.wSettings.destroy()
+
+    def add_category_widgets(self, cat):
+        self.categories[cat] = SettingsCategory(self.noteset, cat)
+        self.boxCategories.pack_start(self.categories[cat].catExpander,
+                False, False, 0)
