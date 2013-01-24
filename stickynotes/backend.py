@@ -23,14 +23,15 @@ from os.path import expanduser
 from stickynotes.info import FALLBACK_PROPERTIES
 
 class Note:
-    def __init__(self, content=None, gui_class=None, noteset=None):
+    def __init__(self, content=None, gui_class=None, noteset=None,
+            category=None):
         self.gui_class = gui_class
         self.noteset = noteset
         content = content or {}
         self.uuid = content.get('uuid')
         self.body = content.get('body','')
         self.properties = content.get("properties", {})
-        self.category = content.get("cat", "")
+        self.category = category or content.get("cat", "")
         if not self.category in self.noteset.categories:
             self.category = ""
         last_modified = content.get('last_modified')
@@ -116,7 +117,8 @@ class NoteSet:
 
     def new(self):
         """Creates a new note and adds it to the note set"""
-        note = Note(gui_class=self.gui_class, noteset=self)
+        note = Note(gui_class=self.gui_class, noteset=self,
+                category=self.properties.get("default_cat", ""))
         self.notes.append(note)
         note.show()
         return note

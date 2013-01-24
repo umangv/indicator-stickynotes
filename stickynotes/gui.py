@@ -247,8 +247,9 @@ def show_about_dialog():
 
 class SettingsCategory:
     """Widgets that handle properties of a category"""
-    def __init__(self, noteset, cat):
-        self.noteset = noteset
+    def __init__(self, settingsdialog, cat):
+        self.settingsdialog = settingsdialog
+        self.noteset = settingsdialog.noteset
         self.cat = cat
         self.builder = Gtk.Builder()
         self.path = os.path.abspath(os.path.join(os.path.dirname(__file__),
@@ -261,8 +262,8 @@ class SettingsCategory:
         for w in widgets:
             setattr(self, w, self.builder.get_object(w))
         name = self.noteset.categories[cat].get("name", _("New Category"))
-        self.lExp.set_text(name)
         self.eName.set_text(name)
+        self.refresh_title()
         self.cbBG.set_rgba(Gdk.RGBA(*colorsys.hsv_to_rgb(
             *self.noteset.get_category_property(cat, "bgcolor")),
             alpha=1))
@@ -270,16 +271,27 @@ class SettingsCategory:
             *self.noteset.get_category_property(cat, "textcolor")),
             alpha=1))
 
+    def refresh_title(self, *args):
+        """Updates the title of the category"""
+        name = self.noteset.categories[self.cat].get("name",
+                _("New Category"))
+        if self.noteset.properties.get("default_cat", "") == self.cat:
+            name += " (" + _("Default Category") + ")"
+        self.lExp.set_text(name)
+
     def delete_cat(self, *args):
         """Delete a category"""
         confirm = self.confirmDelete.run()
         self.confirmDelete.hide()
         if confirm == 1:
-            del self.noteset.categories[self.cat]
-            self.catExpander.destroy()
-            for note in self.noteset.notes:
-                note.gui.populate_menu()
-                note.gui.update_style()
+            self.settingsdialog.delete_category(self.cat)
+
+    def make_default(self, *args):
+        """Make this the default category"""
+        self.noteset.properties["default_cat"] = self.cat
+        self.settingsdialog.refresh_category_titles()
+        for note in self.noteset.notes:
+            note.gui.update_style()
 
     def eName_changed(self, *args):
         """Update a category name"""
@@ -337,7 +349,7 @@ class SettingsDialog:
 
     def add_category_widgets(self, cat):
         """Add the widgets for a category"""
-        self.categories[cat] = SettingsCategory(self.noteset, cat)
+        self.categories[cat] = SettingsCategory(self, cat)
         self.boxCategories.pack_start(self.categories[cat].catExpander,
                 False, False, 0)
 
@@ -346,3 +358,16 @@ class SettingsDialog:
         cid = str(uuid.uuid4())
         self.noteset.categories[cid] = {}
         self.add_category_widgets(cid)
+
+    def delete_category(self, cat):
+        """Delete a category"""
+        del self.noteset.categories[cat]
+        self.categories[cat].catExpander.destroy()
+        del self.categories[cat]
+        for note in self.noteset.notes:
+            note.gui.populate_menu()
+            note.gui.update_style()
+
+    def refresh_category_titles(self):
+        for cid, catsettings in self.categories.items():
+            catsettings.refresh_title()
