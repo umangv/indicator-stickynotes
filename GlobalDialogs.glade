@@ -131,12 +131,12 @@ dmm041191</property>
                     <property name="toolbar_style">both-horiz</property>
                     <property name="icon_size">2</property>
                     <child>
-                      <object class="GtkToolButton" id="catAdd">
+                      <object class="GtkToolButton" id="catNew">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">Add</property>
+                        <property name="tooltip_text" translatable="yes">New</property>
                         <property name="is_important">True</property>
-                        <property name="label" translatable="yes">Add</property>
+                        <property name="label" translatable="yes">New</property>
                         <property name="use_underline">True</property>
                         <property name="stock_id">gtk-add</property>
                         <signal name="clicked" handler="new_category" swapped="no"/>

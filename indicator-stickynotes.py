@@ -180,7 +180,7 @@ def main():
     locale.bindtextdomain(LOCALE_DOMAIN, locale_dir)
     locale.textdomain(LOCALE_DOMAIN)
 
-    parser = argparse.ArgumentParser(description=_("Sticky Notes "))
+    parser = argparse.ArgumentParser(description=_("Sticky Notes"))
     parser.add_argument("-d", action='store_true', help="use the development"
             " data file")
     args = parser.parse_args()

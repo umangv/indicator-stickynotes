@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-22 17:09+0100\n"
+"POT-Creation-Date: 2013-01-24 20:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: indicator-stickynotes.py:65 StickyNotes.glade:7
+#: indicator-stickynotes.py:65 indicator-stickynotes.py:183
+#: StickyNotes.glade:22
 msgid "Sticky Notes"
 msgstr ""
 
-#: indicator-stickynotes.py:68 StickyNotes.glade:53
+#: indicator-stickynotes.py:68 StickyNotes.glade:65
 msgid "New Note"
 msgstr ""
 
@@ -68,38 +69,75 @@ msgid ""
 "Ctrl + N:  New note"
 msgstr ""
 
-#: GlobalDialogs.glade:122
-msgid "_Background color"
+#: GlobalDialogs.glade:126 GlobalDialogs.glade:128
+msgid "New"
 msgstr ""
 
-#: GlobalDialogs.glade:139
+#: GlobalDialogs.glade:182
+msgid "_Categories"
+msgstr ""
+
+#: SettingsCategory.glade:10
+msgid "Are you sure you want to delete this category?"
+msgstr ""
+
+#: SettingsCategory.glade:80
+msgid "Background Color"
+msgstr ""
+
+#: SettingsCategory.glade:94
+msgid "Text Color"
+msgstr ""
+
+#: SettingsCategory.glade:109
 msgid "Pick a Background Color"
 msgstr ""
 
-#: GlobalDialogs.glade:154
-msgid "Text color"
+#: SettingsCategory.glade:125
+msgid "Pick a Text Color"
 msgstr ""
 
-#: GlobalDialogs.glade:185
-msgid "_Default Settings"
+#: SettingsCategory.glade:140
+msgid "Name"
 msgstr ""
 
-#: StickyNotes.glade:33
+#: SettingsCategory.glade:173
+msgid "Make Default Category"
+msgstr ""
+
+#: SettingsCategory.glade:175
+msgid "Make Default"
+msgstr ""
+
+#: SettingsCategory.glade:189 SettingsCategory.glade:191 StickyNotes.glade:47
 msgid "Delete"
 msgstr ""
 
-#: StickyNotes.glade:153
+#: SettingsCategory.glade:215 stickynotes/gui.py:180 stickynotes/gui.py:264
+#: stickynotes/gui.py:277
+msgid "New Category"
+msgstr ""
+
+#: StickyNotes.glade:178
 msgid "Confirm delete"
 msgstr ""
 
-#: StickyNotes.glade:157
+#: StickyNotes.glade:182
 msgid "Are you sure you want to delete this note?"
 msgstr ""
 
-#: stickynotes/gui.py:177
+#: stickynotes/gui.py:172
+msgid "Categories"
+msgstr ""
+
+#: stickynotes/gui.py:225
 msgid "Unlock"
 msgstr ""
 
-#: stickynotes/gui.py:178
+#: stickynotes/gui.py:226
 msgid "Lock"
+msgstr ""
+
+#: stickynotes/gui.py:279
+msgid "Default Category"
 msgstr ""
