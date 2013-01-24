@@ -24,19 +24,21 @@ from stickynotes.info import FALLBACK_PROPERTIES
 
 class Note:
     def __init__(self, content=None, gui_class=None, noteset=None):
+        self.gui_class = gui_class
+        self.noteset = noteset
         content = content or {}
         self.uuid = content.get('uuid')
         self.body = content.get('body','')
         self.properties = content.get("properties", {})
         self.category = content.get("cat", "")
+        if not self.category in self.noteset.categories:
+            self.category = ""
         last_modified = content.get('last_modified')
         if last_modified:
             self.last_modified = datetime.strptime(last_modified,
                     "%Y-%m-%dT%H:%M:%S")
         else:
             self.last_modified = datetime.now()
-        self.gui_class = gui_class
-        self.noteset = noteset
         self.gui = self.gui_class(note=self)
 
     def extract(self):
