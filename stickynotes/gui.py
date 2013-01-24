@@ -57,6 +57,9 @@ class StickyNote:
         self.imgUnlock = self.builder.get_object("imgUnlock")
         self.bClose = self.builder.get_object("bClose")
         self.confirmDelete = self.builder.get_object("confirmDelete")
+        # Create menu
+        self.menu = Gtk.Menu()
+        self.populate_menu()
         # Load CSS template and initialize Gtk.CssProvider
         with open(os.path.join(self.path, "style.css")) as css_file:
             self.css_template = Template(css_file.read())
@@ -157,6 +160,30 @@ class StickyNote:
         data["text_color"] = rgb_to_hex(self.note.cat_prop("textcolor"))
         return data
 
+    def populate_menu(self):
+        """(Re)populates the note's menu items appropriately"""
+        def _delete_menu_item(item, *args):
+            self.menu.remove(item)
+        self.menu.foreach(_delete_menu_item, None)
+
+        catgroup = []
+        mcats = Gtk.RadioMenuItem.new_with_label(catgroup,
+                _("Categories"))
+        self.menu.append(mcats)
+        mcats.set_sensitive(False)
+        catgroup = mcats.get_group()
+        mcats.show()
+
+        for cid, cdata in self.noteset.categories.items():
+            mitem = Gtk.RadioMenuItem.new_with_label(catgroup,
+                    cdata.get("name", _("New Category")))
+            catgroup = mitem.get_group()
+            if cid == self.note.category:
+                mitem.set_active(True)
+            mitem.connect("activate", self.set_category, cid)
+            self.menu.append(mitem)
+            mitem.show()
+
     def save(self, *args):
         self.note.noteset.save()
         return False
@@ -174,6 +201,18 @@ class StickyNote:
             return False
         else:
             return True
+
+    def popup_menu(self, button, *args):
+        """Pops up the note's menu"""
+        self.menu.popup(None, None, None, None, Gdk.BUTTON_PRIMARY, 
+                Gtk.get_current_event_time())
+
+    def set_category(self, widget, cat):
+        """Set the note's category"""
+        if not cat in self.noteset.categories:
+            raise KeyError("No such category")
+        self.note.category = cat
+        self.update_style()
 
     def set_locked_state(self, locked):
         """Change the locked state of the stickynote"""
@@ -219,7 +258,7 @@ class SettingsCategory:
         widgets = ["catExpander", "lExp", "cbBG", "cbText", "eName"]
         for w in widgets:
             setattr(self, w, self.builder.get_object(w))
-        name = self.noteset.categories[cat].get("name", "New Category")
+        name = self.noteset.categories[cat].get("name", _("New Category"))
         self.lExp.set_text(name)
         self.eName.set_text(name)
         self.cbBG.set_rgba(Gdk.RGBA(*colorsys.hsv_to_rgb(
@@ -232,6 +271,8 @@ class SettingsCategory:
     def eName_changed(self, *args):
         self.noteset.categories[self.cat]["name"] = self.eName.get_text()
         self.lExp.set_text(self.eName.get_text())
+        for note in self.noteset.notes:
+            note.gui.populate_menu()
 
     def update_bg(self, *args):
         """Action to update the background color"""
