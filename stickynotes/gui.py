@@ -21,6 +21,7 @@ from gi.repository import Gtk, Gdk, Gio, GObject, GtkSource
 from locale import gettext as _
 import os.path
 import colorsys
+import uuid
 
 def load_global_css():
     """Adds a provider for the global CSS"""
@@ -253,9 +254,10 @@ class SettingsCategory:
         self.path = os.path.abspath(os.path.join(os.path.dirname(__file__),
             '..'))
         self.builder.add_objects_from_file(os.path.join(self.path,
-            "SettingsCategory.glade"), ["catExpander"])
+            "SettingsCategory.glade"), ["catExpander", "confirmDelete"])
         self.builder.connect_signals(self)
-        widgets = ["catExpander", "lExp", "cbBG", "cbText", "eName"]
+        widgets = ["catExpander", "lExp", "cbBG", "cbText", "eName",
+                "confirmDelete"]
         for w in widgets:
             setattr(self, w, self.builder.get_object(w))
         name = self.noteset.categories[cat].get("name", _("New Category"))
@@ -268,7 +270,19 @@ class SettingsCategory:
             *self.noteset.get_category_property(cat, "textcolor")),
             alpha=1))
 
+    def delete_cat(self, *args):
+        """Delete a category"""
+        confirm = self.confirmDelete.run()
+        self.confirmDelete.hide()
+        if confirm == 1:
+            del self.noteset.categories[self.cat]
+            self.catExpander.destroy()
+            for note in self.noteset.notes:
+                note.gui.populate_menu()
+                note.gui.update_style()
+
     def eName_changed(self, *args):
+        """Update a category name"""
         self.noteset.categories[self.cat]["name"] = self.eName.get_text()
         self.lExp.set_text(self.eName.get_text())
         for note in self.noteset.notes:
@@ -322,6 +336,13 @@ class SettingsDialog:
         self.wSettings.destroy()
 
     def add_category_widgets(self, cat):
+        """Add the widgets for a category"""
         self.categories[cat] = SettingsCategory(self.noteset, cat)
         self.boxCategories.pack_start(self.categories[cat].catExpander,
                 False, False, 0)
+
+    def new_category(self, *args):
+        """Make a new category"""
+        cid = str(uuid.uuid4())
+        self.noteset.categories[cid] = {}
+        self.add_category_widgets(cid)

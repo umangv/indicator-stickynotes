@@ -167,29 +167,7 @@ dmm041191</property>
                         <property name="label" translatable="yes">Add</property>
                         <property name="use_underline">True</property>
                         <property name="stock_id">gtk-add</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="homogeneous">True</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkToolButton" id="catDel">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Delete</property>
-                        <property name="use_underline">True</property>
-                        <property name="stock_id">gtk-remove</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="homogeneous">True</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorToolItem" id="sep1">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <signal name="clicked" handler="new_category" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
