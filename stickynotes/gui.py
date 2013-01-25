@@ -135,6 +135,8 @@ class StickyNote:
 
     def update_font(self):
         """Updates the font"""
+        # Unset any previously set font
+        self.txtNote.override_font(None)
         font = Pango.FontDescription.from_string(
                 self.note.cat_prop("font"))
         self.txtNote.override_font(font)
