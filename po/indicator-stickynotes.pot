@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-25 11:28+0100\n"
+"POT-Creation-Date: 2013-01-25 20:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,8 +113,8 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: SettingsCategory.glade:215 stickynotes/gui.py:180 stickynotes/gui.py:264
-#: stickynotes/gui.py:277
+#: SettingsCategory.glade:215 stickynotes/gui.py:189 stickynotes/gui.py:276
+#: stickynotes/gui.py:289
 msgid "New Category"
 msgstr ""
 
@@ -126,18 +126,22 @@ msgstr ""
 msgid "Are you sure you want to delete this note?"
 msgstr ""
 
-#: stickynotes/gui.py:172
-msgid "Categories"
+#: stickynotes/gui.py:170
+msgid "Always on top"
 msgstr ""
 
-#: stickynotes/gui.py:225
+#: stickynotes/gui.py:181
+msgid "Categories:"
+msgstr ""
+
+#: stickynotes/gui.py:237
 msgid "Unlock"
 msgstr ""
 
-#: stickynotes/gui.py:226
+#: stickynotes/gui.py:238
 msgid "Lock"
 msgstr ""
 
-#: stickynotes/gui.py:279
+#: stickynotes/gui.py:291
 msgid "Default Category"
 msgstr ""

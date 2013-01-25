@@ -167,9 +167,18 @@ class StickyNote:
             self.menu.remove(item)
         self.menu.foreach(_delete_menu_item, None)
 
+        aot = Gtk.CheckMenuItem.new_with_label(_("Always on top"))
+        aot.connect("toggled", self.malways_on_top_toggled)
+        self.menu.append(aot)
+        aot.show()
+
+        sep = Gtk.SeparatorMenuItem()
+        self.menu.append(sep)
+        sep.show()
+
         catgroup = []
         mcats = Gtk.RadioMenuItem.new_with_label(catgroup,
-                _("Categories"))
+                _("Categories:"))
         self.menu.append(mcats)
         mcats.set_sensitive(False)
         catgroup = mcats.get_group()
@@ -184,6 +193,9 @@ class StickyNote:
             mitem.connect("activate", self.set_category, cid)
             self.menu.append(mitem)
             mitem.show()
+
+    def malways_on_top_toggled(self, widget, *args):
+        self.winMain.set_keep_above(widget.get_active())
 
     def save(self, *args):
         self.note.noteset.save()
