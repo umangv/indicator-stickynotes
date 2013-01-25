@@ -17,7 +17,7 @@
 
 from datetime import datetime
 from string import Template
-from gi.repository import Gtk, Gdk, Gio, GObject, GtkSource
+from gi.repository import Gtk, Gdk, Gio, GObject, GtkSource, Pango
 from locale import gettext as _
 import os.path
 import colorsys
@@ -69,6 +69,7 @@ class StickyNote:
                 self.txtNote.get_style_context()]
         # Update window-specific style. Global styles are loaded initially!
         self.update_style()
+        self.update_font()
         # Ensure buttons are displayed with images
         settings = Gtk.Settings.get_default()
         settings.props.gtk_button_images = True
@@ -131,6 +132,12 @@ class StickyNote:
             prop["position"] = self.note.properties.get("position", (10, 10))
             prop["size"] = self.note.properties.get("size", (200, 150))
         return prop
+
+    def update_font(self):
+        """Updates the font"""
+        font = Pango.FontDescription.from_string(
+                self.note.cat_prop("font"))
+        self.txtNote.override_font(font)
 
     def update_style(self):
         """Updates the style using CSS template"""
@@ -226,6 +233,7 @@ class StickyNote:
             raise KeyError("No such category")
         self.note.category = cat
         self.update_style()
+        self.update_font()
 
     def set_locked_state(self, locked):
         """Change the locked state of the stickynote"""
@@ -270,7 +278,7 @@ class SettingsCategory:
             "SettingsCategory.glade"), ["catExpander", "confirmDelete"])
         self.builder.connect_signals(self)
         widgets = ["catExpander", "lExp", "cbBG", "cbText", "eName",
-                "confirmDelete"]
+                "confirmDelete", "fbFont"]
         for w in widgets:
             setattr(self, w, self.builder.get_object(w))
         name = self.noteset.categories[cat].get("name", _("New Category"))
@@ -282,6 +290,14 @@ class SettingsCategory:
         self.cbText.set_rgba(Gdk.RGBA(
             *self.noteset.get_category_property(cat, "textcolor"),
             alpha=1))
+        fontname = self.noteset.get_category_property(cat, "font")
+        if not fontname:
+            # Get the system default font, if none is set
+            fontname = \
+                self.settingsdialog.wSettings.get_style_context()\
+                    .get_font(Gtk.StateFlags.NORMAL).to_string()
+                #why.is.this.so.long?
+        self.fbFont.set_font(fontname)
 
     def refresh_title(self, *args):
         """Updates the title of the category"""
@@ -304,6 +320,7 @@ class SettingsCategory:
         self.settingsdialog.refresh_category_titles()
         for note in self.noteset.notes:
             note.gui.update_style()
+            note.gui.update_font()
 
     def eName_changed(self, *args):
         """Update a category name"""
@@ -339,6 +356,13 @@ class SettingsCategory:
                 [rgba.red, rgba.green, rgba.blue]
         for note in self.noteset.notes:
             note.gui.update_style()
+
+    def update_font(self, *args):
+        """Action to update the font size"""
+        self.noteset.categories[self.cat]["font"] = \
+            self.fbFont.get_font_name()
+        for note in self.noteset.notes:
+            note.gui.update_font()
 
 class SettingsDialog:
     """Manages the GUI of the settings dialog"""
@@ -379,6 +403,7 @@ class SettingsDialog:
         for note in self.noteset.notes:
             note.gui.populate_menu()
             note.gui.update_style()
+            note.gui.update_font()
 
     def refresh_category_titles(self):
         for cid, catsettings in self.categories.items():
