@@ -148,7 +148,7 @@ class StickyNote:
         rgb_to_hex = lambda x: "#" + "".join(["{:02x}".format(int(255*a))
             for a in x])
         hsv_to_hex = lambda x: rgb_to_hex(colorsys.hsv_to_rgb(*x))
-        bg_end_hsv = self.note.cat_prop("bgcolor")
+        bg_end_hsv = self.note.cat_prop("bgcolor_hsv")
         # bg_start_hsv is computed by "lightening" bg_end_hsv. 
         bg_start_hsv = [bg_end_hsv[0], bg_end_hsv[1], bg_end_hsv[2] + .60]
         if bg_start_hsv[2] > 1:
@@ -265,10 +265,10 @@ class SettingsCategory:
         self.eName.set_text(name)
         self.refresh_title()
         self.cbBG.set_rgba(Gdk.RGBA(*colorsys.hsv_to_rgb(
-            *self.noteset.get_category_property(cat, "bgcolor")),
+            *self.noteset.get_category_property(cat, "bgcolor_hsv")),
             alpha=1))
-        self.cbText.set_rgba(Gdk.RGBA(*colorsys.hsv_to_rgb(
-            *self.noteset.get_category_property(cat, "textcolor")),
+        self.cbText.set_rgba(Gdk.RGBA(
+            *self.noteset.get_category_property(cat, "textcolor"),
             alpha=1))
 
     def refresh_title(self, *args):
@@ -310,7 +310,7 @@ class SettingsCategory:
             # Some versions of GObjectIntrospection are affected by
             # https://bugzilla.gnome.org/show_bug.cgi?id=687633 
         hsv = colorsys.rgb_to_hsv(rgba.red, rgba.green, rgba.blue)
-        self.noteset.categories[self.cat]["bgcolor"] = hsv
+        self.noteset.categories[self.cat]["bgcolor_hsv"] = hsv
         for note in self.noteset.notes:
             note.gui.update_style()
         # Remind GtkSourceView's that they are transparent, etc.
