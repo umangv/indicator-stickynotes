@@ -136,7 +136,8 @@ class NoteSet:
 
     def get_category_property(self, cat, prop):
         """Get a property of a category or the default"""
-        if (not cat) and self.properties.get("default_cat", None):
+        if ((not cat) or (not cat in self.categories)) and \
+                self.properties.get("default_cat", None):
             cat = self.properties["default_cat"]
         cat_data = self.categories.get(cat, {})
         if prop in cat_data:
