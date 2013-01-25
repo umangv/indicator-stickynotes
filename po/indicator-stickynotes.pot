@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-24 20:54+0100\n"
+"POT-Creation-Date: 2013-01-25 11:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,7 +46,7 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: indicator-stickynotes.py:110 GlobalDialogs.glade:70
+#: indicator-stickynotes.py:110 GlobalDialogs.glade:81
 msgid "Settings"
 msgstr ""
 
@@ -69,11 +69,11 @@ msgid ""
 "Ctrl + N:  New note"
 msgstr ""
 
-#: GlobalDialogs.glade:126 GlobalDialogs.glade:128
+#: GlobalDialogs.glade:137 GlobalDialogs.glade:139
 msgid "New"
 msgstr ""
 
-#: GlobalDialogs.glade:182
+#: GlobalDialogs.glade:193
 msgid "_Categories"
 msgstr ""
 

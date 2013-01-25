@@ -7,49 +7,50 @@ msgid ""
 msgstr ""
 "Project-Id-Version: indicator-stickynotes\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-07-27 18:02-0400\n"
+"POT-Creation-Date: 2013-01-24 20:54+0100\n"
 "PO-Revision-Date: 2012-10-15 12:07+0000\n"
 "Last-Translator: Eugene Marshal <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-10-16 05:10+0000\n"
-"X-Generator: Launchpad (build 16137)\n"
+"X-Launchpad-Export-Date: 2013-01-25 05:55+0000\n"
+"X-Generator: Launchpad (build 16445)\n"
 
-#: indicator-stickynotes.py:57 StickyNotes.glade:7
+#: indicator-stickynotes.py:65 indicator-stickynotes.py:183
+#: StickyNotes.glade:22
 msgid "Sticky Notes"
 msgstr "Sticky Notes"
 
-#: indicator-stickynotes.py:60 StickyNotes.glade:53
+#: indicator-stickynotes.py:68 StickyNotes.glade:65
 msgid "New Note"
 msgstr "Новая заметка"
 
-#: indicator-stickynotes.py:69
+#: indicator-stickynotes.py:77
 msgid "Show All"
 msgstr "Показать все"
 
-#: indicator-stickynotes.py:74
+#: indicator-stickynotes.py:82
 msgid "Hide All"
 msgstr "Скрыть все"
 
-#: indicator-stickynotes.py:83
+#: indicator-stickynotes.py:91
 msgid "Lock All"
 msgstr "Заблокировать все"
 
-#: indicator-stickynotes.py:88
+#: indicator-stickynotes.py:96
 msgid "Unlock All"
 msgstr "Разблокировать все"
 
-#: indicator-stickynotes.py:97
+#: indicator-stickynotes.py:105
 msgid "About"
 msgstr "О программе"
 
-#: indicator-stickynotes.py:102 GlobalDialogs.glade:67
+#: indicator-stickynotes.py:110 GlobalDialogs.glade:70
 msgid "Settings"
 msgstr "Настройки"
 
-#: indicator-stickynotes.py:111
+#: indicator-stickynotes.py:119
 msgid "Quit"
 msgstr "Выйти"
 
@@ -68,38 +69,75 @@ msgid ""
 "Ctrl + N:  New note"
 msgstr ""
 
-#: GlobalDialogs.glade:119
-msgid "_Background color"
-msgstr "Цвет _фона"
+#: GlobalDialogs.glade:126 GlobalDialogs.glade:128
+msgid "New"
+msgstr ""
 
-#: GlobalDialogs.glade:136
+#: GlobalDialogs.glade:182
+msgid "_Categories"
+msgstr ""
+
+#: SettingsCategory.glade:10
+msgid "Are you sure you want to delete this category?"
+msgstr ""
+
+#: SettingsCategory.glade:80
+msgid "Background Color"
+msgstr ""
+
+#: SettingsCategory.glade:94
+msgid "Text Color"
+msgstr ""
+
+#: SettingsCategory.glade:109
 msgid "Pick a Background Color"
 msgstr "Выбрать цвет фона"
 
-#: GlobalDialogs.glade:151
-msgid "Text color"
-msgstr "Цвет текста"
+#: SettingsCategory.glade:125
+msgid "Pick a Text Color"
+msgstr ""
 
-#: GlobalDialogs.glade:182
-msgid "_Default Settings"
-msgstr "_По умолчанию"
+#: SettingsCategory.glade:140
+msgid "Name"
+msgstr ""
 
-#: StickyNotes.glade:33
+#: SettingsCategory.glade:173
+msgid "Make Default Category"
+msgstr ""
+
+#: SettingsCategory.glade:175
+msgid "Make Default"
+msgstr ""
+
+#: SettingsCategory.glade:189 SettingsCategory.glade:191 StickyNotes.glade:47
 msgid "Delete"
 msgstr "Удалить"
 
-#: StickyNotes.glade:152
+#: SettingsCategory.glade:215 stickynotes/gui.py:180 stickynotes/gui.py:264
+#: stickynotes/gui.py:277
+msgid "New Category"
+msgstr ""
+
+#: StickyNotes.glade:178
 msgid "Confirm delete"
 msgstr "Подтвердить удаление"
 
-#: StickyNotes.glade:156
+#: StickyNotes.glade:182
 msgid "Are you sure you want to delete this note?"
 msgstr "Вы уверены, что хотите удалить эту заметку?"
 
-#: stickynotes/gui.py:177
+#: stickynotes/gui.py:172
+msgid "Categories"
+msgstr ""
+
+#: stickynotes/gui.py:225
 msgid "Unlock"
 msgstr "Разблокировать"
 
-#: stickynotes/gui.py:178
+#: stickynotes/gui.py:226
 msgid "Lock"
 msgstr "Заблокировать"
+
+#: stickynotes/gui.py:279
+msgid "Default Category"
+msgstr ""
