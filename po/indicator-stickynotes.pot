@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-25 21:34+0100\n"
+"POT-Creation-Date: 2013-01-25 23:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,48 +77,52 @@ msgstr ""
 msgid "_Categories"
 msgstr ""
 
-#: SettingsCategory.glade:10
+#: SettingsCategory.glade:16
 msgid "Are you sure you want to delete this category?"
 msgstr ""
 
-#: SettingsCategory.glade:79
+#: SettingsCategory.glade:85
 msgid "Background Color"
 msgstr ""
 
-#: SettingsCategory.glade:93
+#: SettingsCategory.glade:99
 msgid "Text Color"
 msgstr ""
 
-#: SettingsCategory.glade:108
+#: SettingsCategory.glade:114
 msgid "Pick a Background Color"
 msgstr ""
 
-#: SettingsCategory.glade:124
+#: SettingsCategory.glade:130
 msgid "Pick a Text Color"
 msgstr ""
 
-#: SettingsCategory.glade:140
+#: SettingsCategory.glade:146
 msgid "Name"
 msgstr ""
 
-#: SettingsCategory.glade:173
+#: SettingsCategory.glade:179
 msgid "Make Default Category"
 msgstr ""
 
-#: SettingsCategory.glade:175
+#: SettingsCategory.glade:181
 msgid "Make Default"
 msgstr ""
 
-#: SettingsCategory.glade:189 SettingsCategory.glade:191 StickyNotes.glade:47
+#: SettingsCategory.glade:195 SettingsCategory.glade:197 StickyNotes.glade:47
 msgid "Delete"
 msgstr ""
 
-#: SettingsCategory.glade:214
+#: SettingsCategory.glade:220
 msgid "Font"
 msgstr ""
 
-#: SettingsCategory.glade:247 stickynotes/gui.py:198 stickynotes/gui.py:286
-#: stickynotes/gui.py:307
+#: SettingsCategory.glade:252
+msgid "Shadow"
+msgstr ""
+
+#: SettingsCategory.glade:284 stickynotes/gui.py:200 stickynotes/gui.py:288
+#: stickynotes/gui.py:311
 msgid "New Category"
 msgstr ""
 
@@ -130,22 +134,22 @@ msgstr ""
 msgid "Are you sure you want to delete this note?"
 msgstr ""
 
-#: stickynotes/gui.py:179
+#: stickynotes/gui.py:181
 msgid "Always on top"
 msgstr ""
 
-#: stickynotes/gui.py:190
+#: stickynotes/gui.py:192
 msgid "Categories:"
 msgstr ""
 
-#: stickynotes/gui.py:247
+#: stickynotes/gui.py:249
 msgid "Unlock"
 msgstr ""
 
-#: stickynotes/gui.py:248
+#: stickynotes/gui.py:250
 msgid "Lock"
 msgstr ""
 
-#: stickynotes/gui.py:309
+#: stickynotes/gui.py:313
 msgid "Default Category"
 msgstr ""
