@@ -46,18 +46,12 @@ class StickyNote:
             "StickyNotes.glade"))
         self.builder.connect_signals(self)
         # Get necessary objects
-        self.txtNote = self.builder.get_object("txtNote")
         self.winMain = self.builder.get_object("MainWindow")
         self.winMain.set_name("main-window")
-        self.bAdd = self.builder.get_object("bAdd")
-        self.imgAdd = self.builder.get_object("imgAdd")
-        self.imgResizeR = self.builder.get_object("imgResizeR")
-        self.eResizeR = self.builder.get_object("eResizeR")
-        self.bLock = self.builder.get_object("bLock")
-        self.imgLock = self.builder.get_object("imgLock")
-        self.imgUnlock = self.builder.get_object("imgUnlock")
-        self.bClose = self.builder.get_object("bClose")
-        self.confirmDelete = self.builder.get_object("confirmDelete")
+        widgets = ["txtNote", "bAdd", "imgAdd", "imgResizeR", "eResizeR",
+                "bLock", "imgLock", "imgUnlock", "bClose", "confirmDelete"]
+        for w in widgets:
+            setattr(self, w, self.builder.get_object(w))
         # Create menu
         self.menu = Gtk.Menu()
         self.populate_menu()
