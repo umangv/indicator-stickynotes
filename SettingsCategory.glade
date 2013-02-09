@@ -72,6 +72,8 @@
       <object class="GtkExpander" id="catExpander">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
+        <property name="margin_left">7</property>
+        <property name="margin_right">7</property>
         <property name="margin_bottom">7</property>
         <child>
           <object class="GtkGrid" id="grid1">
