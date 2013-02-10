@@ -74,12 +74,13 @@ class Note:
 
 
 class NoteSet:
-    def __init__(self, gui_class, data_file):
+    def __init__(self, gui_class, data_file, indicator):
         self.notes = []
         self.properties = {}
         self.categories = {}
         self.gui_class = gui_class
         self.data_file = data_file
+        self.indicator = indicator
 
     def _loads_updater(self, dnoteset):
         """Parses old versions of the Notes structure and updates them"""

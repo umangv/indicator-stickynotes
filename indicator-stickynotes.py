@@ -49,7 +49,7 @@ class IndicatorStickyNotes:
         data_file = stickynotes.info.DEBUG_SETTINGS_FILE if isdev else \
                 stickynotes.info.SETTINGS_FILE
         # Initialize NoteSet
-        self.nset = NoteSet(StickyNote, data_file)
+        self.nset = NoteSet(StickyNote, data_file, self)
         self.nset.open()
         if self.nset.properties.get("all_visible", True):
             self.nset.showall()

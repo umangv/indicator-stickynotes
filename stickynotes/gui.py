@@ -177,6 +177,11 @@ class StickyNote:
         self.menu.append(aot)
         aot.show()
 
+        mset = Gtk.MenuItem(_("Settings"))
+        mset.connect("activate", self.noteset.indicator.show_settings)
+        self.menu.append(mset)
+        mset.show()
+
         sep = Gtk.SeparatorMenuItem()
         self.menu.append(sep)
         sep.show()
