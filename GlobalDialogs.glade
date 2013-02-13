@@ -9,7 +9,7 @@
     <property name="icon">Icons/indicator-stickynotes.png</property>
     <property name="type_hint">dialog</property>
     <property name="program_name">Indicator Stickynotes</property>
-    <property name="version">0.4.1</property>
+    <property name="version">0.4.2</property>
     <property name="copyright">Copyright © 2012-2013 Umang Varma</property>
     <property name="comments" translatable="yes">Please report bugs, contribute translations, and make suggestions on the Launchpad homepage below.
 
@@ -36,25 +36,25 @@ indicator-stickynotes.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</prope
 
 https://launchpad.net/indicator-stickynotes/+topcontributors
 
+Tomasz
 Paulius Šukys
 Mirek Bily
-Tomasz
-Adolfo Jayme Barrientos
-asensio
 gogo
 timbo
+asensio
+Adolfo Jayme Barrientos
 Timo Schneemann
 vasco
 Sergey Koptev
-Hélion du Mas des Bourboux
 Algimantas Margevičius
+Hélion du Mas des Bourboux
 Olivier Girard aka Cenwen
 Wang Dianjin
 Wormhole
 joshg
 Ярослав Смук
-Eugene Marshal
-Gabriel Retana</property>
+Gabriel Retana
+Eugene Marshal</property>
     <property name="logo">Icons/indicator-stickynotes.png</property>
     <property name="wrap_license">True</property>
     <child internal-child="vbox">
