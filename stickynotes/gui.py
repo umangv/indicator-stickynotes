@@ -74,9 +74,8 @@ class StickyNote:
         self.bbody.set_highlight_matching_brackets(False)
         self.bbody.end_not_undoable_action()
         self.txtNote.set_buffer(self.bbody)
-        # Show and hide so winMain and widgets are realized and mapped.
+        # Show the window
         self.winMain.show()
-        self.winMain.hide()
         # Make resize work
         self.winMain.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         self.eResizeR.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)

@@ -40,7 +40,8 @@ class Note:
                     "%Y-%m-%dT%H:%M:%S")
         else:
             self.last_modified = datetime.now()
-        self.gui = self.gui_class(note=self)
+        # Don't create GUI until show is called
+        self.gui = None
 
     def extract(self):
         self.gui.update_note()
@@ -63,10 +64,15 @@ class Note:
         del self
 
     def show(self, *args):
-        self.gui.show(*args)
+        # If GUI has not been created, create it now
+        if self.gui == None:
+            self.gui = self.gui_class(note=self)
+        else:
+            self.gui.show(*args)
 
     def hide(self):
-        self.gui.hide()
+        if self.gui != None:
+            self.gui.hide()
 
     def cat_prop(self, prop):
         """Gets a property of the note's category"""

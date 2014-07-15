@@ -51,6 +51,7 @@ class IndicatorStickyNotes:
         # Initialize NoteSet
         self.nset = NoteSet(StickyNote, data_file, self)
         self.nset.open()
+        # If all notes were visible previously, show them now
         if self.nset.properties.get("all_visible", True):
             self.nset.showall()
         # Create App Indicator
