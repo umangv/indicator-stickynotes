@@ -74,14 +74,14 @@ class StickyNote:
         self.bbody.set_highlight_matching_brackets(False)
         self.bbody.end_not_undoable_action()
         self.txtNote.set_buffer(self.bbody)
-        # Show the window
-        self.winMain.show()
         # Make resize work
         self.winMain.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         self.eResizeR.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         # Move Window
         self.winMain.move(*self.note.properties.get("position", (10,10)))
         self.winMain.resize(*self.note.properties.get("size", (200,150)))
+        # Show the window
+        self.winMain.show()
         # Mouse over
         self.eResizeR.get_window().set_cursor(Gdk.Cursor.new_for_display(
                     self.eResizeR.get_window().get_display(),
