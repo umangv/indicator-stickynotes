@@ -150,12 +150,12 @@ class IndicatorStickyNotes:
     @save_required
     def lockall(self, *args):
         for note in self.nset.notes:
-            note.gui.set_locked_state(True)
+            note.set_locked_state(True)
         
     @save_required
     def unlockall(self, *args):
         for note in self.nset.notes:
-            note.gui.set_locked_state(False)
+            note.set_locked_state(False)
 
     def show_about(self, *args):
         show_about_dialog()

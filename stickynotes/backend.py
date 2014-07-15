@@ -44,10 +44,11 @@ class Note:
         self.gui = None
 
     def extract(self):
-        self.gui.update_note()
         if not self.uuid:
             self.uuid = str(uuid.uuid4())
-        self.properties = self.gui.properties()
+        if self.gui != None:
+            self.gui.update_note()
+            self.properties = self.gui.properties()
         return {"uuid":self.uuid, "body":self.body,
                 "last_modified":self.last_modified.strftime(
                     "%Y-%m-%dT%H:%M:%S"), "properties":self.properties,
@@ -73,6 +74,13 @@ class Note:
     def hide(self):
         if self.gui != None:
             self.gui.hide()
+
+    def set_locked_state(self, locked):
+        # if gui hasn't been initialized, just change the property
+        if self.gui == None:
+            self.properties["locked"] = locked
+        else:
+            self.gui.set_locked_state(locked)
 
     def cat_prop(self, prop):
         """Gets a property of the note's category"""
