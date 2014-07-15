@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-13 17:53+0100\n"
+"POT-Creation-Date: 2014-07-15 14:27+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,48 +17,48 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: indicator-stickynotes.py:65 indicator-stickynotes.py:183
+#: indicator-stickynotes.py:66 indicator-stickynotes.py:184
 #: StickyNotes.glade:22
 msgid "Sticky Notes"
 msgstr ""
 
-#: indicator-stickynotes.py:68 StickyNotes.glade:65
+#: indicator-stickynotes.py:69 StickyNotes.glade:63
 msgid "New Note"
 msgstr ""
 
-#: indicator-stickynotes.py:77
+#: indicator-stickynotes.py:78
 msgid "Show All"
 msgstr ""
 
-#: indicator-stickynotes.py:82
+#: indicator-stickynotes.py:83
 msgid "Hide All"
 msgstr ""
 
-#: indicator-stickynotes.py:91
+#: indicator-stickynotes.py:92
 msgid "Lock All"
 msgstr ""
 
-#: indicator-stickynotes.py:96
+#: indicator-stickynotes.py:97
 msgid "Unlock All"
 msgstr ""
 
-#: indicator-stickynotes.py:105
+#: indicator-stickynotes.py:106
 msgid "About"
 msgstr ""
 
-#: indicator-stickynotes.py:110 GlobalDialogs.glade:86 stickynotes/gui.py:180
+#: indicator-stickynotes.py:111 GlobalDialogs.glade:87 stickynotes/gui.py:179
 msgid "Settings"
 msgstr ""
 
-#: indicator-stickynotes.py:119
+#: indicator-stickynotes.py:120
 msgid "Quit"
 msgstr ""
 
-#: GlobalDialogs.glade:7
+#: GlobalDialogs.glade:8
 msgid "About Indicator Stickynotes"
 msgstr ""
 
-#: GlobalDialogs.glade:14
+#: GlobalDialogs.glade:15
 msgid ""
 "Please report bugs, contribute translations, and make suggestions on the "
 "Launchpad homepage below.\n"
@@ -69,11 +69,11 @@ msgid ""
 "Ctrl + N:  New note"
 msgstr ""
 
-#: GlobalDialogs.glade:142 GlobalDialogs.glade:144
+#: GlobalDialogs.glade:143 GlobalDialogs.glade:145
 msgid "New"
 msgstr ""
 
-#: GlobalDialogs.glade:198
+#: GlobalDialogs.glade:199
 msgid "_Categories"
 msgstr ""
 
@@ -109,7 +109,7 @@ msgstr ""
 msgid "Make Default"
 msgstr ""
 
-#: SettingsCategory.glade:197 SettingsCategory.glade:199 StickyNotes.glade:47
+#: SettingsCategory.glade:197 SettingsCategory.glade:199 StickyNotes.glade:45
 msgid "Delete"
 msgstr ""
 
@@ -121,35 +121,35 @@ msgstr ""
 msgid "Shadow"
 msgstr ""
 
-#: SettingsCategory.glade:286 stickynotes/gui.py:199 stickynotes/gui.py:287
-#: stickynotes/gui.py:310
+#: SettingsCategory.glade:286 stickynotes/gui.py:198 stickynotes/gui.py:286
+#: stickynotes/gui.py:309
 msgid "New Category"
 msgstr ""
 
-#: StickyNotes.glade:178
+#: StickyNotes.glade:176
 msgid "Confirm delete"
 msgstr ""
 
-#: StickyNotes.glade:182
+#: StickyNotes.glade:180
 msgid "Are you sure you want to delete this note?"
 msgstr ""
 
-#: stickynotes/gui.py:175
+#: stickynotes/gui.py:174
 msgid "Always on top"
 msgstr ""
 
-#: stickynotes/gui.py:191
+#: stickynotes/gui.py:190
 msgid "Categories:"
 msgstr ""
 
-#: stickynotes/gui.py:248
+#: stickynotes/gui.py:247
 msgid "Unlock"
 msgstr ""
 
-#: stickynotes/gui.py:249
+#: stickynotes/gui.py:248
 msgid "Lock"
 msgstr ""
 
-#: stickynotes/gui.py:312
+#: stickynotes/gui.py:311
 msgid "Default Category"
 msgstr ""

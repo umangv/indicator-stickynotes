@@ -1,62 +1,62 @@
-# Russian translation for indicator-stickynotes
-# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# Chinese (Traditional) translation for indicator-stickynotes
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
 # This file is distributed under the same license as the indicator-stickynotes package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: indicator-stickynotes\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-02-13 17:53+0100\n"
-"PO-Revision-Date: 2013-12-28 22:13+0000\n"
-"Last-Translator: Цымбарович Петр <mentaljam119@gmail.com>\n"
-"Language-Team: Russian <ru@li.org>\n"
+"PO-Revision-Date: 2013-05-18 14:43+0000\n"
+"Last-Translator: Yung Shen <Unknown>\n"
+"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-12-29 05:36+0000\n"
-"X-Generator: Launchpad (build 16877)\n"
+"X-Launchpad-Export-Date: 2013-05-19 05:32+0000\n"
+"X-Generator: Launchpad (build 16626)\n"
 
 #: indicator-stickynotes.py:65 indicator-stickynotes.py:183
 #: StickyNotes.glade:22
 msgid "Sticky Notes"
-msgstr "Sticky Notes"
+msgstr "便利貼"
 
 #: indicator-stickynotes.py:68 StickyNotes.glade:65
 msgid "New Note"
-msgstr "Создать заметку"
+msgstr "新增筆記"
 
 #: indicator-stickynotes.py:77
 msgid "Show All"
-msgstr "Показать все"
+msgstr "顯示全部"
 
 #: indicator-stickynotes.py:82
 msgid "Hide All"
-msgstr "Скрыть все"
+msgstr "隱藏全部"
 
 #: indicator-stickynotes.py:91
 msgid "Lock All"
-msgstr "Заблокировать все"
+msgstr "鎖定全部"
 
 #: indicator-stickynotes.py:96
 msgid "Unlock All"
-msgstr "Разблокировать все"
+msgstr "全部解除鎖定"
 
 #: indicator-stickynotes.py:105
 msgid "About"
-msgstr "О программе"
+msgstr "關於"
 
 #: indicator-stickynotes.py:110 GlobalDialogs.glade:86 stickynotes/gui.py:180
 msgid "Settings"
-msgstr "Настройки"
+msgstr "設定"
 
 #: indicator-stickynotes.py:119
 msgid "Quit"
-msgstr "Выйти"
+msgstr "退出"
 
 #: GlobalDialogs.glade:7
 msgid "About Indicator Stickynotes"
-msgstr "О программе Stickynotes"
+msgstr "關於便利貼圖示"
 
 #: GlobalDialogs.glade:14
 msgid ""
@@ -68,95 +68,94 @@ msgid ""
 "Ctrl + L:  Lock note\n"
 "Ctrl + N:  New note"
 msgstr ""
-"Сообщить об ошибках, высказать предложения, а также участвовать в переводе "
-"вы можете на домашней странице приложения на Launchpad.\n"
+"請透過下面的 Launchpad 頁面，回報任何錯誤、或提供翻譯和任何的意見。\n"
 "\n"
-"Горячие клавиши:\n"
-"Ctrl + W: удалить заметку\n"
-"Ctrl + L: заблокировать заметку\n"
-"Ctrl + N: новая заметка"
+"熱鍵：\n"
+"Ctrl + W ： 刪除便利貼\n"
+"Ctrl + L ： 鎖定便利貼\n"
+"Ctrl + N ： 新增便利貼"
 
 #: GlobalDialogs.glade:142 GlobalDialogs.glade:144
 msgid "New"
-msgstr "Новая"
+msgstr "新增"
 
 #: GlobalDialogs.glade:198
 msgid "_Categories"
-msgstr "_Категории"
+msgstr "分類(_C)"
 
 #: SettingsCategory.glade:16
 msgid "Are you sure you want to delete this category?"
-msgstr "Вы уверены что хотите УДАЛИТЬ эту категорию?"
+msgstr "您確定要刪除此分類嗎？"
 
 #: SettingsCategory.glade:87
 msgid "Background Color"
-msgstr "Цвет фона"
+msgstr "背景顏色"
 
 #: SettingsCategory.glade:101
 msgid "Text Color"
-msgstr "Цвет текста"
+msgstr "文字顏色"
 
 #: SettingsCategory.glade:116
 msgid "Pick a Background Color"
-msgstr "Выбрать цвет фона"
+msgstr "選一個背景的顏色"
 
 #: SettingsCategory.glade:132
 msgid "Pick a Text Color"
-msgstr "Выбрать цвет текста"
+msgstr "選一個文字的顏色"
 
 #: SettingsCategory.glade:148
 msgid "Name"
-msgstr "Заголовок"
+msgstr "名稱"
 
 #: SettingsCategory.glade:181
 msgid "Make Default Category"
-msgstr "Сделать категорией по умолчанию"
+msgstr "設成預設的分類"
 
 #: SettingsCategory.glade:183
 msgid "Make Default"
-msgstr "По умолчанию"
+msgstr "設成預設"
 
 #: SettingsCategory.glade:197 SettingsCategory.glade:199 StickyNotes.glade:47
 msgid "Delete"
-msgstr "Удалить"
+msgstr "刪除"
 
 #: SettingsCategory.glade:222
 msgid "Font"
-msgstr "Шрифт"
+msgstr "字型"
 
 #: SettingsCategory.glade:254
 msgid "Shadow"
-msgstr "Тень"
+msgstr "陰影"
 
 #: SettingsCategory.glade:286 stickynotes/gui.py:199 stickynotes/gui.py:287
 #: stickynotes/gui.py:310
 msgid "New Category"
-msgstr "Новая категория"
+msgstr "新增分類"
 
 #: StickyNotes.glade:178
 msgid "Confirm delete"
-msgstr "Подтвердить удаление"
+msgstr "確認刪除"
 
 #: StickyNotes.glade:182
 msgid "Are you sure you want to delete this note?"
-msgstr "Вы действительно хотите удалить эту заметку?"
+msgstr "您確定要刪除這張便利貼嗎？"
 
 #: stickynotes/gui.py:175
 msgid "Always on top"
-msgstr "Всегда поверх окон"
+msgstr "永遠顯示在畫面上"
 
 #: stickynotes/gui.py:191
 msgid "Categories:"
-msgstr "Категории:"
+msgstr "分類："
 
 #: stickynotes/gui.py:248
 msgid "Unlock"
-msgstr "Разблокировать"
+msgstr "解除鎖定"
 
 #: stickynotes/gui.py:249
 msgid "Lock"
-msgstr "Заблокировать"
+msgstr "鎖定"
 
 #: stickynotes/gui.py:312
 msgid "Default Category"
-msgstr "Категория по умолчанию"
+msgstr "預設的分類"

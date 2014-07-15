@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: indicator-stickynotes\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-02-10 08:27+0100\n"
-"PO-Revision-Date: 2012-11-06 15:48+0000\n"
+"POT-Creation-Date: 2013-02-13 17:53+0100\n"
+"PO-Revision-Date: 2013-02-24 23:54+0000\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-02-11 05:24+0000\n"
-"X-Generator: Launchpad (build 16482)\n"
+"X-Launchpad-Export-Date: 2013-02-27 05:00+0000\n"
+"X-Generator: Launchpad (build 16506)\n"
 
 #: indicator-stickynotes.py:65 indicator-stickynotes.py:183
 #: StickyNotes.glade:22
@@ -78,23 +78,23 @@ msgstr ""
 
 #: GlobalDialogs.glade:142 GlobalDialogs.glade:144
 msgid "New"
-msgstr ""
+msgstr "Nova"
 
 #: GlobalDialogs.glade:198
 msgid "_Categories"
-msgstr ""
+msgstr "_Kategorije"
 
 #: SettingsCategory.glade:16
 msgid "Are you sure you want to delete this category?"
-msgstr ""
+msgstr "Sigurno želite obrisati ovu kategoriju?"
 
 #: SettingsCategory.glade:87
 msgid "Background Color"
-msgstr ""
+msgstr "Boja pozadine"
 
 #: SettingsCategory.glade:101
 msgid "Text Color"
-msgstr ""
+msgstr "Boja teksta"
 
 #: SettingsCategory.glade:116
 msgid "Pick a Background Color"
@@ -102,19 +102,19 @@ msgstr "Odaberi boju pozadine"
 
 #: SettingsCategory.glade:132
 msgid "Pick a Text Color"
-msgstr ""
+msgstr "Odaberi boju teksta"
 
 #: SettingsCategory.glade:148
 msgid "Name"
-msgstr ""
+msgstr "Naziv"
 
 #: SettingsCategory.glade:181
 msgid "Make Default Category"
-msgstr ""
+msgstr "Zadaj kao uobičajenu kategoriju"
 
 #: SettingsCategory.glade:183
 msgid "Make Default"
-msgstr ""
+msgstr "Postavi uobičajenim"
 
 #: SettingsCategory.glade:197 SettingsCategory.glade:199 StickyNotes.glade:47
 msgid "Delete"
@@ -122,16 +122,16 @@ msgstr "Obriši"
 
 #: SettingsCategory.glade:222
 msgid "Font"
-msgstr ""
+msgstr "Slovo"
 
 #: SettingsCategory.glade:254
 msgid "Shadow"
-msgstr ""
+msgstr "Sjena"
 
 #: SettingsCategory.glade:286 stickynotes/gui.py:199 stickynotes/gui.py:287
 #: stickynotes/gui.py:310
 msgid "New Category"
-msgstr ""
+msgstr "Nova kategorija"
 
 #: StickyNotes.glade:178
 msgid "Confirm delete"
@@ -143,11 +143,11 @@ msgstr "Sigurno želite obrisati ovu bilješku?"
 
 #: stickynotes/gui.py:175
 msgid "Always on top"
-msgstr ""
+msgstr "Uvijek na vrhu"
 
 #: stickynotes/gui.py:191
 msgid "Categories:"
-msgstr ""
+msgstr "Kategorije:"
 
 #: stickynotes/gui.py:248
 msgid "Unlock"
@@ -159,4 +159,4 @@ msgstr "Zaključaj"
 
 #: stickynotes/gui.py:312
 msgid "Default Category"
-msgstr ""
+msgstr "Uobičajena kategorija"

@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: indicator-stickynotes\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-02-10 08:27+0100\n"
-"PO-Revision-Date: 2012-12-26 12:58+0000\n"
+"POT-Creation-Date: 2013-02-13 17:53+0100\n"
+"PO-Revision-Date: 2013-02-19 12:38+0000\n"
 "Last-Translator: Mirek Bily <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-02-11 05:24+0000\n"
-"X-Generator: Launchpad (build 16482)\n"
+"X-Launchpad-Export-Date: 2013-02-27 05:00+0000\n"
+"X-Generator: Launchpad (build 16506)\n"
 
 #: indicator-stickynotes.py:65 indicator-stickynotes.py:183
 #: StickyNotes.glade:22
@@ -78,23 +78,23 @@ msgstr ""
 
 #: GlobalDialogs.glade:142 GlobalDialogs.glade:144
 msgid "New"
-msgstr ""
+msgstr "Nový"
 
 #: GlobalDialogs.glade:198
 msgid "_Categories"
-msgstr ""
+msgstr "_Kategorie"
 
 #: SettingsCategory.glade:16
 msgid "Are you sure you want to delete this category?"
-msgstr ""
+msgstr "Opravdu chceš smazat tuto kategorii?"
 
 #: SettingsCategory.glade:87
 msgid "Background Color"
-msgstr ""
+msgstr "Barva pozadí"
 
 #: SettingsCategory.glade:101
 msgid "Text Color"
-msgstr ""
+msgstr "Barva textu"
 
 #: SettingsCategory.glade:116
 msgid "Pick a Background Color"
@@ -102,19 +102,19 @@ msgstr "Vyber barvu pozadí"
 
 #: SettingsCategory.glade:132
 msgid "Pick a Text Color"
-msgstr ""
+msgstr "Vyber barvu textu"
 
 #: SettingsCategory.glade:148
 msgid "Name"
-msgstr ""
+msgstr "Název"
 
 #: SettingsCategory.glade:181
 msgid "Make Default Category"
-msgstr ""
+msgstr "Nastavit jako výchozí kategorii"
 
 #: SettingsCategory.glade:183
 msgid "Make Default"
-msgstr ""
+msgstr "Nastavit jako výchozí"
 
 #: SettingsCategory.glade:197 SettingsCategory.glade:199 StickyNotes.glade:47
 msgid "Delete"
@@ -122,16 +122,16 @@ msgstr "Smazat"
 
 #: SettingsCategory.glade:222
 msgid "Font"
-msgstr ""
+msgstr "Písmo"
 
 #: SettingsCategory.glade:254
 msgid "Shadow"
-msgstr ""
+msgstr "Stín"
 
 #: SettingsCategory.glade:286 stickynotes/gui.py:199 stickynotes/gui.py:287
 #: stickynotes/gui.py:310
 msgid "New Category"
-msgstr ""
+msgstr "Nová kategorie"
 
 #: StickyNotes.glade:178
 msgid "Confirm delete"
@@ -143,11 +143,11 @@ msgstr "Opravdu chcete smazat tuto poznámku?"
 
 #: stickynotes/gui.py:175
 msgid "Always on top"
-msgstr ""
+msgstr "Vždy nahoře"
 
 #: stickynotes/gui.py:191
 msgid "Categories:"
-msgstr ""
+msgstr "Kategorie:"
 
 #: stickynotes/gui.py:248
 msgid "Unlock"
@@ -159,4 +159,4 @@ msgstr "Uzamknout"
 
 #: stickynotes/gui.py:312
 msgid "Default Category"
-msgstr ""
+msgstr "Výchozí kategorie"
