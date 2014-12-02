@@ -75,6 +75,10 @@ class StickyNote:
         # searching for URLs and adding tags accordlying
         self.set_text(self.note.body)
 
+        # adding markdown syntax highlight
+        language_manager = GtkSource.LanguageManager()
+        self.bbody.set_language(language_manager.get_language('markdown'))
+
         self.bbody.set_highlight_matching_brackets(False)
         self.bbody.end_not_undoable_action()
         self.txtNote.set_buffer(self.bbody)
