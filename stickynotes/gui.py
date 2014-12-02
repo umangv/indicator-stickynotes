@@ -70,10 +70,18 @@ class StickyNote:
         # Set text buffer
         self.bbody = GtkSource.Buffer()
         self.bbody.begin_not_undoable_action()
-        self.bbody.set_text(self.note.body)
+
+        # add note body to buffer 
+        # searching for URLs and adding tags accordlying
+        self.set_text(self.note.body)
+
         self.bbody.set_highlight_matching_brackets(False)
         self.bbody.end_not_undoable_action()
         self.txtNote.set_buffer(self.bbody)
+
+        # we need this to change cursor pointer on mouse over links
+        self.txtNote.connect('motion-notify-event',self.motion_event)
+
         # Make resize work
         self.winMain.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         self.eResizeR.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
@@ -88,6 +96,78 @@ class StickyNote:
                     Gdk.CursorType.BOTTOM_RIGHT_CORNER))
         # Set locked state
         self.set_locked_state(self.locked)
+
+    def set_text(self, text):
+        """Set the text in SourceBuffer
+        Take a look at http://download.gna.org/nfoview/doc/api/nfoview.view_source.html"""
+        import re
+        re_url = re.compile(r"(([0-9a-zA-Z]+://\S+?\.\S+)|(www\.\S+?\.\S+))")
+        bounds = self.bbody.get_bounds()
+        self.bbody.delete(*bounds)
+        lines = text.split("\n")
+        # Scan text word-by-word for possible URLs,
+        # but insert words in larger chunks to avoid
+        # doing too many slow text view updates.
+        word_queue = []
+        for i, line in enumerate(lines):
+            words = line.split(" ")
+            for j, word in enumerate(words):
+                match = re_url.search(word)
+                if match is not None:
+                    a, z = match.span()
+                    word_queue.append(word[:a])
+                    self._insert_word("".join(word_queue))
+                    word_queue = []
+                    self._insert_url(word[a:z])
+                    word_queue.append(word[z:])
+                else: # Normal text.
+                    word_queue.append(word)
+                word_queue.append(" ")
+            word_queue.pop(-1)
+            if len(lines)-1==i: continue #
+            word_queue.append("\n")
+            if len(word_queue) > 100:
+                self._insert_word("".join(word_queue))
+                word_queue = []
+        self._insert_word("".join(word_queue))
+
+    def _insert_word(self, word):
+        """Insert `word` into the text view."""
+        #text_buffer = self..get_buffer()
+        itr = self.bbody.get_end_iter()
+        self.bbody.insert(itr, word)
+
+    def _insert_url(self, url):
+        """Insert `url` into the text view as a hyperlink."""
+        #text_buffer = self.txtNote.get_buffer()
+        tag = self.bbody.create_tag(None)
+        tag.props.underline = Pango.Underline.SINGLE
+        tag.props.foreground = "#0000FF"
+        tag.connect("event", self._on_link_tag_event)
+        tag.url = url
+        itr = self.bbody.get_end_iter()
+        self.bbody.insert_with_tags(itr, url, tag)
+
+    def motion_event( self, widget, event):
+        """ used to change cursors pointer when mouse over a link.
+        Changed from http://download.gna.org/nfoview/doc/api/nfoview.view_source.html
+        as returns False now so we can still select content """
+        window = Gtk.TextWindowType.WIDGET
+        x, y = widget.window_to_buffer_coords(window, int(event.x), int(event.y))
+        window = widget.get_window(Gtk.TextWindowType.TEXT)
+        for tag in widget.get_iter_at_location(x, y).get_tags():
+            if hasattr(tag, "url"):
+                window.set_cursor(Gdk.Cursor(cursor_type=Gdk.CursorType.HAND2))
+                return False # to not call the default handler.
+        window.set_cursor(Gdk.Cursor(cursor_type=Gdk.CursorType.XTERM))
+        return False
+
+
+    def _on_link_tag_event (self, tag, text_view, event, itr):
+        """ open links on default browser """
+        if event.type != Gdk.EventType.BUTTON_PRESS: return
+        Gtk.show_uri(None,tag.url,Gdk.CURRENT_TIME)
+
 
     def show(self, widget=None, event=None):
         """Shows the stickynotes window"""
@@ -104,6 +184,7 @@ class StickyNote:
         """Update the underlying note object"""
         self.note.update(self.bbody.get_text(self.bbody.get_start_iter(),
             self.bbody.get_end_iter(), True))
+        self.set_text(self.note.body)
 
     def move(self, widget, event):
         """Action to begin moving (by dragging) the window"""
