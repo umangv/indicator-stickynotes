@@ -132,7 +132,7 @@
                 <property name="editable">False</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="tooltip_text" translatable="yes">Delete</property>
+                <property name="tooltip_text" translatable="yes">Title</property>
                 <signal name="button-press-event" handler="edit_title" swapped="no"/>
                 <signal name="activate" handler="save_title" swapped="no"/>
                 <!--<property name="opacity">0.4</property>-->
