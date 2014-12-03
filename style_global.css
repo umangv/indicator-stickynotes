@@ -31,3 +31,11 @@ GtkButton, GtkEventBox
 {
     background:transparent;
 }
+
+#main-window GtkEntry{
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  font-size: 18px;
+}
+
