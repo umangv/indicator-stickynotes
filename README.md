@@ -16,3 +16,6 @@ that's it.
 
 ### Links and Markdown
 ![With links and markdown](https://raw.githubusercontent.com/lesion/lesion.github.com/master/images/stickynotes_links_markdown.jpg "with links and markdown")
+
+### Links, Markdown, Title
+![With links, markdown and title support](https://raw.githubusercontent.com/lesion/lesion.github.com/master/images/stickynotes_title.jpg "with links, markdown and title")
