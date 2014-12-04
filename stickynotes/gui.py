@@ -88,7 +88,7 @@ class StickyNote:
         self.txtNote.set_buffer(self.bbody)
 
         # we need this to change cursor pointer on mouse over links
-        self.txtNote.connect('motion-notify-event',self.motion_event)
+        #self.txtNote.connect('motion-notify-event',self.motion_event)
 
         # Make resize work
         self.winMain.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
@@ -124,9 +124,9 @@ class StickyNote:
                 if match is not None:
                     a, z = match.span()
                     word_queue.append(word[:a])
-                    self._insert_word("".join(word_queue))
+                    self.insert_word("".join(word_queue))
                     word_queue = []
-                    self._insert_url(word[a:z])
+                    self.insert_url(word[a:z])
                     word_queue.append(word[z:])
                 else: # Normal text.
                     word_queue.append(word)
@@ -135,17 +135,16 @@ class StickyNote:
             if len(lines)-1==i: continue #
             word_queue.append("\n")
             if len(word_queue) > 100:
-                self._insert_word("".join(word_queue))
+                self.insert_word("".join(word_queue))
                 word_queue = []
-        self._insert_word("".join(word_queue))
+        self.insert_word("".join(word_queue))
 
-    def _insert_word(self, word):
+    def insert_word(self, word):
         """Insert `word` into the text view."""
-        #text_buffer = self..get_buffer()
         itr = self.bbody.get_end_iter()
         self.bbody.insert(itr, word)
 
-    def _insert_url(self, url):
+    def insert_url(self, url):
         """Insert `url` into the text view as a hyperlink."""
         #text_buffer = self.txtNote.get_buffer()
         tag = self.bbody.create_tag(None)
@@ -172,12 +171,16 @@ class StickyNote:
 
     def edit_title(self, titleEntry, event):
         if(event.type==Gdk.EventType._2BUTTON_PRESS):
+            titleEntry.grab_focus()
             titleEntry.props.editable=True
+            return True
         else:
+            if titleEntry.props.editable: return False
+            self.move(titleEntry, event)
             return True
 
 
-    def save_title(self,titleEntry):
+    def save_title(self,titleEntry,event=False):
         titleEntry.props.editable=False
         self.txtNote.grab_focus()
         self.note.update(None,self.eTitle.get_text())

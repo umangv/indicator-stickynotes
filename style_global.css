@@ -33,9 +33,14 @@ GtkButton, GtkEventBox
 }
 
 #main-window GtkEntry{
-  background: transparent;
+  background: rgba(0,0,0,0);
   border: none;
   font-weight: bold;
   font-size: 18px;
+}
+
+#main-window GtkEntry:focused{
+  background: rgba(0,0,0,0.1);
+  color: black;
 }
 

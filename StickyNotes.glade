@@ -133,8 +133,9 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes">Title</property>
-                <signal name="button-press-event" handler="edit_title" swapped="no"/>
+                <signal name="button_press_event" handler="edit_title" swapped="no"/>
                 <signal name="activate" handler="save_title" swapped="no"/>
+                <signal name="focus_out_event" handler="save_title" swapped="no"/>
                 <!--<property name="opacity">0.4</property>-->
               </object>
               <packing>
@@ -218,6 +219,7 @@
             <property name="tab_width">2</property>
             <property name="indent_on_tab">True</property>
             <property name="insert_spaces_instead_of_tabs">True</property>
+            <signal name="motion_notify_event" handler="motion_event" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
