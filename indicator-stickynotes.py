@@ -245,9 +245,6 @@ def is_running():
         return pid
 
 
-def send_signal():
-    pass
-
 if __name__ == "__main__":
     import sys
 
