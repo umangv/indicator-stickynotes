@@ -1,11 +1,10 @@
 indicator-stickynotes
 =====================
 
-Indicator Stickynotes: Sticky notes for your Ubuntu desktop with link and Markdown syntax highlight support!
+Indicator Stickynotes: Sticky notes for your Ubuntu desktop with link, title and Markdown syntax highlight support!
 
 
-As I'm using indicator-stickynotes since a while, this is an improvement I always want to see, so
-that's it.
+As I'm using indicator-stickynotes since a while now and i've always dreamed these features, I thought it was the time to do it by myself and sharing this. Enjoy
 
 
 ### ORIGINAL
