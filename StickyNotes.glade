@@ -136,7 +136,6 @@
                 <signal name="button_press_event" handler="edit_title" swapped="no"/>
                 <signal name="activate" handler="save_title" swapped="no"/>
                 <signal name="focus_out_event" handler="save_title" swapped="no"/>
-                <!--<property name="opacity">0.4</property>-->
               </object>
               <packing>
                 <property name="expand">True</property>
