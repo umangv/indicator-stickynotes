@@ -95,7 +95,6 @@ class Note:
 
 class NoteSet:
     def __init__(self, gui_class, data_file, indicator):
-        #self.current_note = 0
         self.notes = []
         self.properties = {}
         self.categories = {}

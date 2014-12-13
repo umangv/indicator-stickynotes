@@ -1,17 +1,17 @@
 # Copyright © 2012-2013 Umang Varma <umang.me@gmail.com>
-#
+# 
 # This file is part of indicator-stickynotes.
-#
+# 
 # indicator-stickynotes is free software: you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or (at your
 # option) any later version.
-#
+# 
 # indicator-stickynotes is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
 # or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
 # more details.
-#
+# 
 # You should have received a copy of the GNU General Public License along with
 # indicator-stickynotes.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -64,7 +64,6 @@ class StickyNote:
 
         self.eTitle.set_text(self.note.title)
         
-        #self.eTitle.set_halign(Gtk.Align.CENTER)
         # Update window-specific style. Global styles are loaded initially!
         self.update_style()
         self.update_font()
@@ -79,17 +78,13 @@ class StickyNote:
         # searching for URLs and adding tags accordlying
         self.set_text(self.note.body)
 
-        # adding markdown syntax highlight
+        # adding markdown syntax highlight, probably has to add a settings for this
         language_manager = GtkSource.LanguageManager()
         self.bbody.set_language(language_manager.get_language('markdown'))
 
         self.bbody.set_highlight_matching_brackets(False)
         self.bbody.end_not_undoable_action()
         self.txtNote.set_buffer(self.bbody)
-
-        # we need this to change cursor pointer on mouse over links
-        #self.txtNote.connect('motion-notify-event',self.motion_event)
-
         # Make resize work
         self.winMain.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         self.eResizeR.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
@@ -256,7 +251,7 @@ class StickyNote:
         hsv_to_hex = lambda x: rgb_to_hex(colorsys.hsv_to_rgb(*x))
         bg_end_hsv = self.note.cat_prop("bgcolor_hsv")
         shadow_amount = self.note.cat_prop("shadow")/100.0
-        # bg_start_hsv is computed by "lightening" bg_end_hsv.
+        # bg_start_hsv is computed by "lightening" bg_end_hsv. 
         bg_start_hsv = [bg_end_hsv[0], bg_end_hsv[1],
                 bg_end_hsv[2] + shadow_amount]
         if bg_start_hsv[2] > 1:
@@ -330,7 +325,7 @@ class StickyNote:
 
     def popup_menu(self, button, *args):
         """Pops up the note's menu"""
-        self.menu.popup(None, None, None, None, Gdk.BUTTON_PRIMARY,
+        self.menu.popup(None, None, None, None, Gdk.BUTTON_PRIMARY, 
                 Gtk.get_current_event_time())
 
     def set_category(self, widget, cat):
@@ -445,7 +440,7 @@ class SettingsCategory:
             rgba = Gdk.RGBA()
             self.cbBG.get_rgba(rgba)
             # Some versions of GObjectIntrospection are affected by
-            # https://bugzilla.gnome.org/show_bug.cgi?id=687633
+            # https://bugzilla.gnome.org/show_bug.cgi?id=687633 
         hsv = colorsys.rgb_to_hsv(rgba.red, rgba.green, rgba.blue)
         self.noteset.categories[self.cat]["bgcolor_hsv"] = hsv
         for note in self.noteset.notes:

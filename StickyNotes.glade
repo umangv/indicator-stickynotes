@@ -1,8 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
 <interface>
-  <requires lib="gtk+" version="3.0"/>
-  <requires lib="gtksourceview" version="3.0"/>
+  <!-- interface-requires gtk+ 3.0 -->
+  <!-- interface-requires gtksourceview 3.0 -->
+  <object class="GtkImage" id="imgAdd">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">Icons/Add.png</property>
+  </object>
+  <object class="GtkImage" id="imgClose">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">Icons/Close.png</property>
+  </object>
+  <object class="GtkImage" id="imgDropdown">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">Icons/Menu.png</property>
+  </object>
+  <object class="GtkWindow" id="MainWindow">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Sticky Notes</property>
+    <property name="hide_titlebar_when_maximized">True</property>
+    <property name="type_hint">utility</property>
+    <property name="skip_taskbar_hint">True</property>
+    <property name="decorated">False</property>
+    <signal name="destroy" handler="quit" swapped="no"/>
+    <signal name="button-press-event" handler="move" swapped="no"/>
+    <signal name="focus-out-event" handler="focus_out" swapped="no"/>
+    <child>
+      <object class="GtkBox" id="mainBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkBox" id="topBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <signal name="button-press-event" handler="move" swapped="no"/>
+            <child>
+              <object class="GtkButton" id="bClose">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Delete</property>
+                <property name="image">imgClose</property>
+                <property name="relief">none</property>
+                <property name="image_position">top</property>
+                <accelerator key="w" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
+                <signal name="clicked" handler="delete" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="eTitle">
+                <property name="visible">True</property>
+                <property name="editable">False</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Title</property>
+                <signal name="button_press_event" handler="edit_title" swapped="no"/>
+                <signal name="activate" handler="save_title" swapped="no"/>
+                <signal name="focus_out_event" handler="save_title" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="bAdd">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">New Note</property>
+                <property name="image">imgAdd</property>
+                <property name="relief">none</property>
+                <accelerator key="n" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
+                <signal name="clicked" handler="add" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="pack_type">end</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="bMenu">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="image">imgDropdown</property>
+                <property name="relief">none</property>
+                <signal name="clicked" handler="popup_menu" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="pack_type">end</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="bLock">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="margin_left">10</property>
+                <property name="image">imgUnlock</property>
+                <property name="relief">none</property>
+                <accelerator key="l" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
+                <signal name="clicked" handler="lock_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="pack_type">end</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class='GtkScrolledWindow'>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <child>
+              <object class="GtkSourceView" id="txtNote">
+                <property name="visible">True</property>
+                <property name="auto_indent">True</property>
+                <property name="can_focus">True</property>
+                <property name="has_focus">True</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="hscroll_policy">natural</property>
+                <property name="vscroll_policy">natural</property>
+                <property name="wrap_mode">word</property>
+                <property name="left_margin">7</property>
+                <property name="right_margin">7</property>
+                <property name="tab_width">2</property>
+                <property name="indent_on_tab">True</property>
+                <property name="insert_spaces_instead_of_tabs">True</property>
+                <signal name="motion_notify_event" handler="motion_event" swapped="no"/>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="box3">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkEventBox" id="eResizeR">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <signal name="button-press-event" handler="resize" swapped="no"/>
+                <child>
+                  <object class="GtkImage" id="imgResizeR">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="pixbuf">Icons/fold.png</property>
+                    <signal name="button-press-event" handler="resize" swapped="no"/>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="pack_type">end</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkMessageDialog" id="confirmDelete">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
@@ -63,21 +251,6 @@
       <action-widget response="1">bDelete</action-widget>
     </action-widgets>
   </object>
-  <object class="GtkImage" id="imgAdd">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixbuf">Icons/Add.png</property>
-  </object>
-  <object class="GtkImage" id="imgClose">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixbuf">Icons/Close.png</property>
-  </object>
-  <object class="GtkImage" id="imgDropdown">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixbuf">Icons/Menu.png</property>
-  </object>
   <object class="GtkImage" id="imgLock">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -87,179 +260,5 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="pixbuf">Icons/Unlock.png</property>
-  </object>
-  <object class="GtkWindow" id="MainWindow">
-    <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Sticky Notes</property>
-    <property name="hide_titlebar_when_maximized">True</property>
-    <property name="type_hint">utility</property>
-    <property name="skip_taskbar_hint">True</property>
-    <property name="decorated">False</property>
-    <signal name="button-press-event" handler="move" swapped="no"/>
-    <signal name="destroy" handler="quit" swapped="no"/>
-    <signal name="focus-out-event" handler="focus_out" swapped="no"/>
-    <child>
-      <object class="GtkBox" id="mainBox">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkBox" id="topBox">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <signal name="button-press-event" handler="move" swapped="no"/>
-            <child>
-              <object class="GtkButton" id="bClose">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="tooltip_text" translatable="yes">Delete</property>
-                <property name="image">imgClose</property>
-                <property name="relief">none</property>
-                <property name="image_position">top</property>
-                <signal name="clicked" handler="delete" swapped="no"/>
-                <accelerator key="w" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="eTitle">
-                <property name="visible">True</property>
-                <property name="editable">False</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="tooltip_text" translatable="yes">Title</property>
-                <signal name="button_press_event" handler="edit_title" swapped="no"/>
-                <signal name="activate" handler="save_title" swapped="no"/>
-                <signal name="focus_out_event" handler="save_title" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="bAdd">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="tooltip_text" translatable="yes">New Note</property>
-                <property name="image">imgAdd</property>
-                <property name="relief">none</property>
-                <signal name="clicked" handler="add" swapped="no"/>
-                <accelerator key="n" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="pack_type">end</property>
-                <property name="position">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="bMenu">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="image">imgDropdown</property>
-                <property name="relief">none</property>
-                <signal name="clicked" handler="popup_menu" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="pack_type">end</property>
-                <property name="position">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="bLock">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="margin_left">10</property>
-                <property name="image">imgUnlock</property>
-                <property name="relief">none</property>
-                <signal name="clicked" handler="lock_clicked" swapped="no"/>
-                <accelerator key="l" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="pack_type">end</property>
-                <property name="position">4</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class='GtkScrolledWindow'>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <child>
-              <object class="GtkSourceView" id="txtNote">
-                <property name="auto_indent">True</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="has_focus">True</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
-                <property name="hscroll_policy">natural</property>
-                <property name="vscroll_policy">natural</property>
-                <property name="wrap_mode">word</property>
-                <property name="left_margin">7</property>
-                <property name="right_margin">7</property>
-                <property name="tab_width">2</property>
-                <property name="indent_on_tab">True</property>
-                <property name="insert_spaces_instead_of_tabs">True</property>
-                <signal name="motion_notify_event" handler="motion_event" swapped="no"/>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox" id="box3">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <child>
-              <object class="GtkEventBox" id="eResizeR">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <signal name="button-press-event" handler="resize" swapped="no"/>
-                <child>
-                  <object class="GtkImage" id="imgResizeR">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="pixbuf">Icons/fold.png</property>
-                    <signal name="button-press-event" handler="resize" swapped="no"/>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="pack_type">end</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-      </object>
-    </child>
   </object>
 </interface>
