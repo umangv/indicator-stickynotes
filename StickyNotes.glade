@@ -203,28 +203,29 @@
           </packing>
         </child>
         <child>
-          <object class="GtkSourceView" id="txtNote">
-            <property name="auto_indent">True</property>
+          <object class='GtkScrolledWindow'>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="has_focus">True</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="hscroll_policy">natural</property>
-            <property name="vscroll_policy">natural</property>
-            <property name="wrap_mode">word</property>
-            <property name="left_margin">7</property>
-            <property name="right_margin">7</property>
-            <property name="tab_width">2</property>
-            <property name="indent_on_tab">True</property>
-            <property name="insert_spaces_instead_of_tabs">True</property>
-            <signal name="motion_notify_event" handler="motion_event" swapped="no"/>
+            <child>
+              <object class="GtkSourceView" id="txtNote">
+                <property name="auto_indent">True</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="has_focus">True</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="hscroll_policy">natural</property>
+                <property name="vscroll_policy">natural</property>
+                <property name="wrap_mode">word</property>
+                <property name="left_margin">7</property>
+                <property name="right_margin">7</property>
+                <property name="tab_width">2</property>
+                <property name="indent_on_tab">True</property>
+                <property name="insert_spaces_instead_of_tabs">True</property>
+                <signal name="motion_notify_event" handler="motion_event" swapped="no"/>
+              </object>
+            </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkBox" id="box3">

@@ -44,3 +44,14 @@ GtkButton, GtkEventBox
   color: black;
 }
 
+#main-window GtkScrolledWindow{
+  border: none;
+}
+
+.scrollbar {
+  background: none;
+}
+.scrollbar.slider {
+  background: rgba(0,0,0,0.5);
+}
+
