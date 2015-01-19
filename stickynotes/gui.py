@@ -15,7 +15,6 @@
 # You should have received a copy of the GNU General Public License along with
 # indicator-stickynotes.  If not, see <http://www.gnu.org/licenses/>.
 
-from datetime import datetime
 from string import Template
 from gi.repository import Gtk, Gdk, Gio, GObject, GtkSource, Pango
 from locale import gettext as _
@@ -160,7 +159,7 @@ class StickyNote:
         for tag in widget.get_iter_at_location(x, y).get_tags():
             if hasattr(tag, "url"):
                 window.set_cursor(Gdk.Cursor(cursor_type=Gdk.CursorType.HAND2))
-                return False # to not call the default handler.
+                return False # to call the default handler.
         window.set_cursor(Gdk.Cursor(cursor_type=Gdk.CursorType.XTERM))
         return False
 
