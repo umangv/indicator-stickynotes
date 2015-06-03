@@ -282,9 +282,6 @@ class StickyNote:
         """Toggle the locked state of the note"""
         self.set_locked_state(not self.locked)
 
-    def quit(self, *args):
-        Gtk.main_quit()
-
     def focus_out(self, *args):
         self.save(*args)
 

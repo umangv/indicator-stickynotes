@@ -24,7 +24,6 @@
     <property name="type_hint">utility</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="decorated">False</property>
-    <signal name="destroy" handler="quit" swapped="no"/>
     <signal name="button-press-event" handler="move" swapped="no"/>
     <signal name="focus-out-event" handler="focus_out" swapped="no"/>
     <child>
