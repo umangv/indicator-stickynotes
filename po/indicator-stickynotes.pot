@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-03 12:40-0400\n"
+"POT-Creation-Date: 2015-06-03 16:14-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: indicator-stickynotes.py:66 indicator-stickynotes.py:184
-#: StickyNotes.glade:22
+#: StickyNotes.glade:22 indicator-stickynotes-i18n.desktop.in:5
 msgid "Sticky Notes"
 msgstr ""
 
@@ -152,4 +152,12 @@ msgstr ""
 
 #: stickynotes/gui.py:340
 msgid "Default Category"
+msgstr ""
+
+#: indicator-stickynotes-i18n.desktop.in:4
+msgid "Indicator Stickynotes"
+msgstr ""
+
+#: indicator-stickynotes-i18n.desktop.in:6
+msgid "Manage your To-Do list and jot down thoughts"
 msgstr ""
