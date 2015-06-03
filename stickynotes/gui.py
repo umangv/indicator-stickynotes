@@ -88,6 +88,7 @@ class StickyNote:
         self.winMain.move(*self.note.properties.get("position", (10,10)))
         self.winMain.resize(*self.note.properties.get("size", (200,150)))
         # Show the window
+        self.winMain.set_skip_pager_hint(True)
         self.winMain.show_all()
         # Mouse over
         self.eResizeR.get_window().set_cursor(Gdk.Cursor.new_for_display(
