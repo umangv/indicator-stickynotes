@@ -250,7 +250,7 @@ class StickyNote:
         self.confirmDelete.hide()
         if confirm == 1:
             self.note.delete()
-            self.winMain.hide()
+            self.winMain.destroy()
             return False
         else:
             return True
