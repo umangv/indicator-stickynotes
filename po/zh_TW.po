@@ -7,58 +7,58 @@ msgid ""
 msgstr ""
 "Project-Id-Version: indicator-stickynotes\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-02-13 17:53+0100\n"
+"POT-Creation-Date: 2014-07-15 14:27+0530\n"
 "PO-Revision-Date: 2013-05-18 14:43+0000\n"
 "Last-Translator: Yung Shen <Unknown>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-19 05:32+0000\n"
-"X-Generator: Launchpad (build 16626)\n"
+"X-Launchpad-Export-Date: 2014-07-16 07:20+0000\n"
+"X-Generator: Launchpad (build 17112)\n"
 
-#: indicator-stickynotes.py:65 indicator-stickynotes.py:183
+#: indicator-stickynotes.py:66 indicator-stickynotes.py:184
 #: StickyNotes.glade:22
 msgid "Sticky Notes"
 msgstr "便利貼"
 
-#: indicator-stickynotes.py:68 StickyNotes.glade:65
+#: indicator-stickynotes.py:69 StickyNotes.glade:63
 msgid "New Note"
 msgstr "新增筆記"
 
-#: indicator-stickynotes.py:77
+#: indicator-stickynotes.py:78
 msgid "Show All"
 msgstr "顯示全部"
 
-#: indicator-stickynotes.py:82
+#: indicator-stickynotes.py:83
 msgid "Hide All"
 msgstr "隱藏全部"
 
-#: indicator-stickynotes.py:91
+#: indicator-stickynotes.py:92
 msgid "Lock All"
 msgstr "鎖定全部"
 
-#: indicator-stickynotes.py:96
+#: indicator-stickynotes.py:97
 msgid "Unlock All"
 msgstr "全部解除鎖定"
 
-#: indicator-stickynotes.py:105
+#: indicator-stickynotes.py:106
 msgid "About"
 msgstr "關於"
 
-#: indicator-stickynotes.py:110 GlobalDialogs.glade:86 stickynotes/gui.py:180
+#: indicator-stickynotes.py:111 GlobalDialogs.glade:87 stickynotes/gui.py:179
 msgid "Settings"
 msgstr "設定"
 
-#: indicator-stickynotes.py:119
+#: indicator-stickynotes.py:120
 msgid "Quit"
 msgstr "退出"
 
-#: GlobalDialogs.glade:7
+#: GlobalDialogs.glade:8
 msgid "About Indicator Stickynotes"
 msgstr "關於便利貼圖示"
 
-#: GlobalDialogs.glade:14
+#: GlobalDialogs.glade:15
 msgid ""
 "Please report bugs, contribute translations, and make suggestions on the "
 "Launchpad homepage below.\n"
@@ -75,11 +75,11 @@ msgstr ""
 "Ctrl + L ： 鎖定便利貼\n"
 "Ctrl + N ： 新增便利貼"
 
-#: GlobalDialogs.glade:142 GlobalDialogs.glade:144
+#: GlobalDialogs.glade:143 GlobalDialogs.glade:145
 msgid "New"
 msgstr "新增"
 
-#: GlobalDialogs.glade:198
+#: GlobalDialogs.glade:199
 msgid "_Categories"
 msgstr "分類(_C)"
 
@@ -115,7 +115,7 @@ msgstr "設成預設的分類"
 msgid "Make Default"
 msgstr "設成預設"
 
-#: SettingsCategory.glade:197 SettingsCategory.glade:199 StickyNotes.glade:47
+#: SettingsCategory.glade:197 SettingsCategory.glade:199 StickyNotes.glade:45
 msgid "Delete"
 msgstr "刪除"
 
@@ -127,35 +127,35 @@ msgstr "字型"
 msgid "Shadow"
 msgstr "陰影"
 
-#: SettingsCategory.glade:286 stickynotes/gui.py:199 stickynotes/gui.py:287
-#: stickynotes/gui.py:310
+#: SettingsCategory.glade:286 stickynotes/gui.py:198 stickynotes/gui.py:286
+#: stickynotes/gui.py:309
 msgid "New Category"
 msgstr "新增分類"
 
-#: StickyNotes.glade:178
+#: StickyNotes.glade:176
 msgid "Confirm delete"
 msgstr "確認刪除"
 
-#: StickyNotes.glade:182
+#: StickyNotes.glade:180
 msgid "Are you sure you want to delete this note?"
 msgstr "您確定要刪除這張便利貼嗎？"
 
-#: stickynotes/gui.py:175
+#: stickynotes/gui.py:174
 msgid "Always on top"
 msgstr "永遠顯示在畫面上"
 
-#: stickynotes/gui.py:191
+#: stickynotes/gui.py:190
 msgid "Categories:"
 msgstr "分類："
 
-#: stickynotes/gui.py:248
+#: stickynotes/gui.py:247
 msgid "Unlock"
 msgstr "解除鎖定"
 
-#: stickynotes/gui.py:249
+#: stickynotes/gui.py:248
 msgid "Lock"
 msgstr "鎖定"
 
-#: stickynotes/gui.py:312
+#: stickynotes/gui.py:311
 msgid "Default Category"
 msgstr "預設的分類"
