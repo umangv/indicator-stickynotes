@@ -40,25 +40,32 @@ class StickyNote:
         self.note = note
         self.noteset = note.noteset
         self.locked = self.note.properties.get("locked", False)
+
+        # Create menu
+        self.menu = Gtk.Menu()
+        self.populate_menu()
+
+        # Load CSS template and initialize Gtk.CssProvider
+        with open(os.path.join(self.path, "style.css")) as css_file:
+            self.css_template = Template(css_file.read())
+        self.css = Gtk.CssProvider()
+
+        self.build_note()
+        
+    def build_note(self):
         self.builder = Gtk.Builder()
         GObject.type_register(GtkSource.View)
         self.builder.add_from_file(os.path.join(self.path,
             "StickyNotes.glade"))
         self.builder.connect_signals(self)
-        # Get necessary objects
         self.winMain = self.builder.get_object("MainWindow")
+
+        # Get necessary objects
         self.winMain.set_name("main-window")
         widgets = ["txtNote", "bAdd", "imgAdd", "imgResizeR", "eResizeR",
                 "bLock", "imgLock", "imgUnlock", "bClose", "confirmDelete"]
         for w in widgets:
             setattr(self, w, self.builder.get_object(w))
-        # Create menu
-        self.menu = Gtk.Menu()
-        self.populate_menu()
-        # Load CSS template and initialize Gtk.CssProvider
-        with open(os.path.join(self.path, "style.css")) as css_file:
-            self.css_template = Template(css_file.read())
-        self.css = Gtk.CssProvider()
         self.style_contexts = [self.winMain.get_style_context(),
                 self.txtNote.get_style_context()]
         # Update window-specific style. Global styles are loaded initially!
@@ -81,7 +88,7 @@ class StickyNote:
         self.winMain.move(*self.note.properties.get("position", (10,10)))
         self.winMain.resize(*self.note.properties.get("size", (200,150)))
         # Show the window
-        self.winMain.show()
+        self.winMain.show_all()
         # Mouse over
         self.eResizeR.get_window().set_cursor(Gdk.Cursor.new_for_display(
                     self.eResizeR.get_window().get_display(),
@@ -89,12 +96,36 @@ class StickyNote:
         # Set locked state
         self.set_locked_state(self.locked)
 
+    # (re-)show the sticky note after it has been hidden getting a sticky note
+    # to show itself was problematic after a "show desktop" command in unity.
+    # (see bug lp:1105948).  Reappearance of dialog is problematic for any
+    # dialog which has the skip_taskbar_hint=True property in StickyNotes.glade
+    # (property necessary to prevent sticky note from showing on the taskbar)
+
+    # workaround which is based on deleting a sticky note and re-initializing
+    # it. 
     def show(self, widget=None, event=None):
         """Shows the stickynotes window"""
-        self.winMain.present()
-        self.winMain.stick()
-        self.winMain.move(*self.note.properties.get("position", (10,10)))
-        self.winMain.resize(*self.note.properties.get("size", (200,150)))
+
+        # store sticky note's settings
+        self.update_note()
+
+        # destroy its main window
+        self.winMain.destroy()
+
+        # reinitialize that window
+        self.build_note()
+
+        # call set_keep_above just to have the note appearing
+        # above everything else.
+        # without it, it still won't appear above a window
+        # in which a cursor is active
+        self.winMain.set_keep_above(True)
+
+        # immediately undo the set keep above after the window
+        # is shown, so that windows won't stay up if we switch to
+        # a different window
+        self.winMain.set_keep_above(False)
 
     def hide(self, *args):
         """Hides the stickynotes window"""
