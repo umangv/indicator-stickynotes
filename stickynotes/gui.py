@@ -1,4 +1,4 @@
-# Copyright © 2012-2013 Umang Varma <umang.me@gmail.com>
+# Copyright © 2012-2015 Umang Varma <umang.me@gmail.com>
 # 
 # This file is part of indicator-stickynotes.
 # 
