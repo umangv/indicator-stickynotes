@@ -97,6 +97,18 @@ class StickyNote:
         # Set locked state
         self.set_locked_state(self.locked)
 
+        # call set_keep_above just to have the note appearing
+        # above everything else.
+        # without it, it still won't appear above a window
+        # in which a cursor is active
+        self.winMain.set_keep_above(True)
+
+        # immediately undo the set keep above after the window
+        # is shown, so that windows won't stay up if we switch to
+        # a different window
+        self.winMain.set_keep_above(False)
+
+
     # (re-)show the sticky note after it has been hidden getting a sticky note
     # to show itself was problematic after a "show desktop" command in unity.
     # (see bug lp:1105948).  Reappearance of dialog is problematic for any
@@ -116,17 +128,6 @@ class StickyNote:
 
         # reinitialize that window
         self.build_note()
-
-        # call set_keep_above just to have the note appearing
-        # above everything else.
-        # without it, it still won't appear above a window
-        # in which a cursor is active
-        self.winMain.set_keep_above(True)
-
-        # immediately undo the set keep above after the window
-        # is shown, so that windows won't stay up if we switch to
-        # a different window
-        self.winMain.set_keep_above(False)
 
     def hide(self, *args):
         """Hides the stickynotes window"""
