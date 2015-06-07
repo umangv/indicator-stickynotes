@@ -7,22 +7,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: indicator-stickynotes\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-07-15 14:27+0530\n"
+"POT-Creation-Date: 2015-06-03 16:14-0400\n"
 "PO-Revision-Date: 2015-03-14 13:44+0000\n"
 "Last-Translator: Микола Ткач <Stuartlittle1970@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-03-15 05:25+0000\n"
-"X-Generator: Launchpad (build 17389)\n"
+"X-Launchpad-Export-Date: 2015-06-05 05:47+0000\n"
+"X-Generator: Launchpad (build 17540)\n"
 
 #: indicator-stickynotes.py:66 indicator-stickynotes.py:184
-#: StickyNotes.glade:22
+#: StickyNotes.glade:22 indicator-stickynotes-i18n.desktop.in:5
 msgid "Sticky Notes"
 msgstr "Липкі нотатки"
 
-#: indicator-stickynotes.py:69 StickyNotes.glade:63
+#: indicator-stickynotes.py:69 StickyNotes.glade:62
 msgid "New Note"
 msgstr "Нова нотатка"
 
@@ -46,7 +46,7 @@ msgstr "Розблокувати усі"
 msgid "About"
 msgstr "Про проґраму"
 
-#: indicator-stickynotes.py:111 GlobalDialogs.glade:87 stickynotes/gui.py:179
+#: indicator-stickynotes.py:111 GlobalDialogs.glade:87 stickynotes/gui.py:211
 msgid "Settings"
 msgstr "Налаштування"
 
@@ -115,7 +115,7 @@ msgstr "Зробити типовою категорією"
 msgid "Make Default"
 msgstr "Зробити типовою"
 
-#: SettingsCategory.glade:197 SettingsCategory.glade:199 StickyNotes.glade:45
+#: SettingsCategory.glade:197 SettingsCategory.glade:199 StickyNotes.glade:44
 msgid "Delete"
 msgstr "Знищити"
 
@@ -127,35 +127,43 @@ msgstr "Шрифт"
 msgid "Shadow"
 msgstr "Тінь"
 
-#: SettingsCategory.glade:286 stickynotes/gui.py:198 stickynotes/gui.py:286
-#: stickynotes/gui.py:309
+#: SettingsCategory.glade:286 stickynotes/gui.py:230 stickynotes/gui.py:315
+#: stickynotes/gui.py:338
 msgid "New Category"
 msgstr "Нова Категорія"
 
-#: StickyNotes.glade:176
+#: StickyNotes.glade:175
 msgid "Confirm delete"
 msgstr "Підтвердити знищення"
 
-#: StickyNotes.glade:180
+#: StickyNotes.glade:179
 msgid "Are you sure you want to delete this note?"
 msgstr "Ви впевнені, що бажаєте знищити цю нотатку?"
 
-#: stickynotes/gui.py:174
+#: stickynotes/gui.py:206
 msgid "Always on top"
 msgstr "Завжди поверх"
 
-#: stickynotes/gui.py:190
+#: stickynotes/gui.py:222
 msgid "Categories:"
 msgstr "Категорії:"
 
-#: stickynotes/gui.py:247
+#: stickynotes/gui.py:279
 msgid "Unlock"
 msgstr "Розблокувати"
 
-#: stickynotes/gui.py:248
+#: stickynotes/gui.py:280
 msgid "Lock"
 msgstr "Заблокувати"
 
-#: stickynotes/gui.py:311
+#: stickynotes/gui.py:340
 msgid "Default Category"
 msgstr "Типова категорія"
+
+#: indicator-stickynotes-i18n.desktop.in:4
+msgid "Indicator Stickynotes"
+msgstr ""
+
+#: indicator-stickynotes-i18n.desktop.in:6
+msgid "Manage your To-Do list and jot down thoughts"
+msgstr ""

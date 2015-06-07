@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Indicator Stickynotes
+Name[en_GB]=Indicator Stickynotes
 GenericName=Sticky Notes
 GenericName[ca]=Notes adhesives
 GenericName[cs]=Lepící poznámky
@@ -26,6 +27,7 @@ GenericName[uk]=Липкі нотатки
 GenericName[zh_CN]=便笺
 GenericName[zh_TW]=便利貼
 Comment=Manage your To-Do list and jot down thoughts
+Comment[en_GB]=Manage your To-Do list and jot down thoughts
 Icon=indicator-stickynotes
 Exec=indicator-stickynotes
 Categories=Utility;TextTools;
