@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
-  <!-- interface-requires gtksourceview 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
+  <requires lib="gtksourceview" version="3.0"/>
   <object class="GtkImage" id="imgAdd">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -24,7 +25,6 @@
     <property name="type_hint">utility</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="decorated">False</property>
-    <signal name="button-press-event" handler="move" swapped="no"/>
     <signal name="focus-out-event" handler="focus_out" swapped="no"/>
     <child>
       <object class="GtkBox" id="mainBox">
@@ -45,13 +45,28 @@
                 <property name="image">imgClose</property>
                 <property name="relief">none</property>
                 <property name="image_position">top</property>
-                <accelerator key="w" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
                 <signal name="clicked" handler="delete" swapped="no"/>
+                <accelerator key="w" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEventBox" id="movebox1">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <signal name="button-press-event" handler="move" swapped="no"/>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
               </packing>
             </child>
             <child>
@@ -62,8 +77,8 @@
                 <property name="tooltip_text" translatable="yes">New Note</property>
                 <property name="image">imgAdd</property>
                 <property name="relief">none</property>
-                <accelerator key="n" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
                 <signal name="clicked" handler="add" swapped="no"/>
+                <accelerator key="n" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -96,8 +111,8 @@
                 <property name="margin_left">10</property>
                 <property name="image">imgUnlock</property>
                 <property name="relief">none</property>
-                <accelerator key="l" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
                 <signal name="clicked" handler="lock_clicked" swapped="no"/>
+                <accelerator key="l" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -135,9 +150,25 @@
           </packing>
         </child>
         <child>
-          <object class="GtkBox" id="box3">
+          <object class="GtkBox" id="bottomBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <signal name="button-press-event" handler="move" swapped="no"/>
+            <child>
+              <object class="GtkEventBox" id="movebox2">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <signal name="button-press-event" handler="move" swapped="no"/>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
             <child>
               <object class="GtkEventBox" id="eResizeR">
                 <property name="visible">True</property>
