@@ -95,8 +95,8 @@ def main():
             for dir, subdirs, files in os.walk("Icons/" + theme) if files])
 
     setup(name='indicator-stickynotes',
-            version='0.4.5',
-            description='Sticky Notes AppIndicator',
+            version='0.4.6',
+            description='Sticky Notes Indicator',
             author='Umang Varma',
             author_email='umang.me@gmail.com',
             url='https://www.launchpad.net/indicator-stickynotes/',
