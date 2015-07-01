@@ -66,27 +66,27 @@
   <object class="GtkImage" id="imgAdd">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="pixbuf">Icons/Add.png</property>
+    <property name="pixbuf">Icons/add.png</property>
   </object>
   <object class="GtkImage" id="imgClose">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="pixbuf">Icons/Close.png</property>
+    <property name="pixbuf">Icons/close.png</property>
   </object>
   <object class="GtkImage" id="imgDropdown">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="pixbuf">Icons/Menu.png</property>
+    <property name="pixbuf">Icons/menu.png</property>
   </object>
   <object class="GtkImage" id="imgLock">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="pixbuf">Icons/Lock.png</property>
+    <property name="pixbuf">Icons/lock.png</property>
   </object>
   <object class="GtkImage" id="imgUnlock">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="pixbuf">Icons/Unlock.png</property>
+    <property name="pixbuf">Icons/unlock.png</property>
   </object>
   <object class="GtkWindow" id="MainWindow">
     <property name="can_focus">False</property>
@@ -252,7 +252,7 @@
                   <object class="GtkImage" id="imgResizeR">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="pixbuf">Icons/fold.png</property>
+                    <property name="pixbuf">Icons/resizer.png</property>
                     <signal name="button-press-event" handler="resize" swapped="no"/>
                   </object>
                 </child>
