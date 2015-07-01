@@ -46,7 +46,8 @@ class StickyNote:
         self.populate_menu()
 
         # Load CSS template and initialize Gtk.CssProvider
-        with open(os.path.join(self.path, "style.css")) as css_file:
+        with open(os.path.join(self.path, "style.css"), encoding="utf-8") \
+                as css_file:
             self.css_template = Template(css_file.read())
         self.css = Gtk.CssProvider()
 
