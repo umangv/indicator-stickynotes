@@ -3,6 +3,66 @@
 <interface>
   <requires lib="gtk+" version="3.0"/>
   <requires lib="gtksourceview" version="3.0"/>
+  <object class="GtkMessageDialog" id="confirmDelete">
+    <property name="can_focus">False</property>
+    <property name="border_width">5</property>
+    <property name="title" translatable="yes">Confirm delete</property>
+    <property name="type_hint">dialog</property>
+    <property name="skip_taskbar_hint">True</property>
+    <property name="message_type">warning</property>
+    <property name="text" translatable="yes">Are you sure you want to delete this note?</property>
+    <child internal-child="vbox">
+      <object class="GtkBox" id="messagedialog-vbox1">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="messagedialog-action_area1">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="bCancel">
+                <property name="label">gtk-cancel</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="bDelete">
+                <property name="label">gtk-delete</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="0">bCancel</action-widget>
+      <action-widget response="1">bDelete</action-widget>
+    </action-widgets>
+  </object>
   <object class="GtkImage" id="imgAdd">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -17,6 +77,16 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="pixbuf">Icons/Menu.png</property>
+  </object>
+  <object class="GtkImage" id="imgLock">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">Icons/Lock.png</property>
+  </object>
+  <object class="GtkImage" id="imgUnlock">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">Icons/Unlock.png</property>
   </object>
   <object class="GtkWindow" id="MainWindow">
     <property name="can_focus">False</property>
@@ -44,6 +114,7 @@
                 <property name="tooltip_text" translatable="yes">Delete</property>
                 <property name="image">imgClose</property>
                 <property name="relief">none</property>
+                <property name="focus_on_click">False</property>
                 <property name="image_position">top</property>
                 <signal name="clicked" handler="delete" swapped="no"/>
                 <accelerator key="w" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
@@ -77,6 +148,7 @@
                 <property name="tooltip_text" translatable="yes">New Note</property>
                 <property name="image">imgAdd</property>
                 <property name="relief">none</property>
+                <property name="focus_on_click">False</property>
                 <signal name="clicked" handler="add" swapped="no"/>
                 <accelerator key="n" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
               </object>
@@ -94,6 +166,7 @@
                 <property name="receives_default">True</property>
                 <property name="image">imgDropdown</property>
                 <property name="relief">none</property>
+                <property name="focus_on_click">False</property>
                 <signal name="clicked" handler="popup_menu" swapped="no"/>
               </object>
               <packing>
@@ -111,6 +184,7 @@
                 <property name="margin_left">10</property>
                 <property name="image">imgUnlock</property>
                 <property name="relief">none</property>
+                <property name="focus_on_click">False</property>
                 <signal name="clicked" handler="lock_clicked" swapped="no"/>
                 <accelerator key="l" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
               </object>
@@ -199,75 +273,5 @@
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkMessageDialog" id="confirmDelete">
-    <property name="can_focus">False</property>
-    <property name="border_width">5</property>
-    <property name="title" translatable="yes">Confirm delete</property>
-    <property name="type_hint">dialog</property>
-    <property name="skip_taskbar_hint">True</property>
-    <property name="message_type">warning</property>
-    <property name="text" translatable="yes">Are you sure you want to delete this note?</property>
-    <child internal-child="vbox">
-      <object class="GtkBox" id="messagedialog-vbox1">
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox" id="messagedialog-action_area1">
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
-            <child>
-              <object class="GtkButton" id="bCancel">
-                <property name="label">gtk-cancel</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="bDelete">
-                <property name="label">gtk-delete</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack_type">end</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-    <action-widgets>
-      <action-widget response="0">bCancel</action-widget>
-      <action-widget response="1">bDelete</action-widget>
-    </action-widgets>
-  </object>
-  <object class="GtkImage" id="imgLock">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixbuf">Icons/Lock.png</property>
-  </object>
-  <object class="GtkImage" id="imgUnlock">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixbuf">Icons/Unlock.png</property>
   </object>
 </interface>
