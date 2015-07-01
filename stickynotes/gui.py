@@ -360,7 +360,7 @@ class SettingsCategory:
     def eName_changed(self, *args):
         """Update a category name"""
         self.noteset.categories[self.cat]["name"] = self.eName.get_text()
-        self.lExp.set_text(self.eName.get_text())
+        self.refresh_title()
         for note in self.noteset.notes:
             note.gui.populate_menu()
 
