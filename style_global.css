@@ -18,12 +18,7 @@
  * 
  */
 
-GtkSourceView:selected
-{
-    background-color:#FFA500;
-    color:#000;
-}
-GtkButton, GtkEventBox
+GtkSourceView, GtkButton, GtkEventBox
 {
     background:transparent;
 }

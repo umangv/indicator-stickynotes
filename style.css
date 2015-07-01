@@ -23,8 +23,12 @@ GtkWindow#main-window
     background-color: $bgcolor_hex;
 }
 
-GtkWindow#main-window GtkBox GtkSourceView
+GtkSourceView
 {
     color: $text_color;
-    background-color:$bgcolor_hex;
+}
+GtkSourceView:selected
+{
+    color: $bgcolor_hex;
+    background-color: $text_color;
 }
