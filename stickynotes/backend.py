@@ -102,10 +102,7 @@ class NoteSet:
 
     def loads(self, snoteset):
         """Loads notes into their respective objects"""
-        try:
-            notes = self._loads_updater(json.loads(snoteset))
-        except ValueError:
-            notes = {}
+        notes = self._loads_updater(json.loads(snoteset))
         self.properties = notes.get("properties", {})
         self.categories = notes.get("categories", {})
         self.notes = [Note(note, gui_class=self.gui_class, noteset=self)
@@ -122,13 +119,14 @@ class NoteSet:
             fsock.write(output)
 
     def open(self, path=''):
-        try:
-            with open(path or expanduser(self.data_file), 
-                    encoding='utf-8') as fsock:
-                self.loads(fsock.read())
-        except IOError:
-            self.loads('{}')
-            self.new()
+        with open(path or expanduser(self.data_file), 
+                encoding='utf-8') as fsock:
+            self.loads(fsock.read())
+
+    def load_fresh(self):
+        """Load empty data"""
+        self.loads('{}')
+        self.new()
 
     def new(self):
         """Creates a new note and adds it to the note set"""

@@ -18,8 +18,7 @@
 # indicator-stickynotes.  If not, see <http://www.gnu.org/licenses/>.
 
 from stickynotes.backend import Note, NoteSet
-from stickynotes.gui import StickyNote, show_about_dialog, \
-    SettingsDialog, load_global_css
+from stickynotes.gui import *
 import stickynotes.info
 from stickynotes.info import MO_DIR, LOCALE_DOMAIN
 
@@ -31,6 +30,7 @@ import locale
 import argparse
 from locale import gettext as _
 from functools import wraps
+from shutil import copyfile, SameFileError
 
 def save_required(f):
     """Wrapper for functions that require a save after execution"""
@@ -46,11 +46,28 @@ class IndicatorStickyNotes:
         self.args = args
         # use development data file if requested
         isdev = args and args.d
-        data_file = stickynotes.info.DEBUG_SETTINGS_FILE if isdev else \
-                stickynotes.info.SETTINGS_FILE
+        self.data_file = stickynotes.info.DEBUG_SETTINGS_FILE if isdev \
+                else stickynotes.info.SETTINGS_FILE
         # Initialize NoteSet
-        self.nset = NoteSet(StickyNote, data_file, self)
-        self.nset.open()
+        self.nset = NoteSet(StickyNote, self.data_file, self)
+        try:
+            self.nset.open()
+        except FileNotFoundError:
+            self.nset.load_fresh()
+        except Exception as e:
+            err = _("Error reading data file. Do you want to "
+                "backup the current data?")
+            winError = Gtk.MessageDialog(None, None, Gtk.MessageType.ERROR,
+                    Gtk.ButtonsType.NONE, err)
+            winError.add_buttons(Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT,
+                    _("Backup"), Gtk.ResponseType.ACCEPT)
+            resp = winError.run()
+            winError.hide()
+            if resp == Gtk.ResponseType.ACCEPT:
+                self.backup_datafile()
+            winError.destroy()
+            self.nset.load_fresh()
+
         # If all notes were visible previously, show them now
         if self.nset.properties.get("all_visible", True):
             self.nset.showall()
@@ -126,6 +143,20 @@ class IndicatorStickyNotes:
 
         # Define secondary action (middle click)
         self.connect_secondary_activate()
+
+    def backup_datafile(self):
+        backupfile = show_export_file_chooser()
+        if backupfile:
+            try:
+                copyfile(os.path.expanduser(self.data_file), backupfile)
+            except SameFileError:
+                err = _("Please choose a different "
+                    "destination for the backup file.")
+                winError = Gtk.MessageDialog(None, None,
+                        Gtk.MessageType.ERROR, Gtk.ButtonsType.CLOSE, err)
+                winError.run()
+                winError.destroy()
+                self.backup_datafile()
 
     def new_note(self, *args):
         self.nset.new()

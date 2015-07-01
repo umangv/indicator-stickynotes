@@ -301,6 +301,18 @@ def show_about_dialog():
     winAbout.destroy()
     return ret
 
+def show_export_file_chooser():
+    winChoose = Gtk.FileChooserDialog(_("Export Data"), None,
+            Gtk.FileChooserAction.SAVE, (Gtk.STOCK_CANCEL,
+            Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.ACCEPT))
+    winChoose.set_do_overwrite_confirmation(True)
+    response = winChoose.run()
+    filename = None
+    if response == Gtk.ResponseType.ACCEPT:
+        filename =  winChoose.get_filename()
+    winChoose.destroy()
+    return filename
+
 class SettingsCategory:
     """Widgets that handle properties of a category"""
     def __init__(self, settingsdialog, cat):
