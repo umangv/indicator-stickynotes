@@ -18,10 +18,6 @@
  * 
  */
 
-GtkWindow GtkSourceView
-{
-    background-color:transparent;
-}
 GtkSourceView:selected
 {
     background-color:#FFA500;

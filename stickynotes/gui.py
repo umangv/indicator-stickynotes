@@ -184,18 +184,9 @@ class StickyNote:
         rgb_to_hex = lambda x: "#" + "".join(["{:02x}".format(int(255*a))
             for a in x])
         hsv_to_hex = lambda x: rgb_to_hex(colorsys.hsv_to_rgb(*x))
-        bg_end_hsv = self.note.cat_prop("bgcolor_hsv")
-        shadow_amount = self.note.cat_prop("shadow")/100.0
-        # bg_start_hsv is computed by "lightening" bg_end_hsv. 
-        bg_start_hsv = [bg_end_hsv[0], bg_end_hsv[1],
-                bg_end_hsv[2] + shadow_amount]
-        if bg_start_hsv[2] > 1:
-            bg_start_hsv[1] -= bg_start_hsv[2] - 1
-            bg_start_hsv[2] = 1
-        if bg_start_hsv[1] < 0:
-            bg_start_hsv[1] = 0
-        data.update({"bg_start": hsv_to_hex(bg_start_hsv), "bg_end":
-                hsv_to_hex(bg_end_hsv)})
+        bgcolor_hsv = self.note.cat_prop("bgcolor_hsv")
+        data["bgcolor_hex"] = hsv_to_hex(
+                self.note.cat_prop("bgcolor_hsv"))
         data["text_color"] = rgb_to_hex(self.note.cat_prop("textcolor"))
         return data
 
@@ -311,7 +302,7 @@ class SettingsCategory:
             "SettingsCategory.glade"), ["catExpander", "confirmDelete", "adjShadow"])
         self.builder.connect_signals(self)
         widgets = ["catExpander", "lExp", "cbBG", "cbText", "eName",
-                "confirmDelete", "fbFont", "scShadow"]
+                "confirmDelete", "fbFont"]
         for w in widgets:
             setattr(self, w, self.builder.get_object(w))
         name = self.noteset.categories[cat].get("name", _("New Category"))
@@ -331,8 +322,6 @@ class SettingsCategory:
                     .get_font(Gtk.StateFlags.NORMAL).to_string()
                 #why.is.this.so.long?
         self.fbFont.set_font(fontname)
-        self.scShadow.set_value(
-                self.noteset.get_category_property(cat, "shadow"))
 
     def refresh_title(self, *args):
         """Updates the title of the category"""
@@ -377,7 +366,7 @@ class SettingsCategory:
         self.noteset.categories[self.cat]["bgcolor_hsv"] = hsv
         for note in self.noteset.notes:
             note.gui.update_style()
-        # Remind GtkSourceView's that they are transparent, etc.
+        # Remind some widgets that they are transparent, etc.
         load_global_css()
 
     def update_textcolor(self, *args):
@@ -398,14 +387,6 @@ class SettingsCategory:
             self.fbFont.get_font_name()
         for note in self.noteset.notes:
             note.gui.update_font()
-
-    def update_shadow(self, *args):
-        """Action to update the amount of shadow on the notes"""
-        self.noteset.categories[self.cat]["shadow"] = self.scShadow.get_value()
-        for note in self.noteset.notes:
-            note.gui.update_style()
-        # Remind GtkSourceView's that they are transparent, etc.
-        load_global_css()
 
 class SettingsDialog:
     """Manages the GUI of the settings dialog"""

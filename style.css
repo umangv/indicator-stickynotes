@@ -20,13 +20,11 @@
 
 GtkWindow#main-window
 {
-    background-image: -gtk-gradient(linear,
-      left top, left bottom,
-      color-stop (0, $bg_start),
-      color-stop (0.66, $bg_end));
+    background-color: $bgcolor_hex;
 }
 
 GtkWindow#main-window GtkBox GtkSourceView
 {
     color: $text_color;
+    background-color:$bgcolor_hex;
 }
