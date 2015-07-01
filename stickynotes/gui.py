@@ -63,8 +63,8 @@ class StickyNote:
         # Get necessary objects
         self.winMain.set_name("main-window")
         widgets = ["txtNote", "bAdd", "imgAdd", "imgResizeR", "eResizeR",
-                "bLock", "imgLock", "imgUnlock", "bClose",
-                "confirmDelete", "movebox1", "movebox2"]
+                "bLock", "imgLock", "imgUnlock", "imgClose", "imgDropdown",
+                "bClose", "confirmDelete", "movebox1", "movebox2"]
         for w in widgets:
             setattr(self, w, self.builder.get_object(w))
         self.style_contexts = [self.winMain.get_style_context(),
@@ -170,12 +170,23 @@ class StickyNote:
 
     def update_style(self):
         """Updates the style using CSS template"""
+        self.update_button_color()
         css_string = self.css_template.substitute(**self.css_data())\
                 .encode("ascii", "replace")
         self.css.load_from_data(css_string)
         for context in self.style_contexts:
             context.add_provider(self.css,
                     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+
+    def update_button_color(self):
+        """Switches between regular and dark icons appropriately"""
+        lightness = sum(colorsys.hsv_to_rgb(*self.note.cat_prop("bgcolor_hsv")))
+        suffix = "-dark" if lightness <= 1 else ""
+        iconfiles = {"imgAdd":"add", "imgClose":"close", "imgDropdown":"menu",
+                "imgLock":"lock", "imgUnlock":"unlock", "imgResizeR":"resizer"}
+        for img, filename in iconfiles.items():
+            getattr(self, img).set_from_file("Icons/" + filename + suffix +
+                    ".png")
 
     def css_data(self):
         """Returns data to substitute into the CSS template"""
