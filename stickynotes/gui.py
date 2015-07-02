@@ -193,8 +193,9 @@ class StickyNote:
         iconfiles = {"imgAdd":"add", "imgClose":"close", "imgDropdown":"menu",
                 "imgLock":"lock", "imgUnlock":"unlock", "imgResizeR":"resizer"}
         for img, filename in iconfiles.items():
-            getattr(self, img).set_from_file("Icons/" + filename + suffix +
-                    ".png")
+            getattr(self, img).set_from_file(
+                    os.path.join(os.path.dirname(__file__), "..","Icons/" +
+                    filename + suffix + ".png"))
 
     def css_data(self):
         """Returns data to substitute into the CSS template"""
