@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-02 12:55-0400\n"
+"POT-Creation-Date: 2015-07-02 13:40-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,7 +62,7 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: indicator-stickynotes.py:142 GlobalDialogs.glade:85 stickynotes/gui.py:223
+#: indicator-stickynotes.py:142 GlobalDialogs.glade:89 stickynotes/gui.py:223
 msgid "Settings"
 msgstr ""
 
@@ -93,11 +93,11 @@ msgid ""
 "Ctrl + N:  New note"
 msgstr ""
 
-#: GlobalDialogs.glade:141 GlobalDialogs.glade:143
+#: GlobalDialogs.glade:145 GlobalDialogs.glade:147
 msgid "New"
 msgstr ""
 
-#: GlobalDialogs.glade:197
+#: GlobalDialogs.glade:201
 msgid "_Categories"
 msgstr ""
 
@@ -175,5 +175,5 @@ msgid "Indicator Stickynotes"
 msgstr ""
 
 #: indicator-stickynotes-i18n.desktop.in:6
-msgid "Manage your To-Do list and jot down thoughts"
+msgid "Write reminders on notes"
 msgstr ""

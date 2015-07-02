@@ -2,5 +2,5 @@
 Type=Application
 Name=Indicator Stickynotes
 GenericName=Sticky Notes
-Comment=Manage your To-Do list and jot down thoughts
+Comment=Write reminders on notes
 # this file is used by xgettext to build the .pot file
