@@ -2,7 +2,7 @@
 Type=Application
 _Name=Indicator Stickynotes
 _GenericName=Sticky Notes
-_Comment=Manage your To-Do list and jot down thoughts
+_Comment=Write reminders on notes
 Icon=indicator-stickynotes
 Exec=indicator-stickynotes
 Categories=Utility;TextTools;
