@@ -186,8 +186,10 @@ class StickyNote:
 
     def update_button_color(self):
         """Switches between regular and dark icons appropriately"""
-        lightness = sum(colorsys.hsv_to_rgb(*self.note.cat_prop("bgcolor_hsv")))
-        suffix = "-dark" if lightness <= 1 else ""
+        h,s,v = self.note.cat_prop("bgcolor_hsv")
+        # an arbitrary quadratic found by trial and error
+        thresh_sat = 1.05 - 1.7*((v-1)**2)
+        suffix = "-dark" if s >= thresh_sat else ""
         iconfiles = {"imgAdd":"add", "imgClose":"close", "imgDropdown":"menu",
                 "imgLock":"lock", "imgUnlock":"unlock", "imgResizeR":"resizer"}
         for img, filename in iconfiles.items():
