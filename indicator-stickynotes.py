@@ -120,6 +120,20 @@ class IndicatorStickyNotes:
         self.menu.append(s)
         s.show()
 
+        self.mExport = Gtk.MenuItem(_("Export Data"))
+        self.menu.append(self.mExport)
+        self.mExport.connect("activate", self.export_datafile, None)
+        self.mExport.show()
+
+        self.mImport = Gtk.MenuItem(_("Import Data"))
+        self.menu.append(self.mImport)
+        self.mImport.connect("activate", self.import_datafile, None)
+        self.mImport.show()
+
+        s = Gtk.SeparatorMenuItem.new()
+        self.menu.append(s)
+        s.show()
+
         self.mAbout = Gtk.MenuItem(_("About"))
         self.menu.append(self.mAbout)
         self.mAbout.connect("activate", self.show_about, None)
@@ -143,20 +157,6 @@ class IndicatorStickyNotes:
 
         # Define secondary action (middle click)
         self.connect_secondary_activate()
-
-    def backup_datafile(self):
-        backupfile = show_export_file_chooser()
-        if backupfile:
-            try:
-                copyfile(os.path.expanduser(self.data_file), backupfile)
-            except SameFileError:
-                err = _("Please choose a different "
-                    "destination for the backup file.")
-                winError = Gtk.MessageDialog(None, None,
-                        Gtk.MessageType.ERROR, Gtk.ButtonsType.CLOSE, err)
-                winError.run()
-                winError.destroy()
-                self.backup_datafile()
 
     def new_note(self, *args):
         self.nset.new()
@@ -187,6 +187,53 @@ class IndicatorStickyNotes:
     def unlockall(self, *args):
         for note in self.nset.notes:
             note.set_locked_state(False)
+
+    def backup_datafile(self):
+        winChoose = Gtk.FileChooserDialog(_("Export Data"), None,
+                Gtk.FileChooserAction.SAVE, (Gtk.STOCK_CANCEL,
+                    Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE,
+                    Gtk.ResponseType.ACCEPT))
+        winChoose.set_do_overwrite_confirmation(True)
+        response = winChoose.run()
+        backupfile = None
+        if response == Gtk.ResponseType.ACCEPT:
+            backupfile =  winChoose.get_filename()
+        winChoose.destroy()
+        if backupfile:
+            try:
+                copyfile(os.path.expanduser(self.data_file), backupfile)
+            except SameFileError:
+                err = _("Please choose a different "
+                    "destination for the backup file.")
+                winError = Gtk.MessageDialog(None, None,
+                        Gtk.MessageType.ERROR, Gtk.ButtonsType.CLOSE, err)
+                winError.run()
+                winError.destroy()
+                self.backup_datafile()
+
+    def export_datafile(self, *args):
+        self.backup_datafile()
+
+    def import_datafile(self, *args):
+        winChoose = Gtk.FileChooserDialog(_("Import Data"), None,
+                Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL,
+                    Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN,
+                    Gtk.ResponseType.ACCEPT))
+        response = winChoose.run()
+        backupfile = None
+        if response == Gtk.ResponseType.ACCEPT:
+            backupfile =  winChoose.get_filename()
+        winChoose.destroy()
+        if backupfile:
+            try:
+                with open(backupfile, encoding="utf-8") as fsock:
+                    self.nset.merge(fsock.read())
+            except Exception as e:
+                err = _("Error importing data.")
+                winError = Gtk.MessageDialog(None, None,
+                        Gtk.MessageType.ERROR, Gtk.ButtonsType.CLOSE, err)
+                winError.run()
+                winError.destroy()
 
     def show_about(self, *args):
         show_about_dialog()

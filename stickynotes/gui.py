@@ -119,11 +119,16 @@ class StickyNote:
 
     # workaround which is based on deleting a sticky note and re-initializing
     # it. 
-    def show(self, widget=None, event=None):
+    def show(self, widget=None, event=None, reload_from_backend=False):
         """Shows the stickynotes window"""
 
-        # store sticky note's settings
-        self.update_note()
+        # don't overwrite settings if loading from backend
+        if not reload_from_backend:
+            # store sticky note's settings
+            self.update_note()
+        else:
+            # Categories may have changed in backend
+            self.populate_menu()
 
         # destroy its main window
         self.winMain.destroy()
@@ -300,18 +305,6 @@ def show_about_dialog():
     ret =  winAbout.run()
     winAbout.destroy()
     return ret
-
-def show_export_file_chooser():
-    winChoose = Gtk.FileChooserDialog(_("Export Data"), None,
-            Gtk.FileChooserAction.SAVE, (Gtk.STOCK_CANCEL,
-            Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.ACCEPT))
-    winChoose.set_do_overwrite_confirmation(True)
-    response = winChoose.run()
-    filename = None
-    if response == Gtk.ResponseType.ACCEPT:
-        filename =  winChoose.get_filename()
-    winChoose.destroy()
-    return filename
 
 class SettingsCategory:
     """Widgets that handle properties of a category"""

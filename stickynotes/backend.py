@@ -64,12 +64,12 @@ class Note:
         self.noteset.save()
         del self
 
-    def show(self, *args):
+    def show(self, *args, **kwargs):
         # If GUI has not been created, create it now
         if self.gui == None:
             self.gui = self.gui_class(note=self)
         else:
-            self.gui.show(*args)
+            self.gui.show(*args, **kwargs)
 
     def hide(self):
         if self.gui != None:
@@ -128,6 +128,37 @@ class NoteSet:
         self.loads('{}')
         self.new()
 
+    def merge(self, data):
+        """Update notes based on new data"""
+        jdata = self._loads_updater(json.loads(data))
+        self.hideall()
+        # update categories
+        if "categories" in jdata:
+            self.categories.update(jdata["categories"])
+        # make a dictionary of notes so we can modify existing notes
+        dnotes = {n.uuid : n for n in self.notes}
+        for newnote in jdata.get("notes", []):
+            if "uuid" in newnote and newnote["uuid"] in dnotes:
+                # Update notes that are already in the noteset
+                orignote = dnotes[newnote["uuid"]]
+                if "body" in newnote:
+                    orignote.body = newnote["body"]
+                if "properties" in newnote:
+                    orignote.properties = newnote["properties"]
+                if "cat" in newnote:
+                    orignote.category = newnote["cat"]
+            else:
+                # otherwise create a new note
+                if "uuid" in newnote:
+                    uuid = newnote["uuid"]
+                else:
+                    uuid = str(uuid.uuid4())
+                dnotes[uuid] = Note(newnote, gui_class=self.gui_class,
+                        noteset=self)
+        # copy notes over from dictionary to list
+        self.notes = list(dnotes.values())
+        self.showall(reload_from_backend=True)
+
     def new(self):
         """Creates a new note and adds it to the note set"""
         note = Note(gui_class=self.gui_class, noteset=self,
@@ -136,9 +167,9 @@ class NoteSet:
         note.show()
         return note
 
-    def showall(self, *args):
+    def showall(self, *args, **kwargs):
         for note in self.notes:
-            note.show(*args)
+            note.show(*args, **kwargs)
         self.properties["all_visible"] = True
 
     def hideall(self, *args):
