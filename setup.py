@@ -105,8 +105,8 @@ def main():
             data_files=data_files,
             cmdclass={'build': Build, 'install_data': InstallData,
                 'build_po': BuildPo, 'clean':Clean},
-            long_description="Indicator Stickynotes helps you jot down "
-            "thoughts, write lists, and make reminders quickly.")
+            long_description="Write reminders on notes with Indicator "
+                "Stickynotes")
 
 if __name__ == "__main__":
     main()
