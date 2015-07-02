@@ -257,9 +257,14 @@ class StickyNote:
         return False
 
     def delete(self, *args):
-        confirm = self.confirmDelete.run()
-        self.confirmDelete.hide()
-        if confirm == 1:
+        winConfirm = Gtk.MessageDialog(self.winMain, None,
+                Gtk.MessageType.QUESTION, Gtk.ButtonsType.NONE,
+                _("Are you sure you want to delete this note?"))
+        winConfirm.add_buttons(Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT,
+                Gtk.STOCK_DELETE, Gtk.ResponseType.ACCEPT)
+        confirm = winConfirm.run()
+        winConfirm.destroy()
+        if confirm == Gtk.ResponseType.ACCEPT:
             self.note.delete()
             self.winMain.destroy()
             return False
@@ -316,7 +321,7 @@ class SettingsCategory:
         self.path = os.path.abspath(os.path.join(os.path.dirname(__file__),
             '..'))
         self.builder.add_objects_from_file(os.path.join(self.path,
-            "SettingsCategory.glade"), ["catExpander", "confirmDelete", "adjShadow"])
+            "SettingsCategory.glade"), ["catExpander"])
         self.builder.connect_signals(self)
         widgets = ["catExpander", "lExp", "cbBG", "cbText", "eName",
                 "confirmDelete", "fbFont"]
@@ -350,9 +355,14 @@ class SettingsCategory:
 
     def delete_cat(self, *args):
         """Delete a category"""
-        confirm = self.confirmDelete.run()
-        self.confirmDelete.hide()
-        if confirm == 1:
+        winConfirm = Gtk.MessageDialog(self.settingsdialog.wSettings, None,
+                Gtk.MessageType.QUESTION, Gtk.ButtonsType.NONE,
+                _("Are you sure you want to delete this category?"))
+        winConfirm.add_buttons(Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT,
+                Gtk.STOCK_DELETE, Gtk.ResponseType.ACCEPT)
+        confirm = winConfirm.run()
+        winConfirm.destroy()
+        if confirm == Gtk.ResponseType.ACCEPT:
             self.settingsdialog.delete_category(self.cat)
 
     def make_default(self, *args):
