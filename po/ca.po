@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: indicator-stickynotes\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-07-01 23:05-0400\n"
+"POT-Creation-Date: 2015-07-02 13:40-0400\n"
 "PO-Revision-Date: 2013-10-26 15:58+0000\n"
 "Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-07-02 05:32+0000\n"
-"X-Generator: Launchpad (build 17590)\n"
+"X-Launchpad-Export-Date: 2015-07-03 05:43+0000\n"
+"X-Generator: Launchpad (build 17597)\n"
 
 #: indicator-stickynotes.py:58
 msgid "Error reading data file. Do you want to backup the current data?"
@@ -26,11 +26,11 @@ msgid "Backup"
 msgstr ""
 
 #: indicator-stickynotes.py:83 indicator-stickynotes.py:262
-#: StickyNotes.glade:93 indicator-stickynotes-i18n.desktop.in:5
+#: StickyNotes.glade:33 indicator-stickynotes-i18n.desktop.in:5
 msgid "Sticky Notes"
 msgstr "Notes adhesives"
 
-#: indicator-stickynotes.py:86 StickyNotes.glade:148
+#: indicator-stickynotes.py:86 StickyNotes.glade:88
 msgid "New Note"
 msgstr "Nota nova"
 
@@ -62,7 +62,7 @@ msgstr ""
 msgid "About"
 msgstr "Quant a"
 
-#: indicator-stickynotes.py:142 GlobalDialogs.glade:85 stickynotes/gui.py:221
+#: indicator-stickynotes.py:142 GlobalDialogs.glade:89 stickynotes/gui.py:223
 msgid "Settings"
 msgstr "Paràmetres"
 
@@ -93,94 +93,87 @@ msgid ""
 "Ctrl + N:  New note"
 msgstr ""
 
-#: GlobalDialogs.glade:141 GlobalDialogs.glade:143
+#: GlobalDialogs.glade:145 GlobalDialogs.glade:147
 msgid "New"
 msgstr "Nou"
 
-#: GlobalDialogs.glade:197
+#: GlobalDialogs.glade:201
 msgid "_Categories"
 msgstr "_Categories"
 
-#: SettingsCategory.glade:17
-msgid "Are you sure you want to delete this category?"
-msgstr "Esteu segur que voleu suprimir aquesta categoria?"
-
-#: SettingsCategory.glade:88
+#: SettingsCategory.glade:23
 msgid "Background Color"
 msgstr "Color del fons"
 
-#: SettingsCategory.glade:100
+#: SettingsCategory.glade:35
 msgid "Text Color"
 msgstr "Color del text"
 
-#: SettingsCategory.glade:113
+#: SettingsCategory.glade:48
 msgid "Pick a Background Color"
 msgstr "Trieu un color de fons"
 
-#: SettingsCategory.glade:127
+#: SettingsCategory.glade:62
 msgid "Pick a Text Color"
 msgstr "Trieu un color de text"
 
-#: SettingsCategory.glade:141
+#: SettingsCategory.glade:76
 msgid "Name"
 msgstr "Nom"
 
-#: SettingsCategory.glade:165
+#: SettingsCategory.glade:100
 msgid "Font"
 msgstr "Tipus de lletra"
 
-#: SettingsCategory.glade:198
+#: SettingsCategory.glade:133
 msgid "Make Default Category"
 msgstr ""
 
-#: SettingsCategory.glade:200
+#: SettingsCategory.glade:135
 msgid "Make Default"
 msgstr "Fes-l’ho predeterminat"
 
-#: SettingsCategory.glade:214 SettingsCategory.glade:216 StickyNotes.glade:114
+#: SettingsCategory.glade:149 SettingsCategory.glade:151 StickyNotes.glade:54
 msgid "Delete"
 msgstr "Esborra"
 
-#: SettingsCategory.glade:239 stickynotes/gui.py:240 stickynotes/gui.py:325
-#: stickynotes/gui.py:346
+#: SettingsCategory.glade:174 stickynotes/gui.py:242 stickynotes/gui.py:332
+#: stickynotes/gui.py:353
 msgid "New Category"
 msgstr "Categoria nova"
 
-#: StickyNotes.glade:9
-msgid "Confirm delete"
-msgstr "Confirma que vols esborrar"
-
-#: StickyNotes.glade:13
-msgid "Are you sure you want to delete this note?"
-msgstr "Esteu segur que voleu suprimir aquesta nota?"
-
-#: stickynotes/gui.py:216
+#: stickynotes/gui.py:218
 msgid "Always on top"
 msgstr "Sempre en primer pla"
 
-#: stickynotes/gui.py:232
+#: stickynotes/gui.py:234
 msgid "Categories:"
 msgstr "Categories:"
 
-#: stickynotes/gui.py:289
+#: stickynotes/gui.py:264
+msgid "Are you sure you want to delete this note?"
+msgstr "Esteu segur que voleu suprimir aquesta nota?"
+
+#: stickynotes/gui.py:296
 msgid "Unlock"
 msgstr "Desbloca"
 
-#: stickynotes/gui.py:290
+#: stickynotes/gui.py:297
 msgid "Lock"
 msgstr "Bloca"
 
-#: stickynotes/gui.py:348
+#: stickynotes/gui.py:355
 msgid "Default Category"
 msgstr ""
+
+#: stickynotes/gui.py:362
+msgid "Are you sure you want to delete this category?"
+msgstr "Esteu segur que voleu suprimir aquesta categoria?"
 
 #: indicator-stickynotes-i18n.desktop.in:4
 msgid "Indicator Stickynotes"
 msgstr ""
 
 #: indicator-stickynotes-i18n.desktop.in:6
-msgid "Manage your To-Do list and jot down thoughts"
+msgid "Write reminders on notes"
 msgstr ""
-
-#~ msgid "Shadow"
-#~ msgstr "Ombra"
