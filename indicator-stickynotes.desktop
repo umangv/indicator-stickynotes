@@ -28,6 +28,7 @@ GenericName[uk]=Липкі нотатки
 GenericName[zh_CN]=便笺
 GenericName[zh_TW]=便利貼
 Comment=Write reminders on notes
+Comment[uk]=Запишіть нагадування в нотатках
 Icon=indicator-stickynotes
 Exec=indicator-stickynotes
 Categories=Utility;TextTools;
