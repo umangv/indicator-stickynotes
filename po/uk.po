@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: indicator-stickynotes\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-07-02 13:40-0400\n"
+"POT-Creation-Date: 2015-07-06 20:26-0400\n"
 "PO-Revision-Date: 2015-07-05 19:55+0000\n"
 "Last-Translator: ZhNazarM <nazar0704@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-07-06 05:29+0000\n"
-"X-Generator: Launchpad (build 17597)\n"
+"X-Launchpad-Export-Date: 2015-07-08 05:41+0000\n"
+"X-Generator: Launchpad (build 17608)\n"
 
 #: indicator-stickynotes.py:58
 msgid "Error reading data file. Do you want to backup the current data?"
@@ -64,7 +64,7 @@ msgstr "Імпортувати дані"
 msgid "About"
 msgstr "Про проґраму"
 
-#: indicator-stickynotes.py:142 GlobalDialogs.glade:89 stickynotes/gui.py:223
+#: indicator-stickynotes.py:142 GlobalDialogs.glade:89 stickynotes/gui.py:224
 msgid "Settings"
 msgstr "Налаштування"
 
@@ -145,36 +145,36 @@ msgstr "Зробити типовою"
 msgid "Delete"
 msgstr "Знищити"
 
-#: SettingsCategory.glade:174 stickynotes/gui.py:242 stickynotes/gui.py:332
-#: stickynotes/gui.py:353
+#: SettingsCategory.glade:174 stickynotes/gui.py:243 stickynotes/gui.py:333
+#: stickynotes/gui.py:354
 msgid "New Category"
 msgstr "Нова Категорія"
 
-#: stickynotes/gui.py:218
+#: stickynotes/gui.py:219
 msgid "Always on top"
 msgstr "Завжди поверх"
 
-#: stickynotes/gui.py:234
+#: stickynotes/gui.py:235
 msgid "Categories:"
 msgstr "Категорії:"
 
-#: stickynotes/gui.py:264
+#: stickynotes/gui.py:265
 msgid "Are you sure you want to delete this note?"
 msgstr "Ви впевнені, що бажаєте знищити цю нотатку?"
 
-#: stickynotes/gui.py:296
+#: stickynotes/gui.py:297
 msgid "Unlock"
 msgstr "Розблокувати"
 
-#: stickynotes/gui.py:297
+#: stickynotes/gui.py:298
 msgid "Lock"
 msgstr "Заблокувати"
 
-#: stickynotes/gui.py:355
+#: stickynotes/gui.py:356
 msgid "Default Category"
 msgstr "Типова категорія"
 
-#: stickynotes/gui.py:362
+#: stickynotes/gui.py:363
 msgid "Are you sure you want to delete this category?"
 msgstr "Ви впевнені що бажаєте ВИЛУЧИТИ цю категорію?"
 
