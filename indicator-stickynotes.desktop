@@ -2,6 +2,7 @@
 Type=Application
 Name=Indicator Stickynotes
 Name[en_GB]=Indicator Stickynotes
+Name[eu]=Ohar itsaskorren jakinarazlea
 Name[uk]=Нотатки
 GenericName=Sticky Notes
 GenericName[ca]=Notes adhesives
@@ -28,6 +29,7 @@ GenericName[uk]=Липкі нотатки
 GenericName[zh_CN]=便笺
 GenericName[zh_TW]=便利貼
 Comment=Write reminders on notes
+Comment[eu]=Idatzi gogorarazleak oharretan
 Comment[uk]=Запишіть нагадування в нотатках
 Icon=indicator-stickynotes
 Exec=indicator-stickynotes
