@@ -17,12 +17,12 @@
 # You should have received a copy of the GNU General Public License along with
 # indicator-stickynotes.  If not, see <http://www.gnu.org/licenses/>.
 
-from stickynotes.backend import Note, NoteSet
+from stickynotes.backend import NoteSet
 from stickynotes.gui import *
 import stickynotes.info
 from stickynotes.info import MO_DIR, LOCALE_DOMAIN
 
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk, GLib
 from gi.repository import AppIndicator3 as appindicator
 
 import os.path
@@ -31,6 +31,7 @@ import argparse
 from locale import gettext as _
 from functools import wraps
 from shutil import copyfile, SameFileError
+import signal #needed to send signal if another process is running
 
 def save_required(f):
     """Wrapper for functions that require a save after execution"""
@@ -239,10 +240,33 @@ class IndicatorStickyNotes:
         show_about_dialog()
 
     def show_settings(self, *args):
-        wSettings = SettingsDialog(self.nset)
+        SettingsDialog(self.nset)
 
     def save(self):
         self.nset.save()
+
+def handler(indicator):
+    indicator.showall() 
+    # really don't know why there's a need to do this
+    install_glib_handler(indicator)
+
+    # this will be a way to switch between notes using the same shortcut...
+    #nnote = len(indicator.nset.notes)
+    #current_note = (indicator.nset.current_note+1)%nnote
+    #indicator.nset.notes[current_note].show()
+    #indicator.nset.current_note = current_note
+
+
+def install_glib_handler(indicator):
+    unix_signal_add = None
+    if hasattr(GLib, "unix_signal_add"):
+        unix_signal_add = GLib.unix_signal_add
+    elif hasattr(GLib, "unix_signal_add_full"):
+        unix_signal_add = GLib.unix_signal_add_full
+
+    if unix_signal_add:
+        unix_signal_add(GLib.PRIORITY_HIGH, signal.SIGUSR1, handler, indicator)
+
 
 
 def main():
@@ -267,8 +291,44 @@ def main():
     indicator = IndicatorStickyNotes(args)
     # Load global css for the first time.
     load_global_css()
+
+    GLib.idle_add(install_glib_handler, indicator, priority=GLib.PRIORITY_HIGH)
+
     Gtk.main()
     indicator.save()
 
+
+def is_running():
+    """ Check if indicator-stickynotes is already running
+        and return PID in case, False elsewhere """
+    from fcntl import flock, LOCK_EX, LOCK_NB
+    global pid_fd #we need the pid_fd global to keep flock on it
+
+    # open PID/LOCK file
+    pid_fd = os.fdopen(os.open('/tmp/indicator-stickynotes.pid', os.O_CREAT|os.O_RDWR), "r+")
+    try:
+        flock( pid_fd, LOCK_EX|LOCK_NB )
+        pid_fd.truncate()
+        pid_fd.write("%d" % os.getpid())
+        pid_fd.flush()
+        return False
+    except:
+        pid_fd.seek(0)
+        pid = pid_fd.readline()
+        pid = int(pid)
+        pid_fd.close()
+        return pid
+
+
 if __name__ == "__main__":
+    import sys
+
+    # if already running send signal 
+    # to make stickynotes appears on top
+    # and exit
+    pid = is_running()
+    if pid:
+        os.kill(pid,signal.SIGUSR1)
+        sys.exit(0)
+
     main()
