@@ -66,6 +66,24 @@
               </packing>
             </child>
             <child>
+              <object class="GtkEntry" id="eTitle">
+                <property name="visible">True</property>
+                <property name="editable">False</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Title</property>
+                <signal name="button_press_event" handler="edit_title" swapped="no"/>
+                <signal name="activate" handler="save_title" swapped="no"/>
+                <signal name="focus_out_event" handler="save_title" swapped="no"/>
+                <!--<property name="opacity">0.4</property>-->
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkEventBox" id="movebox1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -96,7 +114,7 @@
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="pack_type">end</property>
-                <property name="position">1</property>
+                <property name="position">2</property>
               </packing>
             </child>
             <child>
@@ -113,7 +131,7 @@
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="pack_type">end</property>
-                <property name="position">2</property>
+                <property name="position">3</property>
               </packing>
             </child>
             <child>
@@ -132,7 +150,7 @@
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="pack_type">end</property>
-                <property name="position">3</property>
+                <property name="position">4</property>
               </packing>
             </child>
           </object>
@@ -144,6 +162,7 @@
         </child>
         <child>
           <object class="GtkSourceView" id="txtNote">
+            <property name="auto_indent">True</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="has_focus">True</property>
@@ -154,8 +173,10 @@
             <property name="wrap_mode">word</property>
             <property name="left_margin">7</property>
             <property name="right_margin">7</property>
-            <property name="tab_width">4</property>
-            <property name="indent_on_tab">False</property>
+            <property name="tab_width">2</property>
+            <property name="indent_on_tab">True</property>
+            <property name="insert_spaces_instead_of_tabs">True</property>
+            <signal name="motion_notify_event" handler="motion_event" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>

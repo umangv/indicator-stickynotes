@@ -1,17 +1,17 @@
 # Copyright © 2012-2015 Umang Varma <umang.me@gmail.com>
 # 
 # This file is part of indicator-stickynotes.
-# 
+#
 # indicator-stickynotes is free software: you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or (at your
 # option) any later version.
-# 
+#
 # indicator-stickynotes is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
 # or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
 # more details.
-# 
+#
 # You should have received a copy of the GNU General Public License along with
 # indicator-stickynotes.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -65,11 +65,15 @@ class StickyNote:
         self.winMain.set_name("main-window")
         widgets = ["txtNote", "bAdd", "imgAdd", "imgResizeR", "eResizeR",
                 "bLock", "imgLock", "imgUnlock", "imgClose", "imgDropdown",
-                "bClose", "confirmDelete", "movebox1", "movebox2"]
+                "bClose", "confirmDelete", "movebox1", "movebox2", 'eTitle']
         for w in widgets:
             setattr(self, w, self.builder.get_object(w))
         self.style_contexts = [self.winMain.get_style_context(),
                 self.txtNote.get_style_context()]
+
+        self.eTitle.set_text(self.note.title)
+        
+        #self.eTitle.set_halign(Gtk.Align.CENTER)
         # Update window-specific style. Global styles are loaded initially!
         self.update_style()
         self.update_font()
@@ -79,10 +83,22 @@ class StickyNote:
         # Set text buffer
         self.bbody = GtkSource.Buffer()
         self.bbody.begin_not_undoable_action()
-        self.bbody.set_text(self.note.body)
+
+        # add note body to buffer
+        # searching for URLs and adding tags accordlying
+        self.set_text(self.note.body)
+
+        # adding markdown syntax highlight
+        language_manager = GtkSource.LanguageManager()
+        self.bbody.set_language(language_manager.get_language('markdown'))
+
         self.bbody.set_highlight_matching_brackets(False)
         self.bbody.end_not_undoable_action()
         self.txtNote.set_buffer(self.bbody)
+
+        # we need this to change cursor pointer on mouse over links
+        #self.txtNote.connect('motion-notify-event',self.motion_event)
+
         # Make resize work
         self.winMain.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         self.eResizeR.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
@@ -109,6 +125,92 @@ class StickyNote:
         # is shown, so that windows won't stay up if we switch to
         # a different window
         self.winMain.set_keep_above(False)
+
+    def set_text(self, text):
+        """Set the text in SourceBuffer
+        Take a look at http://download.gna.org/nfoview/doc/api/nfoview.view_source.html"""
+        import re
+        re_url = re.compile(r"(([0-9a-zA-Z]+://\S+?\.\S+)|(www\.\S+?\.\S+))")
+        bounds = self.bbody.get_bounds()
+        self.bbody.delete(*bounds)
+        lines = text.split("\n")
+        # Scan text word-by-word for possible URLs,
+        # but insert words in larger chunks to avoid
+        # doing too many slow text view updates.
+        word_queue = []
+        for i, line in enumerate(lines):
+            words = line.split(" ")
+            for j, word in enumerate(words):
+                match = re_url.search(word)
+                if match is not None:
+                    a, z = match.span()
+                    word_queue.append(word[:a])
+                    self.insert_word("".join(word_queue))
+                    word_queue = []
+                    self.insert_url(word[a:z])
+                    word_queue.append(word[z:])
+                else: # Normal text.
+                    word_queue.append(word)
+                word_queue.append(" ")
+            word_queue.pop(-1)
+            if len(lines)-1==i: continue #
+            word_queue.append("\n")
+            if len(word_queue) > 100:
+                self.insert_word("".join(word_queue))
+                word_queue = []
+        self.insert_word("".join(word_queue))
+
+    def insert_word(self, word):
+        """Insert `word` into the text view."""
+        itr = self.bbody.get_end_iter()
+        self.bbody.insert(itr, word)
+
+    def insert_url(self, url):
+        """Insert `url` into the text view as a hyperlink."""
+        #text_buffer = self.txtNote.get_buffer()
+        tag = self.bbody.create_tag(None)
+        tag.props.underline = Pango.Underline.SINGLE
+        tag.props.foreground = "#0000FF"
+        tag.connect("event", self._on_link_tag_event)
+        tag.url = url
+        itr = self.bbody.get_end_iter()
+        self.bbody.insert_with_tags(itr, url, tag)
+
+    def motion_event( self, widget, event):
+        """ used to change cursors pointer when mouse over a link.
+        Changed from http://download.gna.org/nfoview/doc/api/nfoview.view_source.html
+        as returns False now so we can still select content """
+        window = Gtk.TextWindowType.WIDGET
+        x, y = widget.window_to_buffer_coords(window, int(event.x), int(event.y))
+        window = widget.get_window(Gtk.TextWindowType.TEXT)
+        for tag in widget.get_iter_at_location(x, y).get_tags():
+            if hasattr(tag, "url"):
+                window.set_cursor(Gdk.Cursor(cursor_type=Gdk.CursorType.HAND2))
+                return False # to not call the default handler.
+        window.set_cursor(Gdk.Cursor(cursor_type=Gdk.CursorType.XTERM))
+        return False
+
+    def edit_title(self, titleEntry, event):
+        if(event.type==Gdk.EventType._2BUTTON_PRESS):
+            titleEntry.grab_focus()
+            titleEntry.props.editable=True
+            return True
+        else:
+            if titleEntry.props.editable: return False
+            self.move(titleEntry, event)
+            return True
+
+
+    def save_title(self,titleEntry,event=False):
+        titleEntry.props.editable=False
+        self.txtNote.grab_focus()
+        self.note.update(None,self.eTitle.get_text())
+
+
+    def _on_link_tag_event (self, tag, text_view, event, itr):
+        """ open links on default browser """
+        if event.type != Gdk.EventType.BUTTON_PRESS: return
+        Gtk.show_uri(None,tag.url,Gdk.CURRENT_TIME)
 
 
     # (re-)show the sticky note after it has been hidden getting a sticky note
@@ -144,6 +246,7 @@ class StickyNote:
         """Update the underlying note object"""
         self.note.update(self.bbody.get_text(self.bbody.get_start_iter(),
             self.bbody.get_end_iter(), True))
+        self.set_text(self.note.body)
 
     def move(self, widget, event):
         """Action to begin moving (by dragging) the window"""
@@ -276,7 +379,7 @@ class StickyNote:
 
     def popup_menu(self, button, *args):
         """Pops up the note's menu"""
-        self.menu.popup(None, None, None, None, Gdk.BUTTON_PRIMARY, 
+        self.menu.popup(None, None, None, None, Gdk.BUTTON_PRIMARY,
                 Gtk.get_current_event_time())
 
     def set_category(self, widget, cat):
@@ -391,7 +494,7 @@ class SettingsCategory:
             rgba = Gdk.RGBA()
             self.cbBG.get_rgba(rgba)
             # Some versions of GObjectIntrospection are affected by
-            # https://bugzilla.gnome.org/show_bug.cgi?id=687633 
+            # https://bugzilla.gnome.org/show_bug.cgi?id=687633
         hsv = colorsys.rgb_to_hsv(rgba.red, rgba.green, rgba.blue)
         self.noteset.categories[self.cat]["bgcolor_hsv"] = hsv
         for note in self.noteset.notes:

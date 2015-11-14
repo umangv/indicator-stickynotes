@@ -30,6 +30,7 @@ class Note:
         content = content or {}
         self.uuid = content.get('uuid')
         self.body = content.get('body','')
+        self.title = content.get('title','')
         self.properties = content.get("properties", {})
         self.category = category or content.get("cat", "")
         if not self.category in self.noteset.categories:
@@ -52,12 +53,17 @@ class Note:
         return {"uuid":self.uuid, "body":self.body,
                 "last_modified":self.last_modified.strftime(
                     "%Y-%m-%dT%H:%M:%S"), "properties":self.properties,
-                "cat": self.category}
+                "cat": self.category, "title": self.title}
 
-    def update(self,body=None):
+    def update(self,body=None,title=None):
         if not body == None:
             self.body = body
             self.last_modified = datetime.now()
+
+        if not title == None:
+            self.title = title
+            self.last_modified = datetime.now()
+
 
     def delete(self):
         self.noteset.notes.remove(self)
