@@ -65,7 +65,7 @@ class StickyNote:
         self.winMain.set_name("main-window")
         widgets = ["txtNote", "bAdd", "imgAdd", "imgResizeR", "eResizeR",
                 "bLock", "imgLock", "imgUnlock", "imgClose", "imgDropdown",
-                "bClose", "confirmDelete", "movebox1", "movebox2", 'eTitle']
+                "bClose", "confirmDelete", "movebox2", 'eTitle']
         for w in widgets:
             setattr(self, w, self.builder.get_object(w))
         self.style_contexts = [self.winMain.get_style_context(),

@@ -83,6 +83,7 @@
                 <property name="position">1</property>
               </packing>
             </child>
+            <!--
             <child>
               <object class="GtkEventBox" id="movebox1">
                 <property name="visible">True</property>
@@ -98,6 +99,7 @@
                 <property name="position">1</property>
               </packing>
             </child>
+            -->
             <child>
               <object class="GtkButton" id="bAdd">
                 <property name="visible">True</property>
