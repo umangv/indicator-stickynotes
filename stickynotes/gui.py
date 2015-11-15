@@ -71,6 +71,7 @@ class StickyNote:
                 self.txtNote.get_style_context()]
 
         self.eTitle.set_text(self.note.title)
+        self.winMain.set_title(self.note.title)
         
         # Update window-specific style. Global styles are loaded initially!
         self.update_style()
@@ -199,6 +200,7 @@ class StickyNote:
         titleEntry.props.editable=False
         self.txtNote.grab_focus()
         self.note.update(None,self.eTitle.get_text())
+        self.winMain.set_title(self.eTitle.get_text())
 
 
     def _on_link_tag_event (self, tag, text_view, event, itr):
