@@ -335,7 +335,7 @@ if __name__ == "__main__":
             help="kill background proccess")
     parser.add_argument("-r","--refresh", action="store_true",
             help="refresh data")
-    parser.add_argument("-c","--category", nargs=1, default='',
+    parser.add_argument("-c","--category", nargs=1, default=[''],
             help="using with [-n|-i ...], set categeory", type=str)
     parser.add_argument("-i","--infile", type=argparse.FileType('r'),
             help="new sticky note with content from a file")

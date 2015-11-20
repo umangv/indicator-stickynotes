@@ -359,13 +359,15 @@ class StickyNote:
         return False
 
     def delete(self, *args):
-        winConfirm = Gtk.MessageDialog(self.winMain, None,
-                Gtk.MessageType.QUESTION, Gtk.ButtonsType.NONE,
-                _("Are you sure you want to delete this note?"))
-        winConfirm.add_buttons(Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT,
-                Gtk.STOCK_DELETE, Gtk.ResponseType.ACCEPT)
-        confirm = winConfirm.run()
-        winConfirm.destroy()
+        if self.bbody.get_char_count(): # ask for only non-empty notes
+            winConfirm = Gtk.MessageDialog(self.winMain, None,
+                    Gtk.MessageType.QUESTION, Gtk.ButtonsType.NONE,
+                    _("Are you sure you want to delete this note?"))
+            winConfirm.add_buttons(Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT,
+                    Gtk.STOCK_DELETE, Gtk.ResponseType.ACCEPT)
+            confirm = winConfirm.run()
+            winConfirm.destroy()
+        else: confirm = Gtk.ResponseType.ACCEPT
         if confirm == Gtk.ResponseType.ACCEPT:
             self.note.delete()
             self.winMain.destroy()
