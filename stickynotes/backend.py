@@ -165,12 +165,29 @@ class NoteSet:
         self.notes = list(dnotes.values())
         self.showall(reload_from_backend=True)
 
-    def new(self):
+    def find_category(self, name=""):
+        # return cid of the first matched category
+        if name:
+            try: cid = (cat for cat in self.categories if \
+                    self.categories[cat]["name"] == name).__next__()
+            # not found
+            except Exception: cid = None
+        else:
+            cid = None
+        return cid
+
+    def new(self, notebody='', category=''):
         """Creates a new note and adds it to the note set"""
+        cid = self.find_category(name=category)
+        if category and not cid:
+            cid = str(uuid.uuid4())
+            self.categories[cid]={'name':category}
         note = Note(gui_class=self.gui_class, noteset=self,
-                category=self.properties.get("default_cat", ""))
+                category=cid)
+        note.body=notebody
+        note.set_locked_state(not not notebody)
         self.notes.append(note)
-        note.show()
+        self.gui_class and note.show()      # show if created with gui
         return note
 
     def showall(self, *args, **kwargs):

@@ -248,7 +248,7 @@ class IndicatorStickyNotes:
 def handler(indicator):
     indicator.showall() 
     # really don't know why there's a need to do this
-    install_glib_handler(indicator)
+    install_glib_handler(indicator, signal.SIGUSR1)
 
     # this will be a way to switch between notes using the same shortcut...
     #nnote = len(indicator.nset.notes)
@@ -256,8 +256,13 @@ def handler(indicator):
     #indicator.nset.notes[current_note].show()
     #indicator.nset.current_note = current_note
 
+def reload_handler(indicator):
+    # reload from data file on SIGUSR2
+    with open(os.path.expanduser(indicator.data_file), encoding="utf-8") as fsock:
+        indicator.nset.merge(fsock.read())
+    install_glib_handler(indicator, signal.SIGUSR2)
 
-def install_glib_handler(indicator):
+def install_glib_handler(indicator, sig=None):
     unix_signal_add = None
     if hasattr(GLib, "unix_signal_add"):
         unix_signal_add = GLib.unix_signal_add
@@ -265,7 +270,10 @@ def install_glib_handler(indicator):
         unix_signal_add = GLib.unix_signal_add_full
 
     if unix_signal_add:
-        unix_signal_add(GLib.PRIORITY_HIGH, signal.SIGUSR1, handler, indicator)
+        if not sig or sig==signal.SIGUSR1:
+            unix_signal_add(GLib.PRIORITY_HIGH, signal.SIGUSR1, handler, indicator)
+        if not sig or sig==signal.SIGUSR2:
+            unix_signal_add(GLib.PRIORITY_HIGH, signal.SIGUSR2, reload_handler, indicator)
 
 
 
@@ -283,12 +291,8 @@ def main():
     locale.bindtextdomain(LOCALE_DOMAIN, locale_dir)
     locale.textdomain(LOCALE_DOMAIN)
 
-    parser = argparse.ArgumentParser(description=_("Sticky Notes"))
-    parser.add_argument("-d", action='store_true', help="use the development"
-            " data file")
-    args = parser.parse_args()
-
     indicator = IndicatorStickyNotes(args)
+
     # Load global css for the first time.
     load_global_css()
 
@@ -323,12 +327,47 @@ def is_running():
 if __name__ == "__main__":
     import sys
 
-    # if already running send signal 
-    # to make stickynotes appears on top
-    # and exit
-    pid = is_running()
-    if pid:
-        os.kill(pid,signal.SIGUSR1)
-        sys.exit(0)
+    parser = argparse.ArgumentParser(description=_("Sticky Notes"),
+            usage = "%(prog)s [-k | -r | [[-c CATEGORY] " +
+                    "(-i INPUTFILE | -n STRING ...)] | -d]")
 
-    main()
+    parser.add_argument("-k","--kill", action="store_true",
+            help="kill background proccess")
+    parser.add_argument("-r","--refresh", action="store_true",
+            help="refresh data")
+    parser.add_argument("-c","--category", nargs=1, default='',
+            help="using with [-n|-i ...], set categeory", type=str)
+    parser.add_argument("-i","--infile", type=argparse.FileType('r'),
+            help="new sticky note with content from a file")
+    parser.add_argument("-n","--new", metavar='NEW_NOTE', nargs='+',
+            help="create a new note")
+    parser.add_argument("--no-daemon", action="store_true",
+            help="do not daemonize")
+    parser.add_argument("-d", action='store_true',
+            help="use the development data file")
+    args = parser.parse_args()
+
+    if args.new or args.infile: # create a new note if required
+        args.refresh=True
+        noteset=NoteSet(indicator=None, gui_class=None,
+            data_file=stickynotes.info.DEBUG_SETTINGS_FILE if args.d        \
+                else stickynotes.info.SETTINGS_FILE)
+        try: noteset.open()
+        except Exception as e:
+            print('fialed to load config file')
+            sys.exit(1)
+        notebody = ' '.join(args.new).encode().decode('unicode-escape')     \
+            .encode('latin1').decode('utf-8') if args.new                   \
+            else args.infile.read().rstrip()
+        noteset.new(notebody=notebody, category=args.category[0])
+        noteset.save()
+
+    pid = is_running()
+    if pid: # send signal to the existing process accordingly
+        os.kill(pid, (args.kill and signal.SIGKILL) or (args.refresh and    \
+            signal.SIGUSR2) or signal.SIGUSR1)
+    elif not (args.kill or args.refresh):
+        if args.no_daemon: main()   # run
+        else: os.system(sys.argv[0]+' --no-daemon &') # start another & quit
+
+    sys.exit(0)
