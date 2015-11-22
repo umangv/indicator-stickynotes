@@ -258,6 +258,7 @@ def handler(indicator):
 
 def reload_handler(indicator):
     # reload from data file on SIGUSR2
+    indicator.nset.save()
     with open(os.path.expanduser(indicator.data_file), encoding="utf-8") as fsock:
         indicator.nset.merge(fsock.read())
     install_glib_handler(indicator, signal.SIGUSR2)
@@ -367,7 +368,6 @@ if __name__ == "__main__":
         os.kill(pid, (args.kill and signal.SIGKILL) or (args.refresh and    \
             signal.SIGUSR2) or signal.SIGUSR1)
     elif not (args.kill or args.refresh):
-        if args.no_daemon: main()   # run
-        else: os.system(sys.argv[0]+' --no-daemon &') # start another & quit
+        main()   # run
 
     sys.exit(0)
