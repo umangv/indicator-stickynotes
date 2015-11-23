@@ -258,7 +258,6 @@ def handler(indicator):
 
 def reload_handler(indicator):
     # reload from data file on SIGUSR2
-    indicator.nset.save()
     with open(os.path.expanduser(indicator.data_file), encoding="utf-8") as fsock:
         indicator.nset.merge(fsock.read())
     install_glib_handler(indicator, signal.SIGUSR2)
@@ -355,7 +354,7 @@ if __name__ == "__main__":
                 else stickynotes.info.SETTINGS_FILE)
         try: noteset.open()
         except Exception as e:
-            print('fialed to load config file')
+            print('failed to load config file')
             sys.exit(1)
         notebody = ' '.join(args.new).encode().decode('unicode-escape')     \
             .encode('latin1').decode('utf-8') if args.new                   \
@@ -364,9 +363,12 @@ if __name__ == "__main__":
         noteset.save()
 
     pid = is_running()
-    if pid: # send signal to the existing process accordingly
-        os.kill(pid, (args.kill and signal.SIGKILL) or (args.refresh and    \
-            signal.SIGUSR2) or signal.SIGUSR1)
+    if pid:
+        if   args.kill:     sig = signal.SIGKILL
+        elif args.refresh:  sig = signal.SIGUSR2
+        else:               sig = signal.SIGUSR1
+        # send signal to the existing process accordingly
+        os.kill(pid, sig)
     elif not (args.kill or args.refresh):
         main()   # run
 
