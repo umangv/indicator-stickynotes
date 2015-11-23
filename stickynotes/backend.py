@@ -147,12 +147,15 @@ class NoteSet:
             if "uuid" in newnote and newnote["uuid"] in dnotes:
                 # Update notes that are already in the noteset
                 orignote = dnotes[newnote["uuid"]]
-                if "body" in newnote:
-                    orignote.body = newnote["body"]
-                if "properties" in newnote:
-                    orignote.properties = newnote["properties"]
-                if "cat" in newnote:
-                    orignote.category = newnote["cat"]
+                # make sure it's an 'Update'
+                if datetime.strptime(newnote["last_modified"],      \
+                        "%Y-%m-%dT%H:%M:%S") > orignote.last_modified:
+                    if "body" in newnote:
+                        orignote.body = newnote["body"]
+                    if "properties" in newnote:
+                        orignote.properties = newnote["properties"]
+                    if "cat" in newnote:
+                        orignote.category = newnote["cat"]
             else:
                 # otherwise create a new note
                 if "uuid" in newnote:
