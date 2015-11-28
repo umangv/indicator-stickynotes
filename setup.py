@@ -95,7 +95,7 @@ def main():
             for dir, subdirs, files in os.walk("Icons/" + theme) if files])
 
     setup(name='indicator-stickynotes',
-            version='0.5.4',
+            version='0.5.5',
             description='Sticky Notes Indicator',
             author='Umang Varma',
             author_email='umang.me@gmail.com',

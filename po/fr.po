@@ -8,22 +8,24 @@ msgstr ""
 "Project-Id-Version: indicator-stickynotes\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-07-06 20:26-0400\n"
-"PO-Revision-Date: 2013-06-29 15:11+0000\n"
-"Last-Translator: londumas <helion331990@gmail.com>\n"
+"PO-Revision-Date: 2015-11-22 14:16+0000\n"
+"Last-Translator: Jean-Marc <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-07-08 05:41+0000\n"
-"X-Generator: Launchpad (build 17608)\n"
+"X-Launchpad-Export-Date: 2015-11-23 05:24+0000\n"
+"X-Generator: Launchpad (build 17850)\n"
 
 #: indicator-stickynotes.py:58
 msgid "Error reading data file. Do you want to backup the current data?"
 msgstr ""
+"Erreur de lecture de fichier de données. Voulez-vous sauvegarder les données "
+"actuelles ?"
 
 #: indicator-stickynotes.py:63
 msgid "Backup"
-msgstr ""
+msgstr "Sauvegarder"
 
 #: indicator-stickynotes.py:83 indicator-stickynotes.py:262
 #: StickyNotes.glade:33 indicator-stickynotes-i18n.desktop.in:5
@@ -36,27 +38,27 @@ msgstr "Nouvelle note"
 
 #: indicator-stickynotes.py:95
 msgid "Show All"
-msgstr "Afficher tout"
+msgstr "Tout afficher"
 
 #: indicator-stickynotes.py:100
 msgid "Hide All"
-msgstr "Cacher tout"
+msgstr "Tout masquer"
 
 #: indicator-stickynotes.py:109
 msgid "Lock All"
-msgstr "Verrouiller tout"
+msgstr "Tout verrouiller"
 
 #: indicator-stickynotes.py:114
 msgid "Unlock All"
-msgstr "Déverrouiller tout"
+msgstr "Tout déverrouiller"
 
 #: indicator-stickynotes.py:123 indicator-stickynotes.py:192
 msgid "Export Data"
-msgstr ""
+msgstr "Exporter les données"
 
 #: indicator-stickynotes.py:128 indicator-stickynotes.py:218
 msgid "Import Data"
-msgstr ""
+msgstr "Importer les données"
 
 #: indicator-stickynotes.py:137
 msgid "About"
@@ -73,10 +75,11 @@ msgstr "Quitter"
 #: indicator-stickynotes.py:206
 msgid "Please choose a different destination for the backup file."
 msgstr ""
+"Veuillez choisir une autre destination pour le fichier de sauvegarde."
 
 #: indicator-stickynotes.py:232
 msgid "Error importing data."
-msgstr ""
+msgstr "Erreur lors de l'importation des données."
 
 #: GlobalDialogs.glade:8
 msgid "About Indicator Stickynotes"
@@ -130,7 +133,7 @@ msgstr "Nom"
 
 #: SettingsCategory.glade:100
 msgid "Font"
-msgstr "Police"
+msgstr "Police de caractères"
 
 #: SettingsCategory.glade:133
 msgid "Make Default Category"
@@ -179,8 +182,8 @@ msgstr "Voulez-vous vraiment supprimer cette catégorie ?"
 
 #: indicator-stickynotes-i18n.desktop.in:4
 msgid "Indicator Stickynotes"
-msgstr ""
+msgstr "Indicateur Pense-bêtes"
 
 #: indicator-stickynotes-i18n.desktop.in:6
 msgid "Write reminders on notes"
-msgstr ""
+msgstr "Écrire les rappels sur les notes"
