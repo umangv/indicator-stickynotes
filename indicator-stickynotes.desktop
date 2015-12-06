@@ -1,12 +1,14 @@
 [Desktop Entry]
 Type=Application
 Name=Indicator Stickynotes
+Name[ar]=Indicator Stickynotes
 Name[en_GB]=Indicator Stickynotes
 Name[es]=Indicator Stickynotes
 Name[eu]=Ohar itsaskorren jakinarazlea
 Name[fr]=Indicateur Pense-bêtes
 Name[uk]=Нотатки
 GenericName=Sticky Notes
+GenericName[ar]=مذكرات لاصقة
 GenericName[ca]=Notes adhesives
 GenericName[cs]=Lepící poznámky
 GenericName[da]=Post-It noter
@@ -31,6 +33,7 @@ GenericName[uk]=Липкі нотатки
 GenericName[zh_CN]=便笺
 GenericName[zh_TW]=便利貼
 Comment=Write reminders on notes
+Comment[ar]=كتابة المذكّرات في الملاحظات
 Comment[es]=Escriba recordatorios en notas
 Comment[eu]=Idatzi gogorarazleak oharretan
 Comment[fr]=Écrire les rappels sur les notes
