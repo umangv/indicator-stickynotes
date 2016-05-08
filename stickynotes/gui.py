@@ -1,4 +1,4 @@
-# Copyright © 2012-2013 Umang Varma <umang.me@gmail.com>
+# Copyright © 2012-2015 Umang Varma <umang.me@gmail.com>
 # 
 # This file is part of indicator-stickynotes.
 # 
@@ -39,29 +39,39 @@ class StickyNote:
         self.note = note
         self.noteset = note.noteset
         self.locked = self.note.properties.get("locked", False)
+
+        # Create menu
+        self.menu = Gtk.Menu()
+        self.populate_menu()
+
+        # Load CSS template and initialize Gtk.CssProvider
+        with open(os.path.join(self.path, "style.css"), encoding="utf-8") \
+                as css_file:
+            self.css_template = Template(css_file.read())
+        self.css = Gtk.CssProvider()
+
+        self.build_note()
+        
+    def build_note(self):
         self.builder = Gtk.Builder()
         GObject.type_register(GtkSource.View)
         self.builder.add_from_file(os.path.join(self.path,
             "StickyNotes.glade"))
         self.builder.connect_signals(self)
-        # Get necessary objects
         self.winMain = self.builder.get_object("MainWindow")
+
+        # Get necessary objects
         self.winMain.set_name("main-window")
         widgets = ["txtNote", "bAdd", "imgAdd", "imgResizeR", "eResizeR",
-                "bLock", "imgLock", "imgUnlock", "bClose", "confirmDelete", 'eTitle']
+                "bLock", "imgLock", "imgUnlock", "imgClose", "imgDropdown",
+                "bClose", "confirmDelete", "movebox2", 'eTitle']
         for w in widgets:
             setattr(self, w, self.builder.get_object(w))
-        # Create menu
-        self.menu = Gtk.Menu()
-        self.populate_menu()
-        # Load CSS template and initialize Gtk.CssProvider
-        with open(os.path.join(self.path, "style.css")) as css_file:
-            self.css_template = Template(css_file.read())
-        self.css = Gtk.CssProvider()
         self.style_contexts = [self.winMain.get_style_context(),
                 self.txtNote.get_style_context()]
 
         self.eTitle.set_text(self.note.title)
+        self.winMain.set_title(self.note.title)
         
         # Update window-specific style. Global styles are loaded initially!
         self.update_style()
@@ -91,13 +101,25 @@ class StickyNote:
         self.winMain.move(*self.note.properties.get("position", (10,10)))
         self.winMain.resize(*self.note.properties.get("size", (200,150)))
         # Show the window
-        self.winMain.show()
+        self.winMain.set_skip_pager_hint(True)
+        self.winMain.show_all()
         # Mouse over
         self.eResizeR.get_window().set_cursor(Gdk.Cursor.new_for_display(
                     self.eResizeR.get_window().get_display(),
                     Gdk.CursorType.BOTTOM_RIGHT_CORNER))
         # Set locked state
         self.set_locked_state(self.locked)
+
+        # call set_keep_above just to have the note appearing
+        # above everything else.
+        # without it, it still won't appear above a window
+        # in which a cursor is active
+        self.winMain.set_keep_above(True)
+
+        # immediately undo the set keep above after the window
+        # is shown, so that windows won't stay up if we switch to
+        # a different window
+        self.winMain.set_keep_above(False)
 
     def set_text(self, text):
         """Set the text in SourceBuffer
@@ -178,6 +200,7 @@ class StickyNote:
         titleEntry.props.editable=False
         self.txtNote.grab_focus()
         self.note.update(None,self.eTitle.get_text())
+        self.winMain.set_title(self.eTitle.get_text())
 
 
     def _on_link_tag_event (self, tag, text_view, event, itr):
@@ -186,12 +209,30 @@ class StickyNote:
         Gtk.show_uri(None,tag.url,Gdk.CURRENT_TIME)
 
 
-    def show(self, widget=None, event=None):
+    # (re-)show the sticky note after it has been hidden getting a sticky note
+    # to show itself was problematic after a "show desktop" command in unity.
+    # (see bug lp:1105948).  Reappearance of dialog is problematic for any
+    # dialog which has the skip_taskbar_hint=True property in StickyNotes.glade
+    # (property necessary to prevent sticky note from showing on the taskbar)
+
+    # workaround which is based on deleting a sticky note and re-initializing
+    # it. 
+    def show(self, widget=None, event=None, reload_from_backend=False):
         """Shows the stickynotes window"""
-        self.winMain.present()
-        self.winMain.stick()
-        self.winMain.move(*self.note.properties.get("position", (10,10)))
-        self.winMain.resize(*self.note.properties.get("size", (200,150)))
+
+        # don't overwrite settings if loading from backend
+        if not reload_from_backend:
+            # store sticky note's settings
+            self.update_note()
+        else:
+            # Categories may have changed in backend
+            self.populate_menu()
+
+        # destroy its main window
+        self.winMain.destroy()
+
+        # reinitialize that window
+        self.build_note()
 
     def hide(self, *args):
         """Hides the stickynotes window"""
@@ -234,12 +275,26 @@ class StickyNote:
 
     def update_style(self):
         """Updates the style using CSS template"""
+        self.update_button_color()
         css_string = self.css_template.substitute(**self.css_data())\
                 .encode("ascii", "replace")
         self.css.load_from_data(css_string)
         for context in self.style_contexts:
             context.add_provider(self.css,
                     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+
+    def update_button_color(self):
+        """Switches between regular and dark icons appropriately"""
+        h,s,v = self.note.cat_prop("bgcolor_hsv")
+        # an arbitrary quadratic found by trial and error
+        thresh_sat = 1.05 - 1.7*((v-1)**2)
+        suffix = "-dark" if s >= thresh_sat else ""
+        iconfiles = {"imgAdd":"add", "imgClose":"close", "imgDropdown":"menu",
+                "imgLock":"lock", "imgUnlock":"unlock", "imgResizeR":"resizer"}
+        for img, filename in iconfiles.items():
+            getattr(self, img).set_from_file(
+                    os.path.join(os.path.dirname(__file__), "..","Icons/" +
+                    filename + suffix + ".png"))
 
     def css_data(self):
         """Returns data to substitute into the CSS template"""
@@ -248,18 +303,9 @@ class StickyNote:
         rgb_to_hex = lambda x: "#" + "".join(["{:02x}".format(int(255*a))
             for a in x])
         hsv_to_hex = lambda x: rgb_to_hex(colorsys.hsv_to_rgb(*x))
-        bg_end_hsv = self.note.cat_prop("bgcolor_hsv")
-        shadow_amount = self.note.cat_prop("shadow")/100.0
-        # bg_start_hsv is computed by "lightening" bg_end_hsv. 
-        bg_start_hsv = [bg_end_hsv[0], bg_end_hsv[1],
-                bg_end_hsv[2] + shadow_amount]
-        if bg_start_hsv[2] > 1:
-            bg_start_hsv[1] -= bg_start_hsv[2] - 1
-            bg_start_hsv[2] = 1
-        if bg_start_hsv[1] < 0:
-            bg_start_hsv[1] = 0
-        data.update({"bg_start": hsv_to_hex(bg_start_hsv), "bg_end":
-                hsv_to_hex(bg_end_hsv)})
+        bgcolor_hsv = self.note.cat_prop("bgcolor_hsv")
+        data["bgcolor_hex"] = hsv_to_hex(
+                self.note.cat_prop("bgcolor_hsv"))
         data["text_color"] = rgb_to_hex(self.note.cat_prop("textcolor"))
         return data
 
@@ -313,11 +359,18 @@ class StickyNote:
         return False
 
     def delete(self, *args):
-        confirm = self.confirmDelete.run()
-        self.confirmDelete.hide()
-        if confirm == 1:
+        if self.bbody.get_char_count(): # ask for only non-empty notes
+            winConfirm = Gtk.MessageDialog(self.winMain, None,
+                    Gtk.MessageType.QUESTION, Gtk.ButtonsType.NONE,
+                    _("Are you sure you want to delete this note?"))
+            winConfirm.add_buttons(Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT,
+                    Gtk.STOCK_DELETE, Gtk.ResponseType.ACCEPT)
+            confirm = winConfirm.run()
+            winConfirm.destroy()
+        else: confirm = Gtk.ResponseType.ACCEPT
+        if confirm == Gtk.ResponseType.ACCEPT:
             self.note.delete()
-            self.winMain.hide()
+            self.winMain.destroy()
             return False
         else:
             return True
@@ -349,9 +402,6 @@ class StickyNote:
         """Toggle the locked state of the note"""
         self.set_locked_state(not self.locked)
 
-    def quit(self, *args):
-        Gtk.main_quit()
-
     def focus_out(self, *args):
         self.save(*args)
 
@@ -375,10 +425,10 @@ class SettingsCategory:
         self.path = os.path.abspath(os.path.join(os.path.dirname(__file__),
             '..'))
         self.builder.add_objects_from_file(os.path.join(self.path,
-            "SettingsCategory.glade"), ["catExpander", "confirmDelete", "adjShadow"])
+            "SettingsCategory.glade"), ["catExpander"])
         self.builder.connect_signals(self)
         widgets = ["catExpander", "lExp", "cbBG", "cbText", "eName",
-                "confirmDelete", "fbFont", "scShadow"]
+                "confirmDelete", "fbFont"]
         for w in widgets:
             setattr(self, w, self.builder.get_object(w))
         name = self.noteset.categories[cat].get("name", _("New Category"))
@@ -398,8 +448,6 @@ class SettingsCategory:
                     .get_font(Gtk.StateFlags.NORMAL).to_string()
                 #why.is.this.so.long?
         self.fbFont.set_font(fontname)
-        self.scShadow.set_value(
-                self.noteset.get_category_property(cat, "shadow"))
 
     def refresh_title(self, *args):
         """Updates the title of the category"""
@@ -411,9 +459,14 @@ class SettingsCategory:
 
     def delete_cat(self, *args):
         """Delete a category"""
-        confirm = self.confirmDelete.run()
-        self.confirmDelete.hide()
-        if confirm == 1:
+        winConfirm = Gtk.MessageDialog(self.settingsdialog.wSettings, None,
+                Gtk.MessageType.QUESTION, Gtk.ButtonsType.NONE,
+                _("Are you sure you want to delete this category?"))
+        winConfirm.add_buttons(Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT,
+                Gtk.STOCK_DELETE, Gtk.ResponseType.ACCEPT)
+        confirm = winConfirm.run()
+        winConfirm.destroy()
+        if confirm == Gtk.ResponseType.ACCEPT:
             self.settingsdialog.delete_category(self.cat)
 
     def make_default(self, *args):
@@ -427,7 +480,7 @@ class SettingsCategory:
     def eName_changed(self, *args):
         """Update a category name"""
         self.noteset.categories[self.cat]["name"] = self.eName.get_text()
-        self.lExp.set_text(self.eName.get_text())
+        self.refresh_title()
         for note in self.noteset.notes:
             note.gui.populate_menu()
 
@@ -444,7 +497,7 @@ class SettingsCategory:
         self.noteset.categories[self.cat]["bgcolor_hsv"] = hsv
         for note in self.noteset.notes:
             note.gui.update_style()
-        # Remind GtkSourceView's that they are transparent, etc.
+        # Remind some widgets that they are transparent, etc.
         load_global_css()
 
     def update_textcolor(self, *args):
@@ -465,14 +518,6 @@ class SettingsCategory:
             self.fbFont.get_font_name()
         for note in self.noteset.notes:
             note.gui.update_font()
-
-    def update_shadow(self, *args):
-        """Action to update the amount of shadow on the notes"""
-        self.noteset.categories[self.cat]["shadow"] = self.scShadow.get_value()
-        for note in self.noteset.notes:
-            note.gui.update_style()
-        # Remind GtkSourceView's that they are transparent, etc.
-        load_global_css()
 
 class SettingsDialog:
     """Manages the GUI of the settings dialog"""

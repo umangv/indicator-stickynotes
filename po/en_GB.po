@@ -8,58 +8,82 @@ msgstr ""
 "Project-Id-Version: indicator-stickynotes\n"
 "Report-Msgid-Bugs-To: Cathal Garvey <translations.launchpad.net-"
 "8812@cgarvey.com>\n"
-"POT-Creation-Date: 2013-02-13 17:53+0100\n"
-"PO-Revision-Date: 2013-03-03 15:38+0000\n"
-"Last-Translator: cgarvey <Unknown>\n"
+"POT-Creation-Date: 2015-07-06 20:26-0400\n"
+"PO-Revision-Date: 2015-06-04 17:31+0000\n"
+"Last-Translator: Umang Varma <umang.me@gmail.com>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-03-04 05:55+0000\n"
-"X-Generator: Launchpad (build 16514)\n"
+"X-Launchpad-Export-Date: 2015-07-08 05:41+0000\n"
+"X-Generator: Launchpad (build 17608)\n"
 
-#: indicator-stickynotes.py:65 indicator-stickynotes.py:183
-#: StickyNotes.glade:22
+#: indicator-stickynotes.py:58
+msgid "Error reading data file. Do you want to backup the current data?"
+msgstr ""
+
+#: indicator-stickynotes.py:63
+msgid "Backup"
+msgstr ""
+
+#: indicator-stickynotes.py:83 indicator-stickynotes.py:262
+#: StickyNotes.glade:33 indicator-stickynotes-i18n.desktop.in:5
 msgid "Sticky Notes"
 msgstr "Sticky Notes"
 
-#: indicator-stickynotes.py:68 StickyNotes.glade:65
+#: indicator-stickynotes.py:86 StickyNotes.glade:88
 msgid "New Note"
 msgstr "New Note"
 
-#: indicator-stickynotes.py:77
+#: indicator-stickynotes.py:95
 msgid "Show All"
 msgstr "Show All"
 
-#: indicator-stickynotes.py:82
+#: indicator-stickynotes.py:100
 msgid "Hide All"
 msgstr "Hide All"
 
-#: indicator-stickynotes.py:91
+#: indicator-stickynotes.py:109
 msgid "Lock All"
 msgstr "Lock All"
 
-#: indicator-stickynotes.py:96
+#: indicator-stickynotes.py:114
 msgid "Unlock All"
 msgstr "Unlock All"
 
-#: indicator-stickynotes.py:105
+#: indicator-stickynotes.py:123 indicator-stickynotes.py:192
+msgid "Export Data"
+msgstr ""
+
+#: indicator-stickynotes.py:128 indicator-stickynotes.py:218
+msgid "Import Data"
+msgstr ""
+
+#: indicator-stickynotes.py:137
 msgid "About"
 msgstr "About"
 
-#: indicator-stickynotes.py:110 GlobalDialogs.glade:86 stickynotes/gui.py:180
+#: indicator-stickynotes.py:142 GlobalDialogs.glade:89 stickynotes/gui.py:224
 msgid "Settings"
 msgstr "Settings"
 
-#: indicator-stickynotes.py:119
+#: indicator-stickynotes.py:151
 msgid "Quit"
 msgstr "Quit"
 
-#: GlobalDialogs.glade:7
+#: indicator-stickynotes.py:206
+msgid "Please choose a different destination for the backup file."
+msgstr ""
+
+#: indicator-stickynotes.py:232
+msgid "Error importing data."
+msgstr ""
+
+#: GlobalDialogs.glade:8
 msgid "About Indicator Stickynotes"
 msgstr "About Indicator Stickynotes"
 
-#: GlobalDialogs.glade:14
+#: GlobalDialogs.glade:15
 msgid ""
 "Please report bugs, contribute translations, and make suggestions on the "
 "Launchpad homepage below.\n"
@@ -77,87 +101,87 @@ msgstr ""
 "Ctrl + L:  Lock note\n"
 "Ctrl + N:  New note"
 
-#: GlobalDialogs.glade:142 GlobalDialogs.glade:144
+#: GlobalDialogs.glade:145 GlobalDialogs.glade:147
 msgid "New"
 msgstr "New"
 
-#: GlobalDialogs.glade:198
+#: GlobalDialogs.glade:201
 msgid "_Categories"
 msgstr "_Categories"
 
-#: SettingsCategory.glade:16
-msgid "Are you sure you want to delete this category?"
-msgstr "Are you sure you want to delete this category?"
-
-#: SettingsCategory.glade:87
+#: SettingsCategory.glade:23
 msgid "Background Color"
 msgstr "Background Colour"
 
-#: SettingsCategory.glade:101
+#: SettingsCategory.glade:35
 msgid "Text Color"
 msgstr "Text Colour"
 
-#: SettingsCategory.glade:116
+#: SettingsCategory.glade:48
 msgid "Pick a Background Color"
 msgstr "Pick a Background Colour"
 
-#: SettingsCategory.glade:132
+#: SettingsCategory.glade:62
 msgid "Pick a Text Color"
 msgstr "Pick a Text Colour"
 
-#: SettingsCategory.glade:148
+#: SettingsCategory.glade:76
 msgid "Name"
 msgstr "Name"
 
-#: SettingsCategory.glade:181
-msgid "Make Default Category"
-msgstr "Make Default Category"
-
-#: SettingsCategory.glade:183
-msgid "Make Default"
-msgstr "Make Default"
-
-#: SettingsCategory.glade:197 SettingsCategory.glade:199 StickyNotes.glade:47
-msgid "Delete"
-msgstr "Delete"
-
-#: SettingsCategory.glade:222
+#: SettingsCategory.glade:100
 msgid "Font"
 msgstr "Font"
 
-#: SettingsCategory.glade:254
-msgid "Shadow"
-msgstr "Shadow"
+#: SettingsCategory.glade:133
+msgid "Make Default Category"
+msgstr "Make Default Category"
 
-#: SettingsCategory.glade:286 stickynotes/gui.py:199 stickynotes/gui.py:287
-#: stickynotes/gui.py:310
+#: SettingsCategory.glade:135
+msgid "Make Default"
+msgstr "Make Default"
+
+#: SettingsCategory.glade:149 SettingsCategory.glade:151 StickyNotes.glade:54
+msgid "Delete"
+msgstr "Delete"
+
+#: SettingsCategory.glade:174 stickynotes/gui.py:243 stickynotes/gui.py:333
+#: stickynotes/gui.py:354
 msgid "New Category"
 msgstr "New Category"
 
-#: StickyNotes.glade:178
-msgid "Confirm delete"
-msgstr "Confirm delete"
-
-#: StickyNotes.glade:182
-msgid "Are you sure you want to delete this note?"
-msgstr "Are you sure you want to delete this note?"
-
-#: stickynotes/gui.py:175
+#: stickynotes/gui.py:219
 msgid "Always on top"
 msgstr "Always on top"
 
-#: stickynotes/gui.py:191
+#: stickynotes/gui.py:235
 msgid "Categories:"
 msgstr "Categories:"
 
-#: stickynotes/gui.py:248
+#: stickynotes/gui.py:265
+msgid "Are you sure you want to delete this note?"
+msgstr "Are you sure you want to delete this note?"
+
+#: stickynotes/gui.py:297
 msgid "Unlock"
 msgstr "Unlock"
 
-#: stickynotes/gui.py:249
+#: stickynotes/gui.py:298
 msgid "Lock"
 msgstr "Lock"
 
-#: stickynotes/gui.py:312
+#: stickynotes/gui.py:356
 msgid "Default Category"
 msgstr "Default Category"
+
+#: stickynotes/gui.py:363
+msgid "Are you sure you want to delete this category?"
+msgstr "Are you sure you want to delete this category?"
+
+#: indicator-stickynotes-i18n.desktop.in:4
+msgid "Indicator Stickynotes"
+msgstr "Indicator Stickynotes"
+
+#: indicator-stickynotes-i18n.desktop.in:6
+msgid "Write reminders on notes"
+msgstr ""

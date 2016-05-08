@@ -1,5 +1,5 @@
 /* 
- * Copyright © 2012 Umang Varma <umang.me@gmail.com>
+ * Copyright © 2012-2015 Umang Varma <umang.me@gmail.com>
  * 
  * This file is part of indicator-stickynotes.
  * 
@@ -18,16 +18,7 @@
  * 
  */
 
-GtkWindow GtkSourceView
-{
-    background-color:transparent;
-}
-GtkSourceView:selected
-{
-    background-color:#FFA500;
-    color:#000;
-}
-GtkButton, GtkEventBox
+GtkSourceView, GtkButton, GtkEventBox
 {
     background:transparent;
 }

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # 
-# Copyright © 2012-2013 Umang Varma <umang.me@gmail.com>
+# Copyright © 2012-2015 Umang Varma <umang.me@gmail.com>
 # 
 # This file is part of indicator-stickynotes.
 # 
@@ -18,8 +18,7 @@
 # indicator-stickynotes.  If not, see <http://www.gnu.org/licenses/>.
 
 from stickynotes.backend import NoteSet
-from stickynotes.gui import StickyNote, show_about_dialog, \
-    SettingsDialog, load_global_css
+from stickynotes.gui import *
 import stickynotes.info
 from stickynotes.info import MO_DIR, LOCALE_DOMAIN
 
@@ -31,6 +30,7 @@ import locale
 import argparse
 from locale import gettext as _
 from functools import wraps
+from shutil import copyfile, SameFileError
 import signal #needed to send signal if another process is running
 
 def save_required(f):
@@ -47,11 +47,28 @@ class IndicatorStickyNotes:
         self.args = args
         # use development data file if requested
         isdev = args and args.d
-        data_file = stickynotes.info.DEBUG_SETTINGS_FILE if isdev else \
-                stickynotes.info.SETTINGS_FILE
+        self.data_file = stickynotes.info.DEBUG_SETTINGS_FILE if isdev \
+                else stickynotes.info.SETTINGS_FILE
         # Initialize NoteSet
-        self.nset = NoteSet(StickyNote, data_file, self)
-        self.nset.open()
+        self.nset = NoteSet(StickyNote, self.data_file, self)
+        try:
+            self.nset.open()
+        except FileNotFoundError:
+            self.nset.load_fresh()
+        except Exception as e:
+            err = _("Error reading data file. Do you want to "
+                "backup the current data?")
+            winError = Gtk.MessageDialog(None, None, Gtk.MessageType.ERROR,
+                    Gtk.ButtonsType.NONE, err)
+            winError.add_buttons(Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT,
+                    _("Backup"), Gtk.ResponseType.ACCEPT)
+            resp = winError.run()
+            winError.hide()
+            if resp == Gtk.ResponseType.ACCEPT:
+                self.backup_datafile()
+            winError.destroy()
+            self.nset.load_fresh()
+
         # If all notes were visible previously, show them now
         if self.nset.properties.get("all_visible", True):
             self.nset.showall()
@@ -99,6 +116,20 @@ class IndicatorStickyNotes:
         self.menu.append(self.mUnlockAll)
         self.mUnlockAll.connect("activate", self.unlockall, None)
         self.mUnlockAll.show()
+
+        s = Gtk.SeparatorMenuItem.new()
+        self.menu.append(s)
+        s.show()
+
+        self.mExport = Gtk.MenuItem(_("Export Data"))
+        self.menu.append(self.mExport)
+        self.mExport.connect("activate", self.export_datafile, None)
+        self.mExport.show()
+
+        self.mImport = Gtk.MenuItem(_("Import Data"))
+        self.menu.append(self.mImport)
+        self.mImport.connect("activate", self.import_datafile, None)
+        self.mImport.show()
 
         s = Gtk.SeparatorMenuItem.new()
         self.menu.append(s)
@@ -158,6 +189,53 @@ class IndicatorStickyNotes:
         for note in self.nset.notes:
             note.set_locked_state(False)
 
+    def backup_datafile(self):
+        winChoose = Gtk.FileChooserDialog(_("Export Data"), None,
+                Gtk.FileChooserAction.SAVE, (Gtk.STOCK_CANCEL,
+                    Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE,
+                    Gtk.ResponseType.ACCEPT))
+        winChoose.set_do_overwrite_confirmation(True)
+        response = winChoose.run()
+        backupfile = None
+        if response == Gtk.ResponseType.ACCEPT:
+            backupfile =  winChoose.get_filename()
+        winChoose.destroy()
+        if backupfile:
+            try:
+                copyfile(os.path.expanduser(self.data_file), backupfile)
+            except SameFileError:
+                err = _("Please choose a different "
+                    "destination for the backup file.")
+                winError = Gtk.MessageDialog(None, None,
+                        Gtk.MessageType.ERROR, Gtk.ButtonsType.CLOSE, err)
+                winError.run()
+                winError.destroy()
+                self.backup_datafile()
+
+    def export_datafile(self, *args):
+        self.backup_datafile()
+
+    def import_datafile(self, *args):
+        winChoose = Gtk.FileChooserDialog(_("Import Data"), None,
+                Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL,
+                    Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN,
+                    Gtk.ResponseType.ACCEPT))
+        response = winChoose.run()
+        backupfile = None
+        if response == Gtk.ResponseType.ACCEPT:
+            backupfile =  winChoose.get_filename()
+        winChoose.destroy()
+        if backupfile:
+            try:
+                with open(backupfile, encoding="utf-8") as fsock:
+                    self.nset.merge(fsock.read())
+            except Exception as e:
+                err = _("Error importing data.")
+                winError = Gtk.MessageDialog(None, None,
+                        Gtk.MessageType.ERROR, Gtk.ButtonsType.CLOSE, err)
+                winError.run()
+                winError.destroy()
+
     def show_about(self, *args):
         show_about_dialog()
 
@@ -170,7 +248,7 @@ class IndicatorStickyNotes:
 def handler(indicator):
     indicator.showall() 
     # really don't know why there's a need to do this
-    install_glib_handler(indicator)
+    install_glib_handler(indicator, signal.SIGUSR1)
 
     # this will be a way to switch between notes using the same shortcut...
     #nnote = len(indicator.nset.notes)
@@ -178,8 +256,13 @@ def handler(indicator):
     #indicator.nset.notes[current_note].show()
     #indicator.nset.current_note = current_note
 
+def reload_handler(indicator):
+    # reload from data file on SIGUSR2
+    with open(os.path.expanduser(indicator.data_file), encoding="utf-8") as fsock:
+        indicator.nset.merge(fsock.read())
+    install_glib_handler(indicator, signal.SIGUSR2)
 
-def install_glib_handler(indicator):
+def install_glib_handler(indicator, sig=None):
     unix_signal_add = None
     if hasattr(GLib, "unix_signal_add"):
         unix_signal_add = GLib.unix_signal_add
@@ -187,7 +270,10 @@ def install_glib_handler(indicator):
         unix_signal_add = GLib.unix_signal_add_full
 
     if unix_signal_add:
-        unix_signal_add(GLib.PRIORITY_HIGH, signal.SIGUSR1, handler, indicator)
+        if not sig or sig==signal.SIGUSR1:
+            unix_signal_add(GLib.PRIORITY_HIGH, signal.SIGUSR1, handler, indicator)
+        if not sig or sig==signal.SIGUSR2:
+            unix_signal_add(GLib.PRIORITY_HIGH, signal.SIGUSR2, reload_handler, indicator)
 
 
 
@@ -205,12 +291,8 @@ def main():
     locale.bindtextdomain(LOCALE_DOMAIN, locale_dir)
     locale.textdomain(LOCALE_DOMAIN)
 
-    parser = argparse.ArgumentParser(description=_("Sticky Notes"))
-    parser.add_argument("-d", action='store_true', help="use the development"
-            " data file")
-    args = parser.parse_args()
-
     indicator = IndicatorStickyNotes(args)
+
     # Load global css for the first time.
     load_global_css()
 
@@ -245,12 +327,49 @@ def is_running():
 if __name__ == "__main__":
     import sys
 
-    # if already running send signal 
-    # to make stickynotes appears on top
-    # and exit
+    parser = argparse.ArgumentParser(description=_("Sticky Notes"),
+            usage = "%(prog)s [-k | -r | [[-c CATEGORY] " +
+                    "(-i INPUTFILE | -n STRING ...)] | -d]")
+
+    parser.add_argument("-k","--kill", action="store_true",
+            help="kill background proccess")
+    parser.add_argument("-r","--refresh", action="store_true",
+            help="refresh data")
+    parser.add_argument("-c","--category", nargs=1, default=[''],
+            help="using with [-n|-i ...], set categeory", type=str)
+    parser.add_argument("-i","--infile", type=argparse.FileType('r'),
+            help="new sticky note with content from a file")
+    parser.add_argument("-n","--new", metavar='NEW_NOTE', nargs='+',
+            help="create a new note")
+    parser.add_argument("--no-daemon", action="store_true",
+            help="do not daemonize")
+    parser.add_argument("-d", action='store_true',
+            help="use the development data file")
+    args = parser.parse_args()
+
+    if args.new or args.infile: # create a new note if required
+        args.refresh=True
+        noteset=NoteSet(indicator=None, gui_class=None,
+            data_file=stickynotes.info.DEBUG_SETTINGS_FILE if args.d        \
+                else stickynotes.info.SETTINGS_FILE)
+        try: noteset.open()
+        except Exception as e:
+            print('failed to load config file')
+            sys.exit(1)
+        notebody = ' '.join(args.new).encode().decode('unicode-escape')     \
+            .encode('latin1').decode('utf-8') if args.new                   \
+            else args.infile.read().rstrip()
+        noteset.new(notebody=notebody, category=args.category[0])
+        noteset.save()
+
     pid = is_running()
     if pid:
-        os.kill(pid,signal.SIGUSR1)
-        sys.exit(0)
+        if   args.kill:     sig = signal.SIGKILL
+        elif args.refresh:  sig = signal.SIGUSR2
+        else:               sig = signal.SIGUSR1
+        # send signal to the existing process accordingly
+        os.kill(pid, sig)
+    elif not (args.kill or args.refresh):
+        main()   # run
 
-    main()
+    sys.exit(0)

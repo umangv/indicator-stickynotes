@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 # 
-# Copyright © 2012-2013 Umang Varma <umang.me@gmail.com>
+# Copyright © 2012-2015 Umang Varma <umang.me@gmail.com>
 # 
 # This file is part of indicator-stickynotes.
 # 
@@ -95,8 +95,8 @@ def main():
             for dir, subdirs, files in os.walk("Icons/" + theme) if files])
 
     setup(name='indicator-stickynotes',
-            version='0.4.3',
-            description='Sticky Notes AppIndicator',
+            version='0.5.4',
+            description='Sticky Notes Indicator',
             author='Umang Varma',
             author_email='umang.me@gmail.com',
             url='https://www.launchpad.net/indicator-stickynotes/',
@@ -105,8 +105,8 @@ def main():
             data_files=data_files,
             cmdclass={'build': Build, 'install_data': InstallData,
                 'build_po': BuildPo, 'clean':Clean},
-            long_description="Indicator Stickynotes helps you jot down "
-            "thoughts, write lists, and make reminders quickly.")
+            long_description="Write reminders on notes with Indicator "
+                "Stickynotes")
 
 if __name__ == "__main__":
     main()

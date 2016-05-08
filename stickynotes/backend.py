@@ -1,4 +1,4 @@
-# Copyright © 2012-2013 Umang Varma <umang.me@gmail.com>
+# Copyright © 2012-2015 Umang Varma <umang.me@gmail.com>
 # 
 # This file is part of indicator-stickynotes.
 # 
@@ -70,12 +70,12 @@ class Note:
         self.noteset.save()
         del self
 
-    def show(self, *args):
+    def show(self, *args, **kwargs):
         # If GUI has not been created, create it now
         if self.gui == None:
             self.gui = self.gui_class(note=self)
         else:
-            self.gui.show(*args)
+            self.gui.show(*args, **kwargs)
 
     def hide(self):
         if self.gui != None:
@@ -108,10 +108,7 @@ class NoteSet:
 
     def loads(self, snoteset):
         """Loads notes into their respective objects"""
-        try:
-            notes = self._loads_updater(json.loads(snoteset))
-        except ValueError:
-            notes = {}
+        notes = self._loads_updater(json.loads(snoteset))
         self.properties = notes.get("properties", {})
         self.categories = notes.get("categories", {})
         self.notes = [Note(note, gui_class=self.gui_class, noteset=self)
@@ -128,25 +125,77 @@ class NoteSet:
             fsock.write(output)
 
     def open(self, path=''):
-        try:
-            with open(path or expanduser(self.data_file), 
-                    encoding='utf-8') as fsock:
-                self.loads(fsock.read())
-        except IOError:
-            self.loads('{}')
-            self.new()
+        with open(path or expanduser(self.data_file), 
+                encoding='utf-8') as fsock:
+            self.loads(fsock.read())
 
-    def new(self):
+    def load_fresh(self):
+        """Load empty data"""
+        self.loads('{}')
+        self.new()
+
+    def merge(self, data):
+        """Update notes based on new data"""
+        jdata = self._loads_updater(json.loads(data))
+        self.hideall()
+        # update categories
+        if "categories" in jdata:
+            self.categories.update(jdata["categories"])
+        # make a dictionary of notes so we can modify existing notes
+        dnotes = {n.uuid : n for n in self.notes}
+        for newnote in jdata.get("notes", []):
+            if "uuid" in newnote and newnote["uuid"] in dnotes:
+                # Update notes that are already in the noteset
+                orignote = dnotes[newnote["uuid"]]
+                # make sure it's an 'Update'
+                if datetime.strptime(newnote["last_modified"],      \
+                        "%Y-%m-%dT%H:%M:%S") > orignote.last_modified:
+                    if "body" in newnote:
+                        orignote.body = newnote["body"]
+                    if "properties" in newnote:
+                        orignote.properties = newnote["properties"]
+                    if "cat" in newnote:
+                        orignote.category = newnote["cat"]
+            else:
+                # otherwise create a new note
+                if "uuid" in newnote:
+                    uuid = newnote["uuid"]
+                else:
+                    uuid = str(uuid.uuid4())
+                dnotes[uuid] = Note(newnote, gui_class=self.gui_class,
+                        noteset=self)
+        # copy notes over from dictionary to list
+        self.notes = list(dnotes.values())
+        self.showall(reload_from_backend=True)
+
+    def find_category(self, name=""):
+        # return cid of the first matched category
+        if name:
+            try: cid = (cat for cat in self.categories if \
+                    self.categories[cat]["name"] == name).__next__()
+            # not found
+            except Exception: cid = None
+        else:
+            cid = None
+        return cid
+
+    def new(self, notebody='', category=''):
         """Creates a new note and adds it to the note set"""
+        cid = self.find_category(name=category)
+        if category and not cid:
+            cid = str(uuid.uuid4())
+            self.categories[cid]={'name':category}
         note = Note(gui_class=self.gui_class, noteset=self,
-                category=self.properties.get("default_cat", ""))
+                category=cid)
+        note.body=notebody
+        note.set_locked_state(not not notebody)
         self.notes.append(note)
-        note.show()
+        self.gui_class and note.show()      # show if created with gui
         return note
 
-    def showall(self, *args):
+    def showall(self, *args, **kwargs):
         for note in self.notes:
-            note.show(*args)
+            note.show(*args, **kwargs)
         self.properties["all_visible"] = True
 
     def hideall(self, *args):

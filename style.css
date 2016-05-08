@@ -1,5 +1,5 @@
 /* 
- * Copyright © 2012 Umang Varma <umang.me@gmail.com>
+ * Copyright © 2012-2015 Umang Varma <umang.me@gmail.com>
  * 
  * This file is part of indicator-stickynotes.
  * 
@@ -20,13 +20,15 @@
 
 GtkWindow#main-window
 {
-    background-image: -gtk-gradient(linear,
-      left top, left bottom,
-      color-stop (0, $bg_start),
-      color-stop (0.66, $bg_end));
+    background-color: $bgcolor_hex;
 }
 
-GtkWindow#main-window GtkBox GtkSourceView
+GtkSourceView
 {
     color: $text_color;
+}
+GtkSourceView:selected
+{
+    color: $bgcolor_hex;
+    background-color: $text_color;
 }
