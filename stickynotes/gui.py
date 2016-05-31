@@ -17,6 +17,9 @@
 
 from datetime import datetime
 from string import Template
+import gi
+gi.require_version("Gtk", "3.0")
+gi.require_version("GtkSource", "3.0")
 from gi.repository import Gtk, Gdk, Gio, GObject, GtkSource, Pango
 from locale import gettext as _
 import os.path
