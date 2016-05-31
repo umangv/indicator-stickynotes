@@ -65,6 +65,7 @@ class IndicatorStickyNotes:
                     Gtk.ButtonsType.NONE, err)
             winError.add_buttons(Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT,
                     _("Backup"), Gtk.ResponseType.ACCEPT)
+            winError.set_title(_("Indicator Stickynotes"))
             resp = winError.run()
             winError.hide()
             if resp == Gtk.ResponseType.ACCEPT:
