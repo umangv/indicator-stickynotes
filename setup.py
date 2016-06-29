@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 # 
-# Copyright © 2012-2015 Umang Varma <umang.me@gmail.com>
+# Copyright © 2012-2016 Umang Varma <umang.me@gmail.com>
 # 
 # This file is part of indicator-stickynotes.
 # 
@@ -95,7 +95,7 @@ def main():
             for dir, subdirs, files in os.walk("Icons/" + theme) if files])
 
     setup(name='indicator-stickynotes',
-            version='0.5.6',
+            version='0.5.7',
             description='Sticky Notes Indicator',
             author='Umang Varma',
             author_email='umang.me@gmail.com',
