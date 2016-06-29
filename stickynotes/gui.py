@@ -60,7 +60,7 @@ class StickyNote:
         self.builder = Gtk.Builder()
         GObject.type_register(GtkSource.View)
         self.builder.add_from_file(os.path.join(self.path,
-            "StickyNotes.glade"))
+            "StickyNotes.ui"))
         self.builder.connect_signals(self)
         self.winMain = self.builder.get_object("MainWindow")
 
@@ -117,7 +117,7 @@ class StickyNote:
     # (re-)show the sticky note after it has been hidden getting a sticky note
     # to show itself was problematic after a "show desktop" command in unity.
     # (see bug lp:1105948).  Reappearance of dialog is problematic for any
-    # dialog which has the skip_taskbar_hint=True property in StickyNotes.glade
+    # dialog which has the skip_taskbar_hint=True property in StickyNotes.ui
     # (property necessary to prevent sticky note from showing on the taskbar)
 
     # workaround which is based on deleting a sticky note and re-initializing
@@ -309,7 +309,7 @@ class StickyNote:
 
 def show_about_dialog():
     glade_file = os.path.abspath(os.path.join(os.path.dirname(__file__),
-            '..', "GlobalDialogs.glade"))
+            '..', "GlobalDialogs.ui"))
     builder = Gtk.Builder()
     builder.add_from_file(glade_file)
     winAbout = builder.get_object("AboutWindow")
@@ -327,7 +327,7 @@ class SettingsCategory:
         self.path = os.path.abspath(os.path.join(os.path.dirname(__file__),
             '..'))
         self.builder.add_objects_from_file(os.path.join(self.path,
-            "SettingsCategory.glade"), ["catExpander"])
+            "SettingsCategory.ui"), ["catExpander"])
         self.builder.connect_signals(self)
         widgets = ["catExpander", "lExp", "cbBG", "cbText", "eName",
                 "confirmDelete", "fbFont"]
@@ -428,7 +428,7 @@ class SettingsDialog:
         self.categories = {}
         self.path = os.path.abspath(os.path.join(os.path.dirname(__file__),
             '..'))
-        glade_file = (os.path.join(self.path, "GlobalDialogs.glade"))
+        glade_file = (os.path.join(self.path, "GlobalDialogs.ui"))
         self.builder = Gtk.Builder()
         self.builder.add_from_file(glade_file)
         self.builder.connect_signals(self)

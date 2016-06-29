@@ -81,9 +81,9 @@ class InstallData(distutils.command.install_data.install_data):
 
 def main():
     # Default data files
-    data_files = [('', ('COPYING', 'style.css', 'StickyNotes.glade',
-                    'style_global.css', 'GlobalDialogs.glade',
-                    'SettingsCategory.glade')),
+    data_files = [('', ('COPYING', 'style.css', 'StickyNotes.ui',
+                    'style_global.css', 'GlobalDialogs.ui',
+                    'SettingsCategory.ui')),
                 ('/usr/share/applications', ('indicator-stickynotes.desktop',)),
                 ('Icons', glob.glob("Icons/*.png"))]
     # Icon themes
