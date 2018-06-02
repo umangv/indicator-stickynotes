@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.0"/>
   <requires lib="gtksourceview" version="3.0"/>
@@ -29,6 +29,7 @@
     <property name="pixbuf">Icons/unlock.png</property>
   </object>
   <object class="GtkWindow" id="MainWindow">
+    <property name="name">main-window</property>
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Sticky Notes</property>
     <property name="hide_titlebar_when_maximized">True</property>
@@ -36,6 +37,9 @@
     <property name="skip_taskbar_hint">True</property>
     <property name="decorated">False</property>
     <signal name="focus-out-event" handler="focus_out" swapped="no"/>
+    <child>
+      <placeholder/>
+    </child>
     <child>
       <object class="GtkBox" id="mainBox">
         <property name="visible">True</property>
@@ -50,11 +54,11 @@
               <object class="GtkButton" id="bClose">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="focus_on_click">False</property>
                 <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes">Delete</property>
                 <property name="image">imgClose</property>
                 <property name="relief">none</property>
-                <property name="focus_on_click">False</property>
                 <property name="image_position">top</property>
                 <signal name="clicked" handler="delete" swapped="no"/>
                 <accelerator key="w" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
@@ -84,11 +88,11 @@
               <object class="GtkButton" id="bAdd">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="focus_on_click">False</property>
                 <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes">New Note</property>
                 <property name="image">imgAdd</property>
                 <property name="relief">none</property>
-                <property name="focus_on_click">False</property>
                 <signal name="clicked" handler="add" swapped="no"/>
                 <accelerator key="n" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
               </object>
@@ -103,10 +107,10 @@
               <object class="GtkButton" id="bMenu">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="focus_on_click">False</property>
                 <property name="receives_default">True</property>
                 <property name="image">imgDropdown</property>
                 <property name="relief">none</property>
-                <property name="focus_on_click">False</property>
                 <signal name="clicked" handler="popup_menu" swapped="no"/>
               </object>
               <packing>
@@ -120,11 +124,11 @@
               <object class="GtkButton" id="bLock">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="focus_on_click">False</property>
                 <property name="receives_default">True</property>
                 <property name="margin_left">10</property>
                 <property name="image">imgUnlock</property>
                 <property name="relief">none</property>
-                <property name="focus_on_click">False</property>
                 <signal name="clicked" handler="lock_clicked" swapped="no"/>
                 <accelerator key="l" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
               </object>
@@ -144,6 +148,7 @@
         </child>
         <child>
           <object class="GtkSourceView" id="txtNote">
+            <property name="name">txt-note</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="has_focus">True</property>

@@ -18,16 +18,12 @@
  * 
  */
 
-GtkWindow#main-window
+#main-window, #txt-note
 {
     background-color: $bgcolor_hex;
-}
-
-GtkSourceView
-{
     color: $text_color;
 }
-GtkSourceView:selected
+#txt-note text selection
 {
     color: $bgcolor_hex;
     background-color: $text_color;

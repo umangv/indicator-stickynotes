@@ -65,7 +65,6 @@ class StickyNote:
         self.winMain = self.builder.get_object("MainWindow")
 
         # Get necessary objects
-        self.winMain.set_name("main-window")
         widgets = ["txtNote", "bAdd", "imgAdd", "imgResizeR", "eResizeR",
                 "bLock", "imgLock", "imgUnlock", "imgClose", "imgDropdown",
                 "bClose", "confirmDelete", "movebox1", "movebox2"]
