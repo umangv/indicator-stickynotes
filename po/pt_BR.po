@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: indicator-stickynotes\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-05-30 21:40-0400\n"
-"PO-Revision-Date: 2016-07-22 14:05+0000\n"
-"Last-Translator: Thiagomohrs <thiagomohrs@gmail.com>\n"
+"PO-Revision-Date: 2017-06-23 01:05+0000\n"
+"Last-Translator: Denis Vitor Bueno de Almeida <denis.meida@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-07-23 05:35+0000\n"
-"X-Generator: Launchpad (build 18147)\n"
+"X-Launchpad-Export-Date: 2017-06-27 05:56+0000\n"
+"X-Generator: Launchpad (build 18416)\n"
 
 #: indicator-stickynotes.py:62
 msgid "Error reading data file. Do you want to backup the current data?"
@@ -28,7 +28,7 @@ msgstr "Cópia de segurança (Backup)"
 
 #: indicator-stickynotes.py:68 indicator-stickynotes-i18n.desktop.in:4
 msgid "Indicator Stickynotes"
-msgstr ""
+msgstr "Indicador de Notas Adesivas"
 
 #: indicator-stickynotes.py:88 indicator-stickynotes.py:267 StickyNotes.ui:33
 #: indicator-stickynotes-i18n.desktop.in:5
@@ -45,7 +45,7 @@ msgstr "Mostrar Todas"
 
 #: indicator-stickynotes.py:105
 msgid "Hide All"
-msgstr "Ocultar Todas"
+msgstr "Ocultar todas"
 
 #: indicator-stickynotes.py:114
 msgid "Lock All"
@@ -77,7 +77,8 @@ msgstr "Sair"
 
 #: indicator-stickynotes.py:211
 msgid "Please choose a different destination for the backup file."
-msgstr "Por favor, escolha um destino diferente para o arquivo de backup."
+msgstr ""
+"Por favor, escolha um destino diferente para a cópia de segurança (backup)."
 
 #: indicator-stickynotes.py:237
 msgid "Error importing data."
@@ -107,7 +108,7 @@ msgstr ""
 
 #: GlobalDialogs.ui:149 GlobalDialogs.ui:151
 msgid "New"
-msgstr "Nova"
+msgstr "Nova nota"
 
 #: GlobalDialogs.ui:205
 msgid "_Categories"
@@ -147,7 +148,7 @@ msgstr "Tornar padrão"
 
 #: SettingsCategory.ui:149 SettingsCategory.ui:151 StickyNotes.ui:54
 msgid "Delete"
-msgstr "Excluir"
+msgstr "Apagar"
 
 #: SettingsCategory.ui:174 stickynotes/gui.py:246 stickynotes/gui.py:336
 #: stickynotes/gui.py:357
@@ -168,11 +169,11 @@ msgstr "Você tem certeza que deseja excluir esta nota?"
 
 #: stickynotes/gui.py:300
 msgid "Unlock"
-msgstr "Desbloquear"
+msgstr "Destravar"
 
 #: stickynotes/gui.py:301
 msgid "Lock"
-msgstr "Bloquear"
+msgstr "Travar"
 
 #: stickynotes/gui.py:359
 msgid "Default Category"
@@ -184,4 +185,4 @@ msgstr "Você tem certeza que quer apagar esta categoria ?"
 
 #: indicator-stickynotes-i18n.desktop.in:6
 msgid "Write reminders on notes"
-msgstr ""
+msgstr "Escreva lembretes nas notas"

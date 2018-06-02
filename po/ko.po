@@ -1,92 +1,90 @@
-# Polish translation for indicator-stickynotes
-# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# Korean translation for indicator-stickynotes
+# Copyright (c) 2017 Rosetta Contributors and Canonical Ltd 2017
 # This file is distributed under the same license as the indicator-stickynotes package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: indicator-stickynotes\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-05-30 21:40-0400\n"
-"PO-Revision-Date: 2017-06-01 13:11+0000\n"
-"Last-Translator: Marcin <Unknown>\n"
-"Language-Team: Polish <pl@li.org>\n"
+"PO-Revision-Date: 2017-10-15 14:29+0000\n"
+"Last-Translator: Virusyoon <virusyoon@gmail.com>\n"
+"Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2017-06-02 06:34+0000\n"
-"X-Generator: Launchpad (build 18391)\n"
+"X-Launchpad-Export-Date: 2017-10-16 05:52+0000\n"
+"X-Generator: Launchpad (build 18474)\n"
 
 #: indicator-stickynotes.py:62
 msgid "Error reading data file. Do you want to backup the current data?"
-msgstr ""
-"Błąd odczytu pliku danych. Czy chcesz wykonać kopię zapasową bieżących "
-"danych?"
+msgstr "데이터 파일을 읽을 수 없습니다. 현재 데이터를 백업 하시겠습니까?"
 
 #: indicator-stickynotes.py:67
 msgid "Backup"
-msgstr "Utwórz kopię zapasową"
+msgstr "백업"
 
 #: indicator-stickynotes.py:68 indicator-stickynotes-i18n.desktop.in:4
 msgid "Indicator Stickynotes"
-msgstr ""
+msgstr "스티키노트"
 
 #: indicator-stickynotes.py:88 indicator-stickynotes.py:267 StickyNotes.ui:33
 #: indicator-stickynotes-i18n.desktop.in:5
 msgid "Sticky Notes"
-msgstr "Żółte karteczki"
+msgstr "스티키 노트"
 
 #: indicator-stickynotes.py:91 StickyNotes.ui:88
 msgid "New Note"
-msgstr "Nowa notatka"
+msgstr "새 메모"
 
 #: indicator-stickynotes.py:100
 msgid "Show All"
-msgstr "Pokaż wszystko"
+msgstr "모두 표시"
 
 #: indicator-stickynotes.py:105
 msgid "Hide All"
-msgstr "Ukryj wszystkie"
+msgstr "모두 숨기기"
 
 #: indicator-stickynotes.py:114
 msgid "Lock All"
-msgstr "Zablokuj wszystkie"
+msgstr "모두 잠금"
 
 #: indicator-stickynotes.py:119
 msgid "Unlock All"
-msgstr "Odblokuj wszystkie"
+msgstr "모두 해제"
 
 #: indicator-stickynotes.py:128 indicator-stickynotes.py:197
 msgid "Export Data"
-msgstr "Eksport danych"
+msgstr "데이터 내보내기"
 
 #: indicator-stickynotes.py:133 indicator-stickynotes.py:223
 msgid "Import Data"
-msgstr "Importuj dane"
+msgstr "데이터 불러오기"
 
 #: indicator-stickynotes.py:142
 msgid "About"
-msgstr "O aplikacji"
+msgstr "프로그램 정보"
 
 #: indicator-stickynotes.py:147 GlobalDialogs.ui:93 stickynotes/gui.py:227
 msgid "Settings"
-msgstr "Ustawienia"
+msgstr "설정"
 
 #: indicator-stickynotes.py:156
 msgid "Quit"
-msgstr "Zakończ"
+msgstr "끝내기"
 
 #: indicator-stickynotes.py:211
 msgid "Please choose a different destination for the backup file."
-msgstr "Proszę wybrać inną lokalizację dla pliku kopii zapasowej."
+msgstr "백업 파일의 다른 대상을 선택하십시오."
 
 #: indicator-stickynotes.py:237
 msgid "Error importing data."
-msgstr "Błąd importu danych."
+msgstr "데이터 가져오기 실패"
 
 #: GlobalDialogs.ui:8
 msgid "About Indicator Stickynotes"
-msgstr "O aplecie Żółte karteczki"
+msgstr "스티키 노트에 대하여"
 
 #: GlobalDialogs.ui:15
 msgid ""
@@ -98,84 +96,89 @@ msgid ""
 "Ctrl + L:  Lock note\n"
 "Ctrl + N:  New note"
 msgstr ""
+"버그를보고하고, 번역을 제공하고, 아래의 런치 패드 홈페이지에 제안 해주십시오.\n"
+"단축키:\n"
+"Ctrl + W: 노트 삭제\n"
+"Ctrl + L: 노트 잠금\n"
+"Ctrl + N: 새 노트"
 
 #: GlobalDialogs.ui:149 GlobalDialogs.ui:151
 msgid "New"
-msgstr "Nowa"
+msgstr "신규"
 
 #: GlobalDialogs.ui:205
 msgid "_Categories"
-msgstr "_Kategorie"
+msgstr "분류(_C)"
 
 #: SettingsCategory.ui:23
 msgid "Background Color"
-msgstr "Kolor tła"
+msgstr "배경색"
 
 #: SettingsCategory.ui:35
 msgid "Text Color"
-msgstr "Kolor tekstu"
+msgstr "글자 색"
 
 #: SettingsCategory.ui:48
 msgid "Pick a Background Color"
-msgstr "Wybierz kolor tła"
+msgstr "배경색 선택"
 
 #: SettingsCategory.ui:62
 msgid "Pick a Text Color"
-msgstr "Wybierz kolor tekstu"
+msgstr "글자색 선택"
 
 #: SettingsCategory.ui:76
 msgid "Name"
-msgstr "Nazwa"
+msgstr "이름"
 
 #: SettingsCategory.ui:100
 msgid "Font"
-msgstr "Czcionka"
+msgstr "글꼴"
 
 #: SettingsCategory.ui:133
 msgid "Make Default Category"
-msgstr "Utwórz kategorię domyślną"
+msgstr "기본 분류로 지정"
 
 #: SettingsCategory.ui:135
 msgid "Make Default"
-msgstr "Uczyń domyślną"
+msgstr "기본값으로 하기"
 
 #: SettingsCategory.ui:149 SettingsCategory.ui:151 StickyNotes.ui:54
 msgid "Delete"
-msgstr "Usuń"
+msgstr "삭제"
 
 #: SettingsCategory.ui:174 stickynotes/gui.py:246 stickynotes/gui.py:336
 #: stickynotes/gui.py:357
 msgid "New Category"
-msgstr "Nowa kategoria"
+msgstr "새 분류"
 
 #: stickynotes/gui.py:222
 msgid "Always on top"
-msgstr "Zawsze na wierzchu"
+msgstr "항상 위"
 
 #: stickynotes/gui.py:238
 msgid "Categories:"
-msgstr "Kategorie:"
+msgstr "분류:"
 
 #: stickynotes/gui.py:268
 msgid "Are you sure you want to delete this note?"
-msgstr "Czy na pewno chcesz usunąć tą notatkę?"
+msgstr "이 메모를 삭제하시겠습니까?"
 
 #: stickynotes/gui.py:300
 msgid "Unlock"
-msgstr "Odblokuj"
+msgstr "잠금 해제"
 
 #: stickynotes/gui.py:301
 msgid "Lock"
-msgstr "Zablokuj"
+msgstr "잠금"
 
 #: stickynotes/gui.py:359
 msgid "Default Category"
-msgstr "Domyślna kategoria"
+msgstr "기본 분류"
 
 #: stickynotes/gui.py:366
 msgid "Are you sure you want to delete this category?"
-msgstr "Czy na pewno chcesz usunąć tą kategorię?"
+msgstr "이분류를 삭제하시겠습니까?"
 
 #: indicator-stickynotes-i18n.desktop.in:6
 msgid "Write reminders on notes"
-msgstr ""
+msgstr "알람 지정"

@@ -8,26 +8,27 @@ msgstr ""
 "Project-Id-Version: indicator-stickynotes\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-05-30 21:40-0400\n"
-"PO-Revision-Date: 2013-01-28 16:12+0000\n"
-"Last-Translator: vasco <Unknown>\n"
+"PO-Revision-Date: 2017-02-15 03:39+0000\n"
+"Last-Translator: Bajoja <steevenlopes@gmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-06-01 05:50+0000\n"
-"X-Generator: Launchpad (build 18053)\n"
+"X-Launchpad-Export-Date: 2017-02-16 06:31+0000\n"
+"X-Generator: Launchpad (build 18326)\n"
 
 #: indicator-stickynotes.py:62
 msgid "Error reading data file. Do you want to backup the current data?"
 msgstr ""
+"Erro ao ler o ficheiro de dados. Você deseja fazer um backup os dados atuais?"
 
 #: indicator-stickynotes.py:67
 msgid "Backup"
-msgstr ""
+msgstr "Backup"
 
 #: indicator-stickynotes.py:68 indicator-stickynotes-i18n.desktop.in:4
 msgid "Indicator Stickynotes"
-msgstr ""
+msgstr "Indicator Stickynotes"
 
 #: indicator-stickynotes.py:88 indicator-stickynotes.py:267 StickyNotes.ui:33
 #: indicator-stickynotes-i18n.desktop.in:5
@@ -56,11 +57,11 @@ msgstr "DesBloquear Tudo"
 
 #: indicator-stickynotes.py:128 indicator-stickynotes.py:197
 msgid "Export Data"
-msgstr ""
+msgstr "Exportar Dados"
 
 #: indicator-stickynotes.py:133 indicator-stickynotes.py:223
 msgid "Import Data"
-msgstr ""
+msgstr "Importar Dados"
 
 #: indicator-stickynotes.py:142
 msgid "About"
@@ -76,11 +77,11 @@ msgstr "Sair"
 
 #: indicator-stickynotes.py:211
 msgid "Please choose a different destination for the backup file."
-msgstr ""
+msgstr "Por favor escolhe um destino diferente para o ficheiro de backup."
 
 #: indicator-stickynotes.py:237
 msgid "Error importing data."
-msgstr ""
+msgstr "Erro ao importar dados."
 
 #: GlobalDialogs.ui:8
 msgid "About Indicator Stickynotes"
@@ -178,4 +179,4 @@ msgstr "Tem a certeza que quer apagar esta categoria?"
 
 #: indicator-stickynotes-i18n.desktop.in:6
 msgid "Write reminders on notes"
-msgstr ""
+msgstr "Escrever lembretes nas notas"

@@ -1,92 +1,91 @@
-# Polish translation for indicator-stickynotes
-# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# Swedish translation for indicator-stickynotes
+# Copyright (c) 2016 Rosetta Contributors and Canonical Ltd 2016
 # This file is distributed under the same license as the indicator-stickynotes package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: indicator-stickynotes\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-05-30 21:40-0400\n"
-"PO-Revision-Date: 2017-06-01 13:11+0000\n"
-"Last-Translator: Marcin <Unknown>\n"
-"Language-Team: Polish <pl@li.org>\n"
+"PO-Revision-Date: 2016-12-28 20:20+0000\n"
+"Last-Translator: Åke Engelbrektson <Unknown>\n"
+"Language-Team: Svenska Språkfiler <eson@svenskasprakfiler.se>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2017-06-02 06:34+0000\n"
-"X-Generator: Launchpad (build 18391)\n"
+"X-Launchpad-Export-Date: 2016-12-29 04:51+0000\n"
+"X-Generator: Launchpad (build 18298)\n"
+"Language: sv\n"
 
 #: indicator-stickynotes.py:62
 msgid "Error reading data file. Do you want to backup the current data?"
-msgstr ""
-"Błąd odczytu pliku danych. Czy chcesz wykonać kopię zapasową bieżących "
-"danych?"
+msgstr "Fel vid läsning av datafilen. Vill du säkerhetskopiera aktuell data?"
 
 #: indicator-stickynotes.py:67
 msgid "Backup"
-msgstr "Utwórz kopię zapasową"
+msgstr "Säkerhetskopia"
 
 #: indicator-stickynotes.py:68 indicator-stickynotes-i18n.desktop.in:4
 msgid "Indicator Stickynotes"
-msgstr ""
+msgstr "Indicator Stickynotes"
 
 #: indicator-stickynotes.py:88 indicator-stickynotes.py:267 StickyNotes.ui:33
 #: indicator-stickynotes-i18n.desktop.in:5
 msgid "Sticky Notes"
-msgstr "Żółte karteczki"
+msgstr "Fästisar"
 
 #: indicator-stickynotes.py:91 StickyNotes.ui:88
 msgid "New Note"
-msgstr "Nowa notatka"
+msgstr "Ny anteckning"
 
 #: indicator-stickynotes.py:100
 msgid "Show All"
-msgstr "Pokaż wszystko"
+msgstr "Visa alla"
 
 #: indicator-stickynotes.py:105
 msgid "Hide All"
-msgstr "Ukryj wszystkie"
+msgstr "Dölj alla"
 
 #: indicator-stickynotes.py:114
 msgid "Lock All"
-msgstr "Zablokuj wszystkie"
+msgstr "Lås alla"
 
 #: indicator-stickynotes.py:119
 msgid "Unlock All"
-msgstr "Odblokuj wszystkie"
+msgstr "Lås upp alla"
 
 #: indicator-stickynotes.py:128 indicator-stickynotes.py:197
 msgid "Export Data"
-msgstr "Eksport danych"
+msgstr "Exportera data"
 
 #: indicator-stickynotes.py:133 indicator-stickynotes.py:223
 msgid "Import Data"
-msgstr "Importuj dane"
+msgstr "Importera data"
 
 #: indicator-stickynotes.py:142
 msgid "About"
-msgstr "O aplikacji"
+msgstr "Om"
 
 #: indicator-stickynotes.py:147 GlobalDialogs.ui:93 stickynotes/gui.py:227
 msgid "Settings"
-msgstr "Ustawienia"
+msgstr "Inställningar"
 
 #: indicator-stickynotes.py:156
 msgid "Quit"
-msgstr "Zakończ"
+msgstr "Avsluta"
 
 #: indicator-stickynotes.py:211
 msgid "Please choose a different destination for the backup file."
-msgstr "Proszę wybrać inną lokalizację dla pliku kopii zapasowej."
+msgstr "Välj en annan lagringsplats för säkerhetskopian."
 
 #: indicator-stickynotes.py:237
 msgid "Error importing data."
-msgstr "Błąd importu danych."
+msgstr "Fel vid dataimport."
 
 #: GlobalDialogs.ui:8
 msgid "About Indicator Stickynotes"
-msgstr "O aplecie Żółte karteczki"
+msgstr "Om Indicator Stickynotes"
 
 #: GlobalDialogs.ui:15
 msgid ""
@@ -98,84 +97,91 @@ msgid ""
 "Ctrl + L:  Lock note\n"
 "Ctrl + N:  New note"
 msgstr ""
+"Rapportera gärna fel, översätt och och kom med förslag på nedanstående "
+"Launchpad-sida.\n"
+"\n"
+"Tangentbordsgenvägar:\n"
+"Ctrl + W:  Ta bort anteckning\n"
+"Ctrl + L:  Lås anteckning\n"
+"Ctrl + N:  Ny anteckning"
 
 #: GlobalDialogs.ui:149 GlobalDialogs.ui:151
 msgid "New"
-msgstr "Nowa"
+msgstr "Nytt"
 
 #: GlobalDialogs.ui:205
 msgid "_Categories"
-msgstr "_Kategorie"
+msgstr "_Kategorier"
 
 #: SettingsCategory.ui:23
 msgid "Background Color"
-msgstr "Kolor tła"
+msgstr "Bakgrundsfärg"
 
 #: SettingsCategory.ui:35
 msgid "Text Color"
-msgstr "Kolor tekstu"
+msgstr "Textfärg"
 
 #: SettingsCategory.ui:48
 msgid "Pick a Background Color"
-msgstr "Wybierz kolor tła"
+msgstr "Välj en bakgrundsfärg"
 
 #: SettingsCategory.ui:62
 msgid "Pick a Text Color"
-msgstr "Wybierz kolor tekstu"
+msgstr "Välj en textfärg"
 
 #: SettingsCategory.ui:76
 msgid "Name"
-msgstr "Nazwa"
+msgstr "Namn"
 
 #: SettingsCategory.ui:100
 msgid "Font"
-msgstr "Czcionka"
+msgstr "Teckensnitt"
 
 #: SettingsCategory.ui:133
 msgid "Make Default Category"
-msgstr "Utwórz kategorię domyślną"
+msgstr "Ange som standardkategori"
 
 #: SettingsCategory.ui:135
 msgid "Make Default"
-msgstr "Uczyń domyślną"
+msgstr "Ange som som standard"
 
 #: SettingsCategory.ui:149 SettingsCategory.ui:151 StickyNotes.ui:54
 msgid "Delete"
-msgstr "Usuń"
+msgstr "Ta bort"
 
 #: SettingsCategory.ui:174 stickynotes/gui.py:246 stickynotes/gui.py:336
 #: stickynotes/gui.py:357
 msgid "New Category"
-msgstr "Nowa kategoria"
+msgstr "Ny kategori"
 
 #: stickynotes/gui.py:222
 msgid "Always on top"
-msgstr "Zawsze na wierzchu"
+msgstr "Alltid överst"
 
 #: stickynotes/gui.py:238
 msgid "Categories:"
-msgstr "Kategorie:"
+msgstr "Kategorier:"
 
 #: stickynotes/gui.py:268
 msgid "Are you sure you want to delete this note?"
-msgstr "Czy na pewno chcesz usunąć tą notatkę?"
+msgstr "Vill du verkligen ta bort den här anteckningen?"
 
 #: stickynotes/gui.py:300
 msgid "Unlock"
-msgstr "Odblokuj"
+msgstr "Lås upp"
 
 #: stickynotes/gui.py:301
 msgid "Lock"
-msgstr "Zablokuj"
+msgstr "Lås"
 
 #: stickynotes/gui.py:359
 msgid "Default Category"
-msgstr "Domyślna kategoria"
+msgstr "Standardkategori"
 
 #: stickynotes/gui.py:366
 msgid "Are you sure you want to delete this category?"
-msgstr "Czy na pewno chcesz usunąć tą kategorię?"
+msgstr "Vill du verkligen ta bort den här kategorin?"
 
 #: indicator-stickynotes-i18n.desktop.in:6
 msgid "Write reminders on notes"
-msgstr ""
+msgstr "Skriv påminnelser på Fästisar"
