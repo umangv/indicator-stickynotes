@@ -18,7 +18,7 @@
  * 
  */
 
-GtkSourceView, GtkButton, GtkEventBox
+GtkSourceView, GtkButton, GtkEventBox, text
 {
-    background:transparent;
+    background: transparent;
 }
