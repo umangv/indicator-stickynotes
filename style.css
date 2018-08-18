@@ -23,6 +23,13 @@
     background-color: $bgcolor_hex;
     color: $text_color;
 }
+
+#txt-note text
+{
+    color: $text_color;
+    background-color: transparent;
+}
+
 #txt-note text selection
 {
     color: $bgcolor_hex;
