@@ -38,7 +38,6 @@ from shutil import copyfile, SameFileError
 
 import socket
 import sys
-import time
 
 def save_required(f):
     """Wrapper for functions that require a save after execution"""
