@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.0"/>
   <object class="GtkAboutDialog" id="AboutWindow">
@@ -32,7 +32,10 @@ more details.
  
 You should have received a copy of the GNU General Public License along with
 indicator-stickynotes.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</property>
-    <property name="authors">Umang Varma</property>
+    <property name="authors">Umang Varma
+
+Contributions from:
+Zheng-Ling Lai (GitHub: @jamesljlster)</property>
     <property name="translator_credits">https://launchpad.net/indicator-stickynotes/+topcontributors
 
 Virusyoon
@@ -68,6 +71,9 @@ Olivier Girard
 timbo</property>
     <property name="logo">Icons/indicator-stickynotes.png</property>
     <property name="wrap_license">True</property>
+    <child>
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox" id="aboutdialog-vbox1">
         <property name="can_focus">False</property>
@@ -97,6 +103,9 @@ timbo</property>
     <property name="title" translatable="yes">Settings</property>
     <property name="modal">True</property>
     <property name="type_hint">normal</property>
+    <child>
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox1">
         <property name="can_focus">False</property>
