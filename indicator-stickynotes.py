@@ -36,6 +36,9 @@ from locale import gettext as _
 from functools import wraps
 from shutil import copyfile, SameFileError
 
+import socket
+import sys
+
 def save_required(f):
     """Wrapper for functions that require a save after execution"""
     @wraps(f)
@@ -249,8 +252,16 @@ class IndicatorStickyNotes:
     def save(self):
         self.nset.save()
 
-
 def main():
+    # Avoid duplicate process
+    # From https://stackoverflow.com/questions/788411/check-to-see-if-python-script-is-running
+    procLock = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
+    try:
+        procLock.bind('\0' + 'indicator-stickynotes')
+    except socket.error:
+        print('Indicator stickynotes already running.')
+        sys.exit()
+
     try:
         locale.setlocale(locale.LC_ALL, '')
     except:
