@@ -1,90 +1,92 @@
-# Danish translation for indicator-stickynotes
-# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
+# Indonesian translation for indicator-stickynotes
+# Copyright (c) 2021 Rosetta Contributors and Canonical Ltd 2021
 # This file is distributed under the same license as the indicator-stickynotes package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: indicator-stickynotes\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2018-06-01 21:59-0400\n"
-"PO-Revision-Date: 2015-04-30 18:01+0000\n"
-"Last-Translator: Rednilec <Ida.Celinder@gmail.com>\n"
-"Language-Team: Danish <da@li.org>\n"
+"PO-Revision-Date: 2021-07-10 01:38+0000\n"
+"Last-Translator: Syaifur Rizal <Unknown>\n"
+"Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2018-06-03 05:36+0000\n"
-"X-Generator: Launchpad (build 18667)\n"
+"X-Launchpad-Export-Date: 2021-07-11 06:31+0000\n"
+"X-Generator: Launchpad (build 1b66c075b8638845e61f40eb9036fabeaa01f591)\n"
 
 #: indicator-stickynotes.py:62
 msgid "Error reading data file. Do you want to backup the current data?"
 msgstr ""
+"Kesalahan dalam pembacaan berkas. Apakah Anda ingin mencadangkan data ini "
+"sekarang?"
 
 #: indicator-stickynotes.py:67
 msgid "Backup"
-msgstr ""
+msgstr "Cadangan"
 
 #: indicator-stickynotes.py:68 indicator-stickynotes-i18n.desktop.in:4
 msgid "Indicator Stickynotes"
-msgstr ""
+msgstr "Indikator Catatan Tempel"
 
 #: indicator-stickynotes.py:88 indicator-stickynotes.py:267 StickyNotes.ui:34
 #: indicator-stickynotes-i18n.desktop.in:5
 msgid "Sticky Notes"
-msgstr "Post-It noter"
+msgstr "Catatan Tempel"
 
 #: indicator-stickynotes.py:91 StickyNotes.ui:93
 msgid "New Note"
-msgstr "Ny Note"
+msgstr "Catatan Baru"
 
 #: indicator-stickynotes.py:100
 msgid "Show All"
-msgstr "Vis Alt"
+msgstr "Tampilkan Semua"
 
 #: indicator-stickynotes.py:105
 msgid "Hide All"
-msgstr "Skjul Alt"
+msgstr "Sembunyikan Semua"
 
 #: indicator-stickynotes.py:114
 msgid "Lock All"
-msgstr "Lås Alt"
+msgstr "Kunci Semua"
 
 #: indicator-stickynotes.py:119
 msgid "Unlock All"
-msgstr "Lås Alt Op"
+msgstr "Buka Semua Kunci"
 
 #: indicator-stickynotes.py:128 indicator-stickynotes.py:197
 msgid "Export Data"
-msgstr ""
+msgstr "Ekspor Data"
 
 #: indicator-stickynotes.py:133 indicator-stickynotes.py:223
 msgid "Import Data"
-msgstr ""
+msgstr "Impor Data"
 
 #: indicator-stickynotes.py:142
 msgid "About"
-msgstr "Om"
+msgstr "Perihal"
 
 #: indicator-stickynotes.py:147 GlobalDialogs.ui:94 stickynotes/gui.py:226
 msgid "Settings"
-msgstr "Indstillinger"
+msgstr "Pengaturan"
 
 #: indicator-stickynotes.py:156
 msgid "Quit"
-msgstr "Afslut"
+msgstr "Keluar"
 
 #: indicator-stickynotes.py:211
 msgid "Please choose a different destination for the backup file."
-msgstr ""
+msgstr "Mohon pilih lokasi yang berbeda untuk mencadangkan berkas."
 
 #: indicator-stickynotes.py:237
 msgid "Error importing data."
-msgstr ""
+msgstr "Kesalahan dalam mengimpor data."
 
 #: GlobalDialogs.ui:8
 msgid "About Indicator Stickynotes"
-msgstr "Om Indicator Stickynotes"
+msgstr "Tentang Indikator Catatan Tempel"
 
 #: GlobalDialogs.ui:15
 msgid ""
@@ -96,91 +98,91 @@ msgid ""
 "Ctrl + L:  Lock note\n"
 "Ctrl + N:  New note"
 msgstr ""
-"Vær venlig at oplyse fejl, hjælpe med oversættelser, og komme med forslag på "
-"Launchpad's hjemmeside herunder.\n"
+"Mohon laporkan kesalahan program, ikut berkontribusi dalam penerjemahan, dan "
+"memberi saran-saran pada laman situs Launchpad di bawah ini.\n"
 "\n"
-"Tastatur genveje:\n"
-"Ctrl + W: Slet note\n"
-"Ctrl + L: Lås note\n"
-"Ctrl + N: Ny note"
+"Pintasan papan ketik:\n"
+"Ctrl + W: Hapus catatan\n"
+"Ctrl + L: Kunci catatan\n"
+"Ctrl + N: Catatan baru"
 
 #: GlobalDialogs.ui:150 GlobalDialogs.ui:152
 msgid "New"
-msgstr "Ny"
+msgstr "Baru"
 
 #: GlobalDialogs.ui:206
 msgid "_Categories"
-msgstr "_Kategorier"
+msgstr "_Kategori"
 
 #: SettingsCategory.ui:23
 msgid "Background Color"
-msgstr "Baggrundsfarve"
+msgstr "Warna Latar Belakang"
 
 #: SettingsCategory.ui:35
 msgid "Text Color"
-msgstr "Tekstfarve"
+msgstr "Warna Teks"
 
 #: SettingsCategory.ui:48
 msgid "Pick a Background Color"
-msgstr "Vælg en Baggrundsfarve"
+msgstr "Pilih Warna Latar Belakang"
 
 #: SettingsCategory.ui:62
 msgid "Pick a Text Color"
-msgstr "Vælg en Tekstfarve"
+msgstr "Pilih Warna Teks"
 
 #: SettingsCategory.ui:76
 msgid "Name"
-msgstr "Navn"
+msgstr "Nama"
 
 #: SettingsCategory.ui:100
 msgid "Font"
-msgstr "Skrifttype"
+msgstr "Jenis Huruf"
 
 #: SettingsCategory.ui:133
 msgid "Make Default Category"
-msgstr "Opret Standard Kategori"
+msgstr "Jadikan Sebagai Kategori Utama"
 
 #: SettingsCategory.ui:135
 msgid "Make Default"
-msgstr "Gør til Standard"
+msgstr "Jadikan Sebagai Setelan Utama"
 
 #: SettingsCategory.ui:149 SettingsCategory.ui:151 StickyNotes.ui:59
 msgid "Delete"
-msgstr "Slet"
+msgstr "Hapus"
 
 #: SettingsCategory.ui:174 stickynotes/gui.py:245 stickynotes/gui.py:335
 #: stickynotes/gui.py:356
 msgid "New Category"
-msgstr "Ny Kategori"
+msgstr "Kategori Baru"
 
 #: stickynotes/gui.py:221
 msgid "Always on top"
-msgstr "Altid øverst"
+msgstr "Selalu di atas"
 
 #: stickynotes/gui.py:237
 msgid "Categories:"
-msgstr "Kategorier:"
+msgstr "Kategori:"
 
 #: stickynotes/gui.py:267
 msgid "Are you sure you want to delete this note?"
-msgstr "Er du sikker på at du vil slette denne note?"
+msgstr "Apakah Anda yakin ingin menghapus catatan ini?"
 
 #: stickynotes/gui.py:299
 msgid "Unlock"
-msgstr "Lås op"
+msgstr "Buka Kunci"
 
 #: stickynotes/gui.py:300
 msgid "Lock"
-msgstr "Lås"
+msgstr "Kunci"
 
 #: stickynotes/gui.py:358
 msgid "Default Category"
-msgstr "Standard Kategori"
+msgstr "Kategori Utama"
 
 #: stickynotes/gui.py:365
 msgid "Are you sure you want to delete this category?"
-msgstr "Er du sikker på at du vil slette denne kategori?"
+msgstr "Apakah Anda benar-benar ingin menghapus kategori ini?"
 
 #: indicator-stickynotes-i18n.desktop.in:6
 msgid "Write reminders on notes"
-msgstr ""
+msgstr "Tulis pengingat pada catatan"
