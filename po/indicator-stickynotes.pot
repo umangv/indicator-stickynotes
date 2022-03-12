@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-01 21:59-0400\n"
+"POT-Creation-Date: 2022-03-12 15:31-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,68 +17,68 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: indicator-stickynotes.py:62
+#: indicator-stickynotes.py:65
 msgid "Error reading data file. Do you want to backup the current data?"
 msgstr ""
 
-#: indicator-stickynotes.py:67
+#: indicator-stickynotes.py:70
 msgid "Backup"
 msgstr ""
 
-#: indicator-stickynotes.py:68 indicator-stickynotes-i18n.desktop.in:4
+#: indicator-stickynotes.py:71 indicator-stickynotes-i18n.desktop.in:4
 msgid "Indicator Stickynotes"
 msgstr ""
 
-#: indicator-stickynotes.py:88 indicator-stickynotes.py:267 StickyNotes.ui:34
+#: indicator-stickynotes.py:91 indicator-stickynotes.py:278 StickyNotes.ui:34
 #: indicator-stickynotes-i18n.desktop.in:5
 msgid "Sticky Notes"
 msgstr ""
 
-#: indicator-stickynotes.py:91 StickyNotes.ui:93
+#: indicator-stickynotes.py:94 StickyNotes.ui:93
 msgid "New Note"
 msgstr ""
 
-#: indicator-stickynotes.py:100
+#: indicator-stickynotes.py:103
 msgid "Show All"
 msgstr ""
 
-#: indicator-stickynotes.py:105
+#: indicator-stickynotes.py:108
 msgid "Hide All"
 msgstr ""
 
-#: indicator-stickynotes.py:114
+#: indicator-stickynotes.py:117
 msgid "Lock All"
 msgstr ""
 
-#: indicator-stickynotes.py:119
+#: indicator-stickynotes.py:122
 msgid "Unlock All"
 msgstr ""
 
-#: indicator-stickynotes.py:128 indicator-stickynotes.py:197
+#: indicator-stickynotes.py:131 indicator-stickynotes.py:200
 msgid "Export Data"
 msgstr ""
 
-#: indicator-stickynotes.py:133 indicator-stickynotes.py:223
+#: indicator-stickynotes.py:136 indicator-stickynotes.py:226
 msgid "Import Data"
 msgstr ""
 
-#: indicator-stickynotes.py:142
+#: indicator-stickynotes.py:145
 msgid "About"
 msgstr ""
 
-#: indicator-stickynotes.py:147 GlobalDialogs.ui:94 stickynotes/gui.py:226
+#: indicator-stickynotes.py:150 GlobalDialogs.ui:104 stickynotes/gui.py:226
 msgid "Settings"
 msgstr ""
 
-#: indicator-stickynotes.py:156
+#: indicator-stickynotes.py:159
 msgid "Quit"
 msgstr ""
 
-#: indicator-stickynotes.py:211
+#: indicator-stickynotes.py:214
 msgid "Please choose a different destination for the backup file."
 msgstr ""
 
-#: indicator-stickynotes.py:237
+#: indicator-stickynotes.py:240
 msgid "Error importing data."
 msgstr ""
 
@@ -97,11 +97,11 @@ msgid ""
 "Ctrl + N:  New note"
 msgstr ""
 
-#: GlobalDialogs.ui:150 GlobalDialogs.ui:152
+#: GlobalDialogs.ui:163 GlobalDialogs.ui:165
 msgid "New"
 msgstr ""
 
-#: GlobalDialogs.ui:206
+#: GlobalDialogs.ui:219
 msgid "_Categories"
 msgstr ""
 
@@ -141,8 +141,8 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: SettingsCategory.ui:174 stickynotes/gui.py:245 stickynotes/gui.py:335
-#: stickynotes/gui.py:356
+#: SettingsCategory.ui:174 stickynotes/gui.py:245 stickynotes/gui.py:345
+#: stickynotes/gui.py:366
 msgid "New Category"
 msgstr ""
 
@@ -154,23 +154,23 @@ msgstr ""
 msgid "Categories:"
 msgstr ""
 
-#: stickynotes/gui.py:267
+#: stickynotes/gui.py:277
 msgid "Are you sure you want to delete this note?"
 msgstr ""
 
-#: stickynotes/gui.py:299
+#: stickynotes/gui.py:309
 msgid "Unlock"
 msgstr ""
 
-#: stickynotes/gui.py:300
+#: stickynotes/gui.py:310
 msgid "Lock"
 msgstr ""
 
-#: stickynotes/gui.py:358
+#: stickynotes/gui.py:368
 msgid "Default Category"
 msgstr ""
 
-#: stickynotes/gui.py:365
+#: stickynotes/gui.py:375
 msgid "Are you sure you want to delete this category?"
 msgstr ""
 
