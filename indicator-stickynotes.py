@@ -25,9 +25,13 @@ from stickynotes.info import MO_DIR, LOCALE_DOMAIN
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('GtkSource', '3.0')
-gi.require_version('AppIndicator3', '0.1')
+try:
+    gi.require_version('AyatanaAppIndicator3', '0.1')
+    from gi.repository import AyatanaAppIndicator3 as appindicator
+except ImportError:
+    gi.require_version('AppIndicator3', '0.1')
+    from gi.repository import AppIndicator3 as appindicator
 from gi.repository import Gtk, Gdk
-from gi.repository import AppIndicator3 as appindicator
 
 import os.path
 import locale
